@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'trello_test',
         'USER': 'postgres',
-        'PASSWORD' : ' ',
+        'PASSWORD' : '1234',
         'HOST': 'localhost',
         'PORT': 5432,
     },
