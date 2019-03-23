@@ -12,7 +12,6 @@ It requires database named `trello_test` with this settings:
 'PORT': 5432,
 ```
 
-
 ### Django commands
 
 ```
@@ -29,7 +28,7 @@ python3 manage.py runserver
 
 #### How to create new branch
 
-Make sure you are in `master` branch
+Make sure you are in `master`
 ```
 git branch
 ```
@@ -47,4 +46,10 @@ git checkout -b branch_name
 
 ```
 git branch -D branch_name
+```
+
+#### How to see diff
+
+```
+git diff
 ```
