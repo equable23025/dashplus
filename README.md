@@ -26,6 +26,14 @@ python3 manage.py runserver
 - Nerver merge to `master` without be reviewed
 - Always put branch name in Trello card
 
+#### How to activate virtual environment
+
+```
+cd env
+source bin/activate
+```
+`(env)` should displayed on your terminal
+
 #### How to create new branch
 
 Make sure you are in `master`
