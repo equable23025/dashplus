@@ -31,6 +31,13 @@ python3 manage.py runserver
 ```
 cd env
 source bin/activate
+
+#for window
+
+pip install virtualenv
+virtualenv py34
+.\py34\scripts\activate
+
 ```
 `(env)` should displayed on your terminal
 
