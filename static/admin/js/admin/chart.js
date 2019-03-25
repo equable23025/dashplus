@@ -1,15 +1,20 @@
 $(document).ready(function(){
     $.ajax({
-        type: "POST",
-        url: "",
+        type: "GET",
+        url: "http://127.0.0.1:8000/api/timeStamp/",
         success: function (data) {
-            var result = JSON.parse(data);
-            for(var i = 0;i<result.length;i++){
+            console.log(data);
+            var timestamp = []; 
+            var amount_change = []; 
+            for(let i=0; i<data.length; i++){
+                timestamp.push(data[i].timestamp);
+                amount_change.push(data[i].amountChange);
+            }
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var chart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["1", "2", "3", "4", "5", "6"],
+                        labels: timestamp,
                         datasets: [{
                             label: 'Requriment change',
                             backgroundColor: [
@@ -21,7 +26,7 @@ $(document).ready(function(){
                                 
                             ],
                             borderWidth: 1,
-                            data: [1,2,3,4,5]
+                            data: amount_change
                         }]
                     },
 
@@ -44,7 +49,7 @@ $(document).ready(function(){
                         }
                 });
 
-             }
+             
          }
      });
     

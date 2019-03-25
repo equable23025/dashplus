@@ -16,25 +16,23 @@ from myapp.models import changeReq
 # from django.utils import timezone
 
 def demoDatabases(request):
-	
-	
 	# connection database timeStamp
-	conn = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	demoDatabases = conn.cursor()
 	# connect  database CardRecord
-	conn2 = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conn2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	demoDatabases2 = conn2.cursor()
-	conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	demoDatabases3 = conn3.cursor()
 	
 	# connect to compare table 1
-	conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	table1 = conntable1.cursor()
 	# connect to compare table 2
-	conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	table2 = conntable2.cursor()
 	# connect to count delete
-	conntableDL = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	conntableDL = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	tableDL = conntableDL.cursor()
 
 	# auto input(insert)
@@ -55,16 +53,16 @@ def demoDatabases(request):
 		# timezone = timezone.now()
 		# Insert to database
 
-		demoDatabases.execute("INSERT INTO myapp_timeStamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+		demoDatabases.execute("INSERT INTO myapp_timestamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
 		conn.commit()
 
 		# connection API Trello
-		url = 'https://api.trello.com/1/board/prywNT4Y/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
+		url = 'https://api.trello.com/1/board/txkup7gx/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
 		apiTrello = requests.get(url)
 		data_json = apiTrello.json()
 
 		# select id timeStamp
-		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timeStamp "
+		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timestamp "
 		demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 		idtimeStamp = demoDatabases.fetchall()
 		use_idtimeStamp = ''
@@ -211,7 +209,7 @@ def demoDatabases(request):
 
 	# connect to insertJson
 	my_json_string = json.dumps(arrayJson)
-	connChange = connect("dbname='trello_test' user='postgres' host='localhost' password=' '")
+	connChange = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	tableChange = connChange.cursor()
 	# change id 1 = 0
 	arrayJson.append(0)
