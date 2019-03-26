@@ -208,7 +208,7 @@ for n in range(1) :
 
 	arrayJsonChange = []
 	arrayJsonIdTimeStamp = []
-	tableChange.execute("DELETE FROM myapp_changereq where  id != -1 ") 
+	tableChange.execute("DELETE FROM myapp_change_record where  id != -1 ") 
 	for i in reversed(arrayJson):
 		arrayJsonChange.append(i)
 	# print(arrayJsonChange)
@@ -218,7 +218,7 @@ for n in range(1) :
 	# print(arrayJsonIdTimeStamp)
 
 	for i in range(fixloop):
-		tableChange.execute("INSERT INTO myapp_changereq  (\"amountChange\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
+		tableChange.execute("INSERT INTO myapp_change_record  (\"amountChange\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
 		
 		
 	connChange.commit()

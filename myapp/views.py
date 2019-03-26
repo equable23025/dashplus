@@ -12,7 +12,7 @@ from array import *
 from json.decoder import JSONDecodeError
 from datetime import date
 from datetime import datetime
-from myapp.models import changeReq
+from myapp.models import change_record
 # from django.utils import timezone
 
 def demoDatabases(request):
@@ -219,7 +219,7 @@ def demoDatabases(request):
 
 	arrayJsonChange = []
 	arrayJsonIdTimeStamp = []
-	tableChange.execute("DELETE FROM myapp_changereq where  id != -1 ") 
+	tableChange.execute("DELETE FROM myapp_change_record where  id != -1 ") 
 	for i in reversed(arrayJson):
 		arrayJsonChange.append(i)
 	# print(arrayJsonChange)
@@ -229,7 +229,7 @@ def demoDatabases(request):
 	# print(arrayJsonIdTimeStamp)
 
 	for i in range(fixloop):
-		tableChange.execute("INSERT INTO myapp_changereq  (\"amountChange\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
+		tableChange.execute("INSERT INTO myapp_change_record  (\"amountChange\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
 		
 		
 	connChange.commit()
@@ -244,7 +244,7 @@ def demoDatabases(request):
 	return render(request,'home.html')
 
 def dataToChart(request):
-		data = changeReq.objects.all()
+		data = change_record.objects.all()
 		return render(request,'project-planning.html',{'data': data})
 		
 

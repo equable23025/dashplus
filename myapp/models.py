@@ -15,7 +15,7 @@ class cardRecord(models.Model):
 	timestamp=models.ForeignKey(timeStamp,on_delete=models.CASCADE)
 
 
-class changeReq(models.Model):
+class change_record(models.Model):
 	amountChange=models.IntegerField(default=0)
 	# amountChange = JSONField()
 	timestamp=models.ForeignKey(timeStamp,on_delete=models.CASCADE)

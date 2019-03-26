@@ -1,10 +1,10 @@
 from rest_framework import viewsets
-from .serializers import changeReqSerializer , cardRecordSerializer , timeStampSerializer
-from .models import changeReq,cardRecord ,timeStamp
+from .serializers import change_recordSerializer , cardRecordSerializer , timeStampSerializer
+from .models import change_record,cardRecord ,timeStamp
 
-class changeReqViewSet(viewsets.ModelViewSet):
-    queryset = changeReq.objects.all()
-    serializer_class = changeReqSerializer
+class change_recordViewSet(viewsets.ModelViewSet):
+    queryset = change_record.objects.all()
+    serializer_class = change_recordSerializer
 
 class cardRecordViewSet(viewsets.ModelViewSet):
     queryset = cardRecord.objects.all()

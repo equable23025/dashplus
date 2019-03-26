@@ -4,7 +4,7 @@ from myapp import views
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from myapp.models import changeReq
+from myapp.models import change_record
 from django.conf.urls import url, include
 from myapp.urls import router
 from django.views.generic.base import TemplateView
