@@ -44,7 +44,7 @@ for n in range(1) :
 	# timezone = timezone.now()
 	# Insert to database
 
-	demoDatabases.execute("INSERT INTO myapp_timeStamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+	demoDatabases.execute("INSERT INTO myapp_time_stamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
 	conn.commit()
 
 	# connection API Trello
@@ -53,7 +53,7 @@ for n in range(1) :
 	data_json = apiTrello.json()
 
 	# select id timeStamp
-	postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timeStamp "
+	postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
 	demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 	idtimeStamp = demoDatabases.fetchall()
 	use_idtimeStamp = ''
@@ -94,7 +94,7 @@ for n in range(1) :
 
 			r6 = str(use_idtimeStamp)
 			# 42 tsmp
-			demoDatabases2.execute("INSERT INTO myapp_cardRecord  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
+			demoDatabases2.execute("INSERT INTO myapp_card_record  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
 			conn2.commit()
 		except KeyError as e:
 			pass
@@ -115,7 +115,7 @@ for n in range(1) :
 	arrayJson = []
 	arrayJsonTimeStamp = []
 	
-	# demoDatabases3.execute("SELECT \"idCard\" , \"actionCard\" , \"timestamp_id\"  , \"dates\" FROM public.myapp_timestamp inner join public.myapp_cardrecord on public.myapp_cardrecord.timestamp_id =  public.myapp_timestamp.id where public.myapp_timestamp.id ="+ str(x) +";")
+	# demoDatabases3.execute("SELECT \"idCard\" , \"actionCard\" , \"timestamp_id\"  , \"dates\" FROM public.myapp_time_stamp inner join public.myapp_card_record on public.myapp_card_record.timestamp_id =  public.myapp_time_stamp.id where public.myapp_time_stamp.id ="+ str(x) +";")
 	for i in range(fixloop):
 		if loopRetroact != 1 :
 			fix = 1
@@ -128,14 +128,14 @@ for n in range(1) :
 			beforeDelete = 0
 
 			# seleact all card DISTINCT
-			demoDatabases3.execute("SELECT DISTINCT \"idCard\" FROM public.myapp_cardrecord")		
+			demoDatabases3.execute("SELECT DISTINCT \"idCard\" FROM public.myapp_card_record")		
 			for row in demoDatabases3 :
 				chklastHistory = 0
 				chklastertHistory= 0
 				countlastHistory = 0
 				countlastertHistory = 0
 				chkdeleteCard = 0
-				postgreSQL_select_Query2 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" ,\"listafterCard\" from public.myapp_cardrecord  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
+				postgreSQL_select_Query2 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" ,\"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
 				table2.execute(postgreSQL_select_Query2)
 				idCardCheck2 = table2.fetchall()
 				for lastertHistory  in idCardCheck2 :
@@ -160,7 +160,7 @@ for n in range(1) :
 					else :
 						countlastertHistory = countlastertHistory+1
 
-				postgreSQL_select_Query1 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" , \"listafterCard\" from public.myapp_cardrecord  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
+				postgreSQL_select_Query1 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" , \"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
 				table1.execute(postgreSQL_select_Query1)
 				idCardCheck = table1.fetchall()
 				for lastHistory  in idCardCheck :

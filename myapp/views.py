@@ -55,7 +55,7 @@ def demoDatabases(request):
 		# timezone = timezone.now()
 		# Insert to database
 
-		demoDatabases.execute("INSERT INTO myapp_timeStamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+		demoDatabases.execute("INSERT INTO myapp_time_stamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
 		conn.commit()
 
 		# connection API Trello
@@ -64,7 +64,7 @@ def demoDatabases(request):
 		data_json = apiTrello.json()
 
 		# select id timeStamp
-		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timeStamp "
+		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
 		demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 		idtimeStamp = demoDatabases.fetchall()
 		use_idtimeStamp = ''
@@ -105,7 +105,7 @@ def demoDatabases(request):
 
 				r6 = str(use_idtimeStamp)
 				# 42 tsmp
-				demoDatabases2.execute("INSERT INTO myapp_cardRecord  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
+				demoDatabases2.execute("INSERT INTO myapp_card_record  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
 				conn2.commit()
 			except KeyError as e:
 				pass
@@ -139,14 +139,14 @@ def demoDatabases(request):
 			beforeDelete = 0
 
 			# seleact all card DISTINCT
-			demoDatabases3.execute("SELECT DISTINCT \"idCard\" FROM public.myapp_cardrecord")		
+			demoDatabases3.execute("SELECT DISTINCT \"idCard\" FROM public.myapp_card_record")		
 			for row in demoDatabases3 :
 				chklastHistory = 0
 				chklastertHistory= 0
 				countlastHistory = 0
 				countlastertHistory = 0
 				chkdeleteCard = 0
-				postgreSQL_select_Query2 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" ,\"listafterCard\" from public.myapp_cardrecord  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
+				postgreSQL_select_Query2 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" ,\"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
 				table2.execute(postgreSQL_select_Query2)
 				idCardCheck2 = table2.fetchall()
 				for lastertHistory  in idCardCheck2 :
@@ -171,7 +171,7 @@ def demoDatabases(request):
 					else :
 						countlastertHistory = countlastertHistory+1
 
-				postgreSQL_select_Query1 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" , \"listafterCard\" from public.myapp_cardrecord  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
+				postgreSQL_select_Query1 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" , \"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
 				table1.execute(postgreSQL_select_Query1)
 				idCardCheck = table1.fetchall()
 				for lastHistory  in idCardCheck :
