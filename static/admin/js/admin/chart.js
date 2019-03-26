@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/timeStamp/",
+        url: "http://127.0.0.1:8000/api/changeReq/",
         success: function (data) {
             console.log(data);
             var timestamp = []; 
