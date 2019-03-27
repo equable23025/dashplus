@@ -94,7 +94,7 @@ for n in range(1) :
 
 			r6 = str(use_idtimeStamp)
 			# 42 tsmp
-			demoDatabases2.execute("INSERT INTO myapp_card_record  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
+			demoDatabases2.execute("INSERT INTO myapp_card_record  (\"id_card\", \"action_card\", \"desc_card\", \"comment_card\", \"listafter_card\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
 			conn2.commit()
 		except KeyError as e:
 			pass
@@ -115,7 +115,7 @@ for n in range(1) :
 	arrayJson = []
 	arrayJsonTimeStamp = []
 	
-	# demoDatabases3.execute("SELECT \"idCard\" , \"actionCard\" , \"timestamp_id\"  , \"dates\" FROM public.myapp_time_stamp inner join public.myapp_card_record on public.myapp_card_record.timestamp_id =  public.myapp_time_stamp.id where public.myapp_time_stamp.id ="+ str(x) +";")
+	# demoDatabases3.execute("SELECT \"id_card\" , \"action_card\" , \"timestamp_id\"  , \"dates\" FROM public.myapp_time_stamp inner join public.myapp_card_record on public.myapp_card_record.timestamp_id =  public.myapp_time_stamp.id where public.myapp_time_stamp.id ="+ str(x) +";")
 	for i in range(fixloop):
 		if loopRetroact != 1 :
 			fix = 1
@@ -128,17 +128,17 @@ for n in range(1) :
 			beforeDelete = 0
 
 			# seleact all card DISTINCT
-			demoDatabases3.execute("SELECT DISTINCT \"idCard\" FROM public.myapp_card_record")		
+			demoDatabases3.execute("SELECT DISTINCT \"id_card\" FROM public.myapp_card_record")		
 			for row in demoDatabases3 :
 				chklastHistory = 0
 				chklastertHistory= 0
 				countlastHistory = 0
 				countlastertHistory = 0
 				chkdeleteCard = 0
-				postgreSQL_select_Query2 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" ,\"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
+				postgreSQL_select_Query2 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" ,\"listafter_card\" from public.myapp_card_record  where \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
 				table2.execute(postgreSQL_select_Query2)
-				idCardCheck2 = table2.fetchall()
-				for lastertHistory  in idCardCheck2 :
+				id_cardCheck2 = table2.fetchall()
+				for lastertHistory  in id_cardCheck2 :
 					if lastertHistory[1] == 'deleteCard' or lastertHistory[1] == 'moveCardFromBoard' :
 						# pass
 						chkdeleteCard = 1
@@ -153,17 +153,17 @@ for n in range(1) :
 							chklastertHistory = chklastertHistory+1
 							if chklastertHistory > 1 :
 								countlastertHistory = countlastertHistory+1
-					elif lastertHistory[1] == 'commentCard' :
+					elif lastertHistory[1] == 'comment_card' :
 						countlastertHistory = countlastertHistory	
 					elif lastertHistory[1] == 'createCard' :
 						countlastertHistory = countlastertHistory+1 
 					else :
 						countlastertHistory = countlastertHistory+1
 
-				postgreSQL_select_Query1 = "select \"idCard\", \"actionCard\" ,\"timestamp_id\" ,\"descCard\" , \"listafterCard\" from public.myapp_card_record  where \"idCard\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
+				postgreSQL_select_Query1 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" , \"listafter_card\" from public.myapp_card_record  where \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
 				table1.execute(postgreSQL_select_Query1)
-				idCardCheck = table1.fetchall()
-				for lastHistory  in idCardCheck :
+				id_cardCheck = table1.fetchall()
+				for lastHistory  in id_cardCheck :
 					if lastHistory[1] == 'deleteCard' or lastHistory[1] == 'moveCardFromBoard':
 						countlastHistory = 1
 						if chkdeleteCard == 0:
@@ -178,7 +178,7 @@ for n in range(1) :
 							chklastHistory = chklastHistory+1
 							if chklastHistory > 1 :
 								countlastHistory = countlastHistory+1
-					elif lastHistory[1] == 'commentCard' :				
+					elif lastHistory[1] == 'comment_card' :				
 						countlastHistory = countlastHistory	
 					elif lastHistory[1] == 'createCard' :
 						countlastHistory = countlastHistory	+1 
@@ -218,7 +218,7 @@ for n in range(1) :
 	# print(arrayJsonIdTimeStamp)
 
 	for i in range(fixloop):
-		tableChange.execute("INSERT INTO myapp_change_record  (\"amountChange\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
+		tableChange.execute("INSERT INTO myapp_change_record  (\"amount_change\", \"timestamp_id\")VALUES ('{}', '{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i])))
 		
 		
 	connChange.commit()
