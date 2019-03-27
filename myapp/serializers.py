@@ -4,7 +4,7 @@ from rest_framework import serializers
 class change_recordSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = change_record
-		fields = ('amountChange','timestamp')
+		fields = ('amount_change','timestamp')
 		# fields = '__all__'
 
 class card_recordSerializer(serializers.ModelSerializer):

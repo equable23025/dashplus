@@ -53,11 +53,8 @@ def demoDatabases(request):
 		# timezone = timezone.now()
 		# Insert to database
 
-<<<<<<< HEAD
+
 		demoDatabases.execute("INSERT INTO myapp_time_stamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
-=======
-		demoDatabases.execute("INSERT INTO myapp_timestamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
->>>>>>> ajax
 		conn.commit()
 
 		# connection API Trello
@@ -66,11 +63,7 @@ def demoDatabases(request):
 		data_json = apiTrello.json()
 
 		# select id timeStamp
-<<<<<<< HEAD
 		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
-=======
-		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timestamp "
->>>>>>> ajax
 		demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 		idtimeStamp = demoDatabases.fetchall()
 		use_idtimeStamp = ''
