@@ -1,114 +1,105 @@
-# from django.views.generic.edit import CreateView, UpdateView
-# from django.views.generic.list import ListView
-# import sys
 from requests import get
 from psycopg2 import connect
-from django.shortcuts import render, redirect
 from trello import TrelloClient
 import requests 
 import json
-from django.http import JsonResponse
 from array import *
-from json.decoder import JSONDecodeError
 from datetime import date
 from datetime import datetime
-from myapp.models import change_record
-# from django.utils import timezone
 
-def demoDatabases(request):
-	# connection database timeStamp
-	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	demoDatabases = conn.cursor()
-	# connect  database CardRecord
-	conn2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	demoDatabases2 = conn2.cursor()
-	conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	demoDatabases3 = conn3.cursor()
+# connection database timeStamp
+conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+demoDatabases = conn.cursor()
+# connect  database CardRecord
+conn2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+demoDatabases2 = conn2.cursor()
+conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+demoDatabases3 = conn3.cursor()
 	
-	# connect to compare table 1
-	conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	table1 = conntable1.cursor()
-	# connect to compare table 2
-	conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	table2 = conntable2.cursor()
-	# connect to count delete
-	conntableDL = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-	tableDL = conntableDL.cursor()
+# connect to compare table 1
+conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+table1 = conntable1.cursor()
+# connect to compare table 2
+conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+table2 = conntable2.cursor()
+# connect to count delete
+conntableDL = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+tableDL = conntableDL.cursor()
 
-	# auto input(insert)
-	for n in range(1) :
-		# COUNTDOWN
-		import time
-		t = 1
-		while (t > 0):
-			time.sleep(1)
-			print("count down :"+str(t))
-			t = t-1
-		# date - time
-		from datetime import time
-		datetimes = datetime.now()
-		todayzone = datetimes.strftime("%x")
-		formatedDate = datetimes.strftime("%Y-%m-%d %H:%M:%S")
-		# timezone = datetimes.strftime("%H:%M")
-		# timezone = timezone.now()
-		# Insert to database
+# auto input(insert)
+for n in range(1) :
+	# COUNTDOWN
+	import time
+	t = 1
+	while (t > 0):
+		time.sleep(1)
+		print("count down :"+str(t))
+		t = t-1
+	# date - time
+	from datetime import time
+	datetimes = datetime.now()
+	todayzone = datetimes.strftime("%x")
+	formatedDate = datetimes.strftime("%Y-%m-%d %H:%M:%S")
+	# timezone = datetimes.strftime("%H:%M")
+	# timezone = timezone.now()
+	# Insert to database
 
-		demoDatabases.execute("INSERT INTO myapp_timestamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
-		conn.commit()
+	demoDatabases.execute("INSERT INTO myapp_timeStamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+	conn.commit()
 
-		# connection API Trello
-		url = 'https://api.trello.com/1/board/txkup7gx/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
-		apiTrello = requests.get(url)
-		data_json = apiTrello.json()
+	# connection API Trello
+	url = 'https://api.trello.com/1/board/prywNT4Y/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
+	apiTrello = requests.get(url)
+	data_json = apiTrello.json()
 
-		# select id timeStamp
-		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timestamp "
-		demoDatabases.execute(postgreSQL_select_Query_timeStamp)
-		idtimeStamp = demoDatabases.fetchall()
-		use_idtimeStamp = ''
-		for row in idtimeStamp :
-			use_idtimeStamp = row[0]
-		# idLength 
-		idLength = int(use_idtimeStamp) + 1
-		# getJson + addData to cardRecord
-		for historycard in data_json :
-			try:
-			# insert to database
-				r1 = str(historycard['data']['card']['id'])
-				r2 = str(historycard['type'])
-				r3 = ''
+	# select id timeStamp
+	postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timeStamp "
+	demoDatabases.execute(postgreSQL_select_Query_timeStamp)
+	idtimeStamp = demoDatabases.fetchall()
+	use_idtimeStamp = ''
+	for row in idtimeStamp :
+		use_idtimeStamp = row[0]
+	# idLength 
+	idLength = int(use_idtimeStamp) + 1
+	# getJson + addData to cardRecord
+	for historycard in data_json :
+		try:
+		# insert to database
+			r1 = str(historycard['data']['card']['id'])
+			r2 = str(historycard['type'])
+			r3 = ''
 		
-				try:
-					r3 = str(historycard['data']['card']['desc'])
-				except KeyError as e:
-					r3 = "N/A"
-				finally:
-					pass
-				r4 = ''
-
-				try:
-					r4 = str(historycard['data']['text'])
-				except KeyError as e:
-					r4 = "N/A"
-				finally:
-					pass
-
-				r5 = ''
-				try:
-					r5 = str(historycard['data']['listAfter']['name'])
-				except KeyError as e:
-					r5 = "N/A"
-				finally:
-					pass
-
-				r6 = str(use_idtimeStamp)
-				# 42 tsmp
-				demoDatabases2.execute("INSERT INTO myapp_cardRecord  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
-				conn2.commit()
+			try:
+				r3 = str(historycard['data']['card']['desc'])
 			except KeyError as e:
-				pass
+				r3 = "N/A"
 			finally:
 				pass
+			
+			r4 = ''
+			try:
+				r4 = str(historycard['data']['text'])
+			except KeyError as e:
+				r4 = "N/A"
+			finally:
+				pass
+
+			r5 = ''
+			try:
+				r5 = str(historycard['data']['listAfter']['name'])
+			except KeyError as e:
+				r5 = "N/A"
+			finally:
+				pass
+
+			r6 = str(use_idtimeStamp)
+			# 42 tsmp
+			demoDatabases2.execute("INSERT INTO myapp_cardRecord  (\"idCard\", \"actionCard\", \"descCard\", \"commentCard\", \"listafterCard\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
+			conn2.commit()
+		except KeyError as e:
+			pass
+		finally:
+			pass
 	changeQ = []
 	# table1-ID
 	loopRetroact = idLength - 1
@@ -235,16 +226,6 @@ def demoDatabases(request):
 	conn.close()
 	conn2.close()
 	conn3.close()
+
 	# for i in range(len(arrayJson)) :
 	# 	print(arrayJson[i])
-	
-
-	return render(request,'home.html')
-
-def dataToChart(request):
-		data = change_record.objects.all()
-		return render(request,'project-planning.html',{'data': data})
-		
-
-
-	

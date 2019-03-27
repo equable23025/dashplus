@@ -1,9 +1,9 @@
-from .models import changeReq,cardRecord ,timeStamp
+from .models import change_record,cardRecord ,timeStamp
 from rest_framework import serializers
 
-class changeReqSerializer(serializers.ModelSerializer):
+class change_recordSerializer(serializers.ModelSerializer):
 	class Meta:
-		model = changeReq
+		model = change_record
 		fields = ('amountChange','timestamp')
 		#fields = '__all__'
 
