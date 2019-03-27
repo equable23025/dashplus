@@ -16,8 +16,6 @@ from myapp.models import change_record
 # from django.utils import timezone
 
 def demoDatabases(request):
-	
-	
 	# connection database timeStamp
 	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	demoDatabases = conn.cursor()
@@ -55,16 +53,24 @@ def demoDatabases(request):
 		# timezone = timezone.now()
 		# Insert to database
 
+<<<<<<< HEAD
 		demoDatabases.execute("INSERT INTO myapp_time_stamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+=======
+		demoDatabases.execute("INSERT INTO myapp_timestamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
+>>>>>>> ajax
 		conn.commit()
 
 		# connection API Trello
-		url = 'https://api.trello.com/1/board/prywNT4Y/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
+		url = 'https://api.trello.com/1/board/txkup7gx/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
 		apiTrello = requests.get(url)
 		data_json = apiTrello.json()
 
 		# select id timeStamp
+<<<<<<< HEAD
 		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
+=======
+		postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_timestamp "
+>>>>>>> ajax
 		demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 		idtimeStamp = demoDatabases.fetchall()
 		use_idtimeStamp = ''
