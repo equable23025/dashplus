@@ -7,42 +7,11 @@ from array import *
 from datetime import date
 from datetime import datetime
 
+
+
 # connection database timeStamp
 conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 demoDatabases = conn.cursor()
-# connect  database CardRecord
-conn2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-demoDatabases2 = conn2.cursor()
-conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-demoDatabases3 = conn3.cursor()
-	
-# connect to compare table 1
-conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-table1 = conntable1.cursor()
-# connect to compare table 2
-conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-table2 = conntable2.cursor()
-# connect to count delete
-conntableDL = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
-tableDL = conntableDL.cursor()
-
-
-# date - time
-from datetime import time
-datetimes = datetime.now()
-todayzone = datetimes.strftime("%x")
-formatedDate = datetimes.strftime("%Y-%m-%d %H:%M:%S")
-# timezone = datetimes.strftime("%H:%M")
-# timezone = timezone.now()
-# Insert to database
-
-demoDatabases.execute("INSERT INTO myapp_time_stamp  (\"datetime\"  )VALUES ('{}')".format(formatedDate))
-conn.commit()
-
-# connection API Trello
-url = 'https://api.trello.com/1/board/prywNT4Y/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
-apiTrello = requests.get(url)
-data_json = apiTrello.json()
 
 # select id timeStamp
 postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
@@ -53,45 +22,17 @@ for row in idtimeStamp :
 	use_idtimeStamp = row[0]
 # idLength 
 idLength = int(use_idtimeStamp) + 1
-# getJson + addData to cardRecord
-for historycard in data_json :
-	try:
-	# insert to database
-		r1 = str(historycard['data']['card']['id'])
-		r2 = str(historycard['type'])
-		r3 = ''
+
+conn3 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+demoDatabases3 = conn3.cursor()
 	
-		try:
-			r3 = str(historycard['data']['card']['desc'])
-		except KeyError as e:
-			r3 = "N/A"
-		finally:
-			pass
-			
-		r4 = ''
-		try:
-			r4 = str(historycard['data']['text'])
-		except KeyError as e:
-			r4 = "N/A"
-		finally:
-			pass
+# connect to compare table 1
+conntable1 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+table1 = conntable1.cursor()
+# connect to compare table 2
+conntable2 = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+table2 = conntable2.cursor()
 
-		r5 = ''
-		try:
-			r5 = str(historycard['data']['listAfter']['name'])
-		except KeyError as e:
-			r5 = "N/A"
-		finally:
-			pass
-
-		r6 = str(use_idtimeStamp)
-		# 42 tsmp
-		demoDatabases2.execute("INSERT INTO myapp_card_record  (\"id_card\", \"action_card\", \"desc_card\", \"comment_card\", \"listafter_card\" ,\"timestamp_id\")VALUES ('{}', '{}', '{}', '{}', '{}', '{}')".format(r1,r2,r3,r4,r5,r6))
-		conn2.commit()
-	except KeyError as e:
-		pass
-	finally:
-		pass
 changeQ = []
 # table1-ID
 loopRetroact = idLength - 1
@@ -190,7 +131,7 @@ for i in range(fixloop):
 
 
 
-# connect to insertJson
+# connect to insert database change_record
 my_json_string = json.dumps(arrayJson)
 connChange = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 tableChange = connChange.cursor()
@@ -214,6 +155,4 @@ for i in range(fixloop):
 				
 connChange.commit()
 connChange.close()
-conn.close()
-conn2.close()
 conn3.close()
