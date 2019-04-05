@@ -14,5 +14,6 @@ urlpatterns = [
     path('home/', views.demoDatabases, name='demoDatabases'),
     path('all-project/',TemplateView.as_view(template_name='all-project.html'), name='all-project'),
     path('project-planning/',views.dataToChart, name='project-planning'),
-    path(r'api/', include(router.urls))
+    path(r'api/', include(router.urls)),
+    path('login/',TemplateView.as_view(template_name='login.html'), name='login'),
 ]
