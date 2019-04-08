@@ -8,12 +8,13 @@ from myapp.models import change_record
 from django.conf.urls import url, include
 from myapp.urls import router
 from django.views.generic.base import TemplateView
-
+from myapp import views as user_views
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('home/', views.demoDatabases, name='demoDatabases'),
-    path('all-project/',TemplateView.as_view(template_name='all-project.html'), name='all-project'),
-    path('project-planning/',views.dataToChart, name='project-planning'),
-    path(r'api/', include(router.urls)),
-    path('login/',TemplateView.as_view(template_name='login.html'), name='login'),
+path('admin/', admin.site.urls),
+path('home/', views.demoDatabases, name='demoDatabases'),
+path('all-project/',TemplateView.as_view(template_name='all-project.html'), name='all-project'),
+path('project-planning/',views.dataToChart, name='project-planning'),
+path(r'api/', include(router.urls)),
+path('login/',TemplateView.as_view(template_name='login.html'), name='login'),
+path('regis/',user_views.register, name='register'),
 ]

@@ -13,6 +13,10 @@ from json.decoder import JSONDecodeError
 from datetime import date
 from datetime import datetime
 from myapp.models import change_record
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from myapp.forms import register_form
+
 # from django.utils import timezone
 
 def demoDatabases(request):
@@ -243,9 +247,22 @@ def demoDatabases(request):
 	return render(request,'home.html')
 
 def dataToChart(request):
-		data = change_record.objects.all()
-		return render(request,'project-planning.html',{'data': data})
+	data = change_record.objects.all()
+	return render(request,'project-planning.html',{'data': data})
 		
 
+
+def register(request):
+	if request.method == 'POST':
+		# form = UserCreationForm(request.POST)
+		form =register_form(request.POST)
+		if form.is_valid():
+			form.save()
+			# username = form.cleaned_data.get('username')
+			# messages.success(request , f'success')
+			return redirect('/api')
+	else:
+		form = register_form()
+	return render(request,'regis.html',{'form':form})
 
 	

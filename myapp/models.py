@@ -19,3 +19,13 @@ class change_record(models.Model):
 	amount_change=models.IntegerField(default=0)
 	timestamp=models.ForeignKey(time_stamp,on_delete=models.CASCADE)
 
+class register_id(models.Model):
+	username =models.CharField(max_length=100)
+	password =models.CharField(max_length=100)
+	trello_token =models.CharField(max_length=100)
+	first_name=models.CharField(max_length=100)
+	last_name=models.CharField(max_length=100)
+	birth_date=models.CharField(max_length=100)
+	telephone=models.CharField(max_length=100)
+	email=models.CharField(max_length=100)
+
