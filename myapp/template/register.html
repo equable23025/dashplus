@@ -21,50 +21,61 @@
 </head>
 
 <body>
-  <form method="POST">
-    <section class="popup-box">
-      <div class="reg-box">
-        <div class="content_box_flow">
-          <div class="btn-box">
-            <div class="header-login">Registeration</div>
+ <form method="POST">
+  <section class="popup-box">
+    <div class="reg-box">
+      <div class="content_box_flow">
+        <div class="btn-box">
+          <div class="header-login">Registeration</div>
+          <input type='hidden' name='csrfmiddlewaretoken' value='GMOvUBCIAlCbsuxNIv33eABM3V4z4VrEXSrBc4u9dj7KrTzJHnuUKO2mjsoZv1Ew' />
 
-
-            <div class="uname">Username <span id="color-red">*</span></div>
-            <input class="input-login" type="text" placeholder="Enter Username" name="uname" required>
-            <div class="psw">Password <span id="color-red">*</span></div>
-            <input class="input-login" type="password" placeholder="Enter Password" name="psw" required>
-            <div class="con_psw">Confirm Password <span id="color-red">*</span></div>
-            <input class="input-login" type="password" placeholder="Confirmed Password" name="con_psw" required>
-          </div>
-          <!-- <div class="line"></div> -->
-          <div class="btn-box">
-            <div class="firstname">Firstname <span id="color-red">*</span></div>
-            <input class="input-login" type="text" placeholder="Enter Firstname" name="psw" required>
-            <div class="lastname">Lastname<span id="color-red">*</span></div>
-            <input class="input-login" type="text" placeholder="Enter Lastname" name="psw" required>
-            <div class="birth_date">Birth Date<span id="color-red">*</span></div>
-            <input class="input-login" type="date" placeholder="MM/DD/YYYY" name="psw" required>
-            <div class="telephone">Telephone<span id="color-red">*</span></div>
-            <input class="input-login" type="text" placeholder="Enter Telephone" name="psw" required>
-            <div class="email">Email<span id="color-red">*</span></div>
-            <input class="input-login" type="email" placeholder="dashplus@dashplusmail.com" name="psw" required>
-          </div>
+          <div class="uname">Username <span id="color-red">*</span></div>
+          <input class="input-login" type="text" placeholder="Enter Username" name="uname" id="id_username" required>
+          <div class="psw">Password <span id="color-red">*</span></div>
+          <input class="input-login" type="password" placeholder="Enter Password" name="psw" id="id_password"  required>
+          <div class="con_psw">Confirm Password <span id="color-red">*</span></div>
+          <input class="input-login" type="password" placeholder="Confirmed Password" name="con_psw" id="chk_password" required>
+        </div>
+        <!-- <div class="line"></div> -->
+        <div class="btn-box">
+          <div class="firstname">Firstname <span id="color-red">*</span></div>
+          <input class="input-login" type="text" placeholder="Enter Firstname" name="psw" id="id_first_name" required>
+          <div class="lastname">Lastname<span id="color-red">*</span></div>
+          <input class="input-login" type="text" placeholder="Enter Lastname" name="psw" id="id_last_name"  required>
+          <div class="birth_date">Birth Date<span id="color-red">*</span></div>
+          <input class="input-login" type="date" placeholder="MM/DD/YYYY" name="psw" id="id_birth_date"  required>
+          <div class="telephone">Telephone<span id="color-red">*</span></div>
+          <input class="input-login" type="text" placeholder="Enter Telephone" name="psw" id="id_telephone"  required>
+          <div class="email">Email<span id="color-red">*</span></div>
+          <input class="input-login" type="email" placeholder="dashplus@dashplusmail.com" name="psw" id="id_email"  required>
+          <p><label for="id_trello_token">Trello token:</label> <input type="text" name="trello_token" maxlength="100" required id="id_trello_token" /></p>
         </div>
       </div>
-      <div class="btn-box">
-        <div class="btn-login submit_reg">
+    </div>
+    <div class="btn-box">
+     <button class="btn-login submit_reg">Sign Up</button>
+<!--         <div class="btn-login submit_reg">
           Submit
-        </div>
+        </div> -->
       </div>
     </section>
   </form>
   <div class="popup-bg"></div>
+  <script type="text/javascript">
+    a = window.location.href ;
+  // alert(a);
+  var res = a.split("token=");
+  // alert(res[1]);
+  document.getElementById("id_trello_token").innerHTML = ""+ res[1];
+  document.getElementById("id_trello_token").value = ""+ res[1];
+  document.getElementById("id_trello_token").readOnly = true;
+</script>
 
 
-  <script src="../../static/admin/js/admin/all-project.js"></script>
-  <script src="../../static/admin/js/admin/chart.js"></script>
-  <script src="../../static/admin/js/admin/main.js"></script>
-  <script src="../../static/admin/js/admin/registeration.js"></script>
+<script src="../../static/admin/js/admin/all-project.js"></script>
+<script src="../../static/admin/js/admin/chart.js"></script>
+<script src="../../static/admin/js/admin/main.js"></script>
+<script src="../../static/admin/js/admin/registeration.js"></script>
 
 </body>
 

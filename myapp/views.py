@@ -15,7 +15,12 @@ from datetime import datetime
 from myapp.models import change_record
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from myapp.forms import register_form
+from myapp.forms import register_form , register_token_form
+# from django import HttpResponse
+from django.http import HttpResponse
+import re
+from django.http import HttpResponseRedirect
+
 
 # from django.utils import timezone
 
@@ -250,7 +255,9 @@ def dataToChart(request):
 	data = change_record.objects.all()
 	return render(request,'project-planning.html',{'data': data})
 		
-
+def home_to_register(request):
+	# data = change_record.objects.all()
+	return render(request,'home.html')
 
 def register(request):
 	if request.method == 'POST':
@@ -260,9 +267,32 @@ def register(request):
 			form.save()
 			# username = form.cleaned_data.get('username')
 			# messages.success(request , f'success')
-			return redirect('/api')
+			return redirect("/login")
+			# return HttpResponseRedirect("https://trello.com/1/authorize?expiration=1day&name=DashPlus&scope=read&response_type=token&key=6aa466b0416e7930b5889b667bbda4ee&callback_method=fragment&return_url=http://localhost:8000/token/")
 	else:
 		form = register_form()
 	return render(request,'regis.html',{'form':form})
+
+def get_token(request,token):
+	# url = request.GET['string']
+	url = request.get_full_path()
+	url2 = request.get_host()
+	url3 = request.is_secure()
+	url4 = request.path
+	# url5 = request.META['HTTP_ABCDATA']
+	# return HttpResponse('success')
+	# return render(request,'get-token.html',{'string':url5})
+	# print(request)
+
+	# if request.method == 'POST':
+	# 	form_token =register_token_form(request.POST)
+	# 	if form_token.is_valid():
+	# 		form_token.save()
+	# else:
+	# form_token = register_form()
+
+	# return HttpResponse(request)
+	return render(request,'token.html',{'string':token})
+
 
 	

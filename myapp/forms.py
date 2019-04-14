@@ -6,5 +6,10 @@ from myapp.models import register_id
 class register_form(forms.ModelForm):
 	class Meta:
 		model = register_id
-		fields = ['username','password','trello_token','first_name','last_name','birth_date','telephone','email']
-    
+		fields = ['first_name','last_name','birth_date','telephone','email','trello_token','username','password']
+
+# save token
+class register_token_form(forms.ModelForm):
+	class Meta:
+		model = register_id
+		fields = ['trello_token']

@@ -1,0 +1,17 @@
+{% block content%}
+{{ string }}
+
+
+<p id="tokens"></p>
+
+<script type="text/javascript">
+	a = window.location.href ;
+	// alert(a);
+	var res = a.split("token=");
+	// alert(res[1]);
+	document.getElementById("tokens").innerHTML = ""+ res[1];
+	document.getElementById("tokens").value = ""+ res[1];
+</script>
+
+
+{% endblock content%}
