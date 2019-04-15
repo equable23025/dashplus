@@ -13,3 +13,4 @@ class register_token_form(forms.ModelForm):
 	class Meta:
 		model = register_id
 		fields = ['trello_token']
+

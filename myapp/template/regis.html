@@ -1,11 +1,12 @@
 {% block content%}
-<<!-- form method="POST">
+<form method="POST">
 	{% csrf_token %}
 	{{form.as_p}}
 
-	<button>Sign Up</button>
-</form> -->
-<form method="POST">
+	<button  onclick="return  Validate()">Sign Up</button>
+</form>
+<!-- <form method="POST">
+	{% csrf_token %}
 	<input type='hidden' name='csrfmiddlewaretoken' value='GMOvUBCIAlCbsuxNIv33eABM3V4z4VrEXSrBc4u9dj7KrTzJHnuUKO2mjsoZv1Ew' />
 	<p>
 		<label for="id_username">Username:</label> 
@@ -46,7 +47,7 @@
 
 	<button  onclick="return  Validate()">Sign Up</button>
 </form>
-
+ -->
 
 <!-- chk password / confirm -->
 <script type="text/javascript">
