@@ -9,10 +9,10 @@ from array import *
 from json.decoder import JSONDecodeError
 from datetime import date
 from datetime import datetime
-from myapp.models import change_record
+from myapp.models import change_record   , user_board
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from myapp.forms import register_form , register_token_form
+from myapp.forms import register_form , register_token_form , user_board_form
 # from django import HttpResponse
 from django.http import HttpResponse
 import re
@@ -60,13 +60,19 @@ def register(request):
 	return render(request,'regis.html',{'form':form})
 
 def addboard(request):
-	# url = request.GET['string']
-	url = request.get_full_path()
-	url2 = request.get_host()
-	url3 = request.is_secure()
-	url4 = request.path
-	# url5 = request.META['HTTP_ABCDATA']
-	return render(request,'addboard.html')
+	user = request.session['member_id']
+	if request.method == 'POST':
+		# form = UserCreationForm(request.POST)
+		form =user_board_form(request.POST)
+		if form.is_valid():
+			form.save()
+	else:
+		form = user_board_form()
+	# username = request.POST.get('usern')
+	# board = request.POST.get('board')
+	# board_object = user_board.objects.create(username=username,board=board)
+	# board_object.save()
+	return render(request,'addboard.html',{'username':user,'form':form})
 
 from django.contrib.auth import authenticate, login as auth_login
 
@@ -82,7 +88,7 @@ def login(request):
         	username = request.session['member_id']
         # Set session as modified to force data updates/cookie to be saved.
         	request.session.modified = True
-        	return HttpResponseRedirect("/token",{'user':username})
+        	return HttpResponseRedirect("/addboard",{'user':username})
     else:
         messages.info(request, 'เข้าสู่ระบบล้มเหลว')
         return render(request,'login.html')
