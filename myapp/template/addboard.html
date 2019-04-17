@@ -2,23 +2,27 @@
 <!-- {{ username }} -->
 <form method="POST" action="">
 	{% csrf_token %}
-	<input type='hidden' name='csrfmiddlewaretoken' value='d2w5LOVNRygGjOXZNXJ5WU6aNRl7FiRetEPFcytptrNJE3A5VPS4DgU3TYoC6jnr'/>
+	<!-- <input type='hidden' name='csrfmiddlewaretoken' value='d2w5LOVNRygGjOXZNXJ5WU6aNRl7FiRetEPFcytptrNJE3A5VPS4DgU3TYoC6jnr'/> -->
 <!-- 	<div class="uname">board</div>
 	<input class="input-board" type="text" placeholder="Enter board" name="usern" style="display: none;" value="qw">
 	<input class="input-board" type="text" placeholder="Enter board" name="board" required> -->
-	<p style="display: none;"><label for="id_username">Username:</label> <input type="text" name="username" maxlength="100" 
+	{{form.as_p}}
+
+<!-- 	<p style="display: none;"><label for="id_username">Username:</label> <input type="text" name="username" maxlength="100" 
 		value="{{ username }}" id="id_username" /></p>
 		<p><label for="id_board">Board:</label> <input type="text" name="board" maxlength="500" required id="id_board" /></p>
+		<button>add board</button> -->
 		<button>add board</button>
-
-		<script type="text/javascript">
+<script type="text/javascript">
 	// document.getElementsByName("nameid").value = '{{ username }}';
 	// document.getElementById("name").innerHTML = ""+'{{ username }}';
 	// var ninjaSldr = document.getElementById("ninja-slider");
  //    ninjaSldr.parentNode.style.display = "block";
  var csrftoken = Cookies.get('csrftoken');
-
 </script>
+
+
+
 
 </form>
 {% endblock content%}

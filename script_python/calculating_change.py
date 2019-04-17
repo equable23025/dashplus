@@ -7,7 +7,9 @@ from array import *
 from datetime import date
 from datetime import datetime
 
-
+# connection database user_board
+con_user_board = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+con_user_board_database = con_user_board.cursor()
 
 # connection database timeStamp
 conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
