@@ -186,6 +186,7 @@ fieldset .field-box {
 
 .wide label {
     width: 200px;
+    margin-bottom: 8px;
 }
 
 form .wide p,
@@ -512,4 +513,5 @@ form .related-widget-wrapper ul {
 
 .clearable-file-input input {
     margin-top: 0;
+    border-bottom: 1px solid #b2b2b2;
 }
