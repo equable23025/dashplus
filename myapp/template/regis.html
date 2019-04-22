@@ -53,36 +53,30 @@
 			document.getElementById("id_trello_token").readOnly = true;
 		</script>
 
-		<script src="../../static/admin/js/admin/all-project.js"></script>
-		<script src="../../static/admin/js/admin/chart.js"></script>
-		<script src="../../static/admin/js/admin/main.js"></script>
-		<script src="../../static/admin/js/admin/registeration.js"></script>
+		<!-- chk password / confirm -->
+		<script type="text/javascript">
+			function Validate() {
+				var password = document.getElementById("id_password").value;
+				var confirmPassword = document.getElementById("id_password2").value;
+				if (password != confirmPassword) {
+					alert("Passwords do not match.");
+					return false;
+				}
+				// return true;
+			}
+		</script>
+		<!-- sace token -->
+		<script type="text/javascript">
+			a = window.location.href ;
+			// alert(a);
+			var res = a.split("token=");
+			// alert(res[1]);
+			document.getElementById("id_trello_token").innerHTML = ""+ res[1];
+			document.getElementById("id_trello_token").value = ""+ res[1];
+			document.getElementById("id_trello_token").readOnly = true;
+		</script>
 
 </body>
 
 </html>
-
-<!-- chk password / confirm -->
-<script type="text/javascript">
-	function Validate() {
-		var password = document.getElementById("id_password").value;
-		var confirmPassword = document.getElementById("id_password2").value;
-		if (password != confirmPassword) {
-			alert("Passwords do not match.");
-			return false;
-		}
-		// return true;
-	}
-</script>
-<!-- sace token -->
-<script type="text/javascript">
-	a = window.location.href ;
-	// alert(a);
-	var res = a.split("token=");
-	// alert(res[1]);
-	document.getElementById("id_trello_token").innerHTML = ""+ res[1];
-	document.getElementById("id_trello_token").value = ""+ res[1];
-	document.getElementById("id_trello_token").readOnly = true;
-</script>
-
 {% endblock %}
