@@ -56,7 +56,7 @@ for user in ub :
 
 	# connection API Trello
 	# url = 'https://api.trello.com/1/board/'+str(user[1])+'/actions?key=b9545eea3fb3d1da5bfeb4bc12c8f0ddd4f6f21317e903694dcb6bc4c84fb73f&token='+str(token[0])
-	url = 'https://api.trello.com/1/board/'+str(user[1])+'/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token='+str(token)
+	url = 'https://api.trello.com/1/board/'+str(user[1])+'/actions?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token)
 	# url = 'https://api.trello.com/1/board/'+str(user[1])+'/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
 	# url = 'https://api.trello.com/1/board/prywNT4Y/actions?key=2974a6f5ada96a1fbf515aab92f01b7f&token=4d1a7b32cc933b8b75294c40013c30d9e30e29306fb06a630ce932ed8d26c6d7'
 	print(url)
