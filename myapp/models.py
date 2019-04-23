@@ -21,7 +21,8 @@ class change_record(models.Model):
 	username =models.CharField(max_length=100)
 	board =models.CharField(max_length=500)
 	amount_change=models.IntegerField(default=0)
-	timestamp=models.ForeignKey(time_stamp,on_delete=models.CASCADE)
+	# timestamp=models.ForeignKey(time_stamp,on_delete=models.CASCADE)
+	timestamp=models.IntegerField(default='0')
 
 class register_id(models.Model):
 	username =models.CharField(max_length=100)
