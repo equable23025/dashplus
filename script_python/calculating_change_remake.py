@@ -7,7 +7,7 @@ from array import *
 from datetime import date
 from datetime import datetime
 
-# v1v2v3 UzJkBpyY
+# root DdoZIAZQ
 
 # เพิ่มลบการ์ด
 # เพื่มลบเชคลิส
@@ -18,7 +18,7 @@ from datetime import datetime
 con_user_board = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 con_user_board_database = con_user_board.cursor()
 
-postgreSQL_select_Query_user_board = "select \"username\" ,\"board\"  from myapp_user_board where username = 'v1v2v3' and board = 'UzJkBpyY'"
+postgreSQL_select_Query_user_board = "select \"username\" ,\"board\"  from myapp_user_board where username = 'root' and board = 'DdoZIAZQ'"
 con_user_board_database.execute(postgreSQL_select_Query_user_board)
 ub = con_user_board_database.fetchall()
 
@@ -27,7 +27,7 @@ conn = connect("dbname='trello_test' user='postgres' host='localhost' password='
 demoDatabases = conn.cursor()
 
 # select id timeStamp
-postgreSQL_select_Query_timeStamp = "select \"id\"  from myapp_time_stamp "
+postgreSQL_select_Query_timeStamp = "SELECT DISTINCT timestamp_id FROM public.myapp_card_record where username = 'root' and board = 'DdoZIAZQ' ;"
 demoDatabases.execute(postgreSQL_select_Query_timeStamp)
 idtimeStamp = demoDatabases.fetchall()
 use_idtimeStamp = ''
@@ -64,7 +64,7 @@ arrayJsonTimeStamp = []
 # demoDatabases3.execute("SELECT \"id_card\" , \"action_card\" , \"timestamp_id\"  , \"dates\" FROM public.myapp_time_stamp inner join public.myapp_card_record on public.myapp_card_record.timestamp_id =  public.myapp_time_stamp.id where public.myapp_time_stamp.id ="+ str(x) +";")
 for i in range(fixloop):
 	if loopRetroact != 1 :
-		fix = 1
+		# fix = 1
 		# count to calculate
 		sumcountlastHistory = 0
 		sumcountlastertHistory = 0
@@ -74,14 +74,14 @@ for i in range(fixloop):
 		beforeDelete = 0
 
 		# seleact all card DISTINCT
-		demoDatabases3.execute("SELECT DISTINCT \"id_card\" FROM public.myapp_card_record where username = 'v1v2v3' and board = 'UzJkBpyY' ")		
+		demoDatabases3.execute("SELECT DISTINCT \"id_card\" FROM public.myapp_card_record where username = 'root' and board = 'DdoZIAZQ' ")		
 		for row in demoDatabases3 :
 			chklastHistory = 0
 			chklastertHistory= 0
 			countlastHistory = 0
 			countlastertHistory = 0
 			chkdeleteCard = 0
-			postgreSQL_select_Query2 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" ,\"listafter_card\" from public.myapp_card_record  where \"username\" = 'v1v2v3' and \"board\" = 'UzJkBpyY' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
+			postgreSQL_select_Query2 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" ,\"listafter_card\" from public.myapp_card_record  where \"username\" = 'root' and \"board\" = 'DdoZIAZQ' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact2)+";"
 			table2.execute(postgreSQL_select_Query2)
 			id_cardCheck2 = table2.fetchall()
 			for lastertHistory  in id_cardCheck2 :
@@ -106,7 +106,7 @@ for i in range(fixloop):
 				else :
 					countlastertHistory = countlastertHistory+1
 
-			postgreSQL_select_Query1 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" , \"listafter_card\" from public.myapp_card_record  where \"username\" = 'v1v2v3' and \"board\" = 'UzJkBpyY' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
+			postgreSQL_select_Query1 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"desc_card\" , \"listafter_card\" from public.myapp_card_record  where \"username\" = 'root' and \"board\" = 'DdoZIAZQ' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(loopRetroact)+";"
 			table1.execute(postgreSQL_select_Query1)
 			id_cardCheck = table1.fetchall()
 			for lastHistory  in id_cardCheck :
@@ -154,18 +154,18 @@ arrayJsonTimeStamp.append(1)
 
 arrayJsonChange = []
 arrayJsonIdTimeStamp = []
-tableChange.execute("DELETE FROM myapp_change_record where  \"username\" = 'v1v2v3' and \"board\" = 'UzJkBpyY'") 
+# tableChange.execute("DELETE FROM myapp_change_record where  \"username\" = 'root' and \"board\" = 'DdoZIAZQ'") 
 for i in reversed(arrayJson):
 	arrayJsonChange.append(i)
-# print(arrayJsonChange)
+print(arrayJsonChange)
 
 for i in reversed(arrayJsonTimeStamp):
 	arrayJsonIdTimeStamp.append(i)
-# print(arrayJsonIdTimeStamp)
+print(arrayJsonIdTimeStamp)
 
-for i in range(fixloop):
-	tableChange.execute("INSERT INTO myapp_change_record  (\"amount_change\", timestamp, \"username\" , \"board\")VALUES ('{}','{}', '{}','{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i]),'v1v2v3','UzJkBpyY'))
+# for i in range(fixloop):
+# 	tableChange.execute("INSERT INTO myapp_change_record  (\"amount_change\", timestamp, \"username\" , \"board\")VALUES ('{}','{}', '{}','{}')".format(int(arrayJsonChange[i]),int(arrayJsonIdTimeStamp[i]),'root','DdoZIAZQ'))
 				
-connChange.commit()
+# connChange.commit()
 connChange.close()
 conn3.close()
