@@ -103,23 +103,22 @@ for user_board in ub :
 				else :
 					sum_of_card = sum_of_card+1
 
+			arrayJson.append(sum_of_card)	
+
 			print(sum_of_card)
 
+	connChange = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+	tableChange = connChange.cursor()
+	tableChange.execute("DELETE FROM myapp_change_effort_record where  \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"'")
+	fix_insert = fixloop+1
 
+	for i in range(fix_insert):
+		# print(arrayJson[i],use_idtimeStamp[i])
+		tableChange.execute("INSERT INTO myapp_change_effort_record  (\"amount_change\", timestamp, \"username\" , \"board\")VALUES ('{}','{}', '{}','{}')".format(int(arrayJson[i]),int(use_idtimeStamp[i]),user_board[0],user_board[1]))
 
-
-					
-
-
-
-
-
-
-						
-
-
-	conn3.close()
-	conn.close()	
+	conn.close()
+	connChange.commit()
+	connChange.close()	
 conntable2.close()
 conntable1.close()
 con_user_board.close()
