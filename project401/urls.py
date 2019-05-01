@@ -25,6 +25,7 @@ path('regis/',user_views.register, name='register'),
 # url(r'(?P<token>[\w\-]*)',views.get_token, name='get_token'),
 url(r'addboard/',views.addboard, name='addboard'),
 url(r'^logout/', views.logout, name = 'logout'),
+# url(r'^filter/$', views.filter, name='filter'),
 # url(r'<token:slug>',views.get_token, name='get_token'),
 # url(r'?\#token(?P<token>\w+))',views.get_token, name='get_token'),
 

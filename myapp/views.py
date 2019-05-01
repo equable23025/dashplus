@@ -101,5 +101,8 @@ def logout(request):
         pass
     return HttpResponse("ออกจากระบบแล้ว")
 
-
+# def filter(request):
+#     change_list = change_record.objects.all()
+#     change_filter = UserFilter(request.GET, queryset=change_list)
+#     return render(request, 'filter/home.html', {'filter': change_filter})
     

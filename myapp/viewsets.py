@@ -22,3 +22,12 @@ class card_effort_recordViewSet(viewsets.ModelViewSet):
 class change_effort_recordViewSet(viewsets.ModelViewSet):
     queryset = change_effort_record.objects.all()
     serializer_class = change_effort_recordSerializer
+
+# from django_filters.rest_framework import DjangoFilterBackend
+# from rest_framework import generics
+# from django_filters import rest_framework as filters
+# class change_record_list(generics.ListAPIView):
+#     queryset =  change_record.objects.all()
+#     serializer_class = change_recordSerializer
+#     filter_backend = (DjangoFilterBackend,)
+#     filter_fields = ('username','board')

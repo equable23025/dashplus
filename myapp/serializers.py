@@ -1,5 +1,8 @@
 from .models import change_record,card_record ,time_stamp ,card_effort_record ,change_effort_record
 from rest_framework import serializers
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+# from rest_framework.filters import OrderingFilter
 
 class change_recordSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -26,3 +29,5 @@ class change_effort_recordSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = change_effort_record
 		fields = ('amount_change','timestamp','username','board')
+
+
