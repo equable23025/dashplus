@@ -15,9 +15,12 @@ from django.contrib import messages
 from myapp.forms import register_form , register_token_form , user_board_form
 # from django import HttpResponse
 from django.http import HttpResponse
-import re
+# import re
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+# from django.utils import simplejson as json
+import json
+
 
 
 def dataToChart(request):
@@ -25,7 +28,22 @@ def dataToChart(request):
 	return render(request,'project-planning.html',{'data': data})
 		
 def home_to_register(request):
-	return render(request,'home.html')
+	user = request.session['member_id']
+	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+	user_board_database = conn.cursor()
+	postgreSQL_select_Query = "select DISTINCT \"board\" from public.myapp_user_board where username = '"+user+"';"
+	user_board_database.execute(postgreSQL_select_Query)
+	check_board = user_board_database.fetchall()
+	# check user and board
+	board = []
+	for row in check_board :
+		board.append(row[0])
+	# json_board = json.dumps(board)
+	# json_board.strip().split('"')
+	# print(json_board)
+
+	conn.close()
+	return render(request,'home.html',{'username':user,'board':board})
 
 def register(request):
 	if request.method == 'POST':
@@ -52,7 +70,7 @@ def register(request):
 			user.save()
 			# ยังไม่เช็ค id ที่มีอยู่แล้ว
 			# user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-
+			conn.close()
 			return redirect("/login")
 			# return HttpResponseRedirect("https://trello.com/1/authorize?expiration=1day&name=DashPlus&scope=read&response_type=token&key=6aa466b0416e7930b5889b667bbda4ee&callback_method=fragment&return_url=http://localhost:8000/token/")
 	else:
@@ -101,8 +119,5 @@ def logout(request):
         pass
     return HttpResponse("ออกจากระบบแล้ว")
 
-# def filter(request):
-#     change_list = change_record.objects.all()
-#     change_filter = UserFilter(request.GET, queryset=change_list)
-#     return render(request, 'filter/home.html', {'filter': change_filter})
+
     
