@@ -68,3 +68,6 @@ git branch -D branch_name
 ```
 git diff
 ```
+#### filter rest_Framwork
+pip install django-filter
+pip install djangorestframework-filters

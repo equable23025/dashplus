@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from django.conf import settings
 from os import environ
-
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'myapp',
     'project401',
     'rest_framework',
+    'rest_framework_filters',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -108,12 +110,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
+# REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    #       'rest_framework.filters.DjangoFilterBackend', 
+    # ],
+    # 'DEFAULT_FILTER_BACKENDS':(
+    #     'django_filters.rest_framework.DjangoFilter',
+    # ),
+
+# }
+REST_FRAMEWORK = {
+ # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 
 

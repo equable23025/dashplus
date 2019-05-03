@@ -15,7 +15,7 @@
 			<script src="../../static/admin/js/admin/jquery.easing.1.3.min.js"></script>
 	 </head>
 	<body>
-
+		{% if request.user.is_authenticated %}
 		<section class="popup-box-add-board">
 			<div class="reg-box">
 				<div class="content_box_flow">
@@ -32,6 +32,7 @@
 				</div>
 			</div>
 		</section>
+		{% endif %}
 		<div class="popup-bg"></div>
 
 		<!-- -----script----- -->
