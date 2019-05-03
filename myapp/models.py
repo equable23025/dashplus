@@ -34,7 +34,6 @@ class register_id(models.Model):
 	telephone=models.CharField(max_length=100)
 	email=models.CharField(max_length=100)
 
-# no mutiboard test
 class user_board(models.Model):
 	username =models.CharField(max_length=100)
 	board =models.CharField(max_length=500)
@@ -57,3 +56,4 @@ class change_effort_record(models.Model):
 	board =models.CharField(max_length=500)
 	amount_change=models.IntegerField(default=0)
 	timestamp=models.IntegerField(default='0')
+
