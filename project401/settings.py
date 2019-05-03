@@ -13,15 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from django.conf import settings
 from os import environ
-<<<<<<< HEAD
 # from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-=======
-# import django_filters
-# from django_filters import rest_framework
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-# import rest_framework_filters as filters
-
->>>>>>> 5389ea3f98448270048b41c6dd75a5228fbe7696
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django_filters import rest_framework
