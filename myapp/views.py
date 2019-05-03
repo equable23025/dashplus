@@ -88,7 +88,7 @@ def login(request):
         	username = request.session['member_id']
         # Set session as modified to force data updates/cookie to be saved.
         	request.session.modified = True
-        	return HttpResponseRedirect("/addboard",{'user':username})
+        	return HttpResponseRedirect("/project-planning",{'user':username})
     else:
         messages.info(request, 'เข้าสู่ระบบล้มเหลว')
         return render(request,'login.html')
@@ -101,5 +101,8 @@ def logout(request):
         pass
     return HttpResponse("ออกจากระบบแล้ว")
 
-
-    
+# def addboard(request):
+# 		# username = request.POST.get('uname')
+# 		# request.session['member_id'] = username 
+# 		username = request.session['member_id']
+# 		return render(request,"addboard.html",{'user':username})

@@ -1,6 +1,12 @@
 var x = 1;
 var y =1;
 $(document).ready(function(){
+  $(".menu_box").on("click",function(){
+    $(".main_menu").show();
+  });
+  $(".menu_bg").on("click",function(){
+    $(".main_menu").hide();
+  });
   $(".all-project").css("display","none");
   $(".finish-project").css("display","none");
 

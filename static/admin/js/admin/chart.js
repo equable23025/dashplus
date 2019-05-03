@@ -1,15 +1,24 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/changeReq/",
+        url: "http://localhost:8000/api/change_record/",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             var timestamp = []; 
-            var amount_change = []; 
+            var amount_change = [];
+            var username = []; 
+            var board = [];  
+            //key user,value board ถ้ามีทั้งสองอย่าง ก็ให้ใส่ลงไปในอาเรย์
             for(let i=0; i<data.length; i++){
                 timestamp.push(data[i].timestamp);
-                amount_change.push(data[i].amountChange);
+                amount_change.push(data[i].amount_change);
+                // username.push(data[i].username);
+                // board.push(data[i].board);
+                // timestamp.push(data[i].timestamp);
+                // amount_change.push(data[i].amountChange);
             }
+            console.log(timestamp);
+            console.log(amount_change);
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var chart = new Chart(ctx, {
                     type: 'line',
