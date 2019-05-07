@@ -133,6 +133,7 @@
   margin-top: 20px;
   padding: 30px 30px;
   box-sizing: border-box;
+  margin: auto;
 }
 .detail_box{
   height: 600px;
