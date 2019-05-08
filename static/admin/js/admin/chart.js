@@ -1,20 +1,24 @@
 $(document).ready(function(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/card_record/",
+        url: "http://127.0.0.1:8000/api/change_record/",
         success: function(data){
-            var result = JSON.parse(data);
+            var result = data;
             var result2 ;
             var timestamp = []; 
             var amount_change = [];
             var board = [];  
-            //key user,value board ถ้ามีทั้งสองอย่าง ก็ให้ใส่ลงไปในอาเรย์
+            var user = [];  
+            // key user,value board ถ้ามีทั้งสองอย่าง ก็ให้ใส่ลงไปในอาเรย์
             for(let i=0; i<data.length; i++){
-                board.push(data[i].board);
+                if(board.indexOf(data[i].board) == -1 && user.indexOf(data[i].username) == -1){
+                    board.push(data[i].board);
+                }
             }
+            console.log(board);
             for(let i=0; i<board.length; i++){
                 result2 = result.filter(function(b){
-                    if(board[i].indexOf(a.board) != -1){
+                    if(board[i].indexOf(b.board) != -1){
                         return b;
                     }
                 });
@@ -30,10 +34,9 @@ $(document).ready(function(){
                     <div class="box-canvas">
                         <canvas id="myChart`+i+`"></canvas>
                     </div>
-                    <div class="name_graph">`+board[i].board+`</div>
                 </div>
                 </section>`);
-
+                var color = random_rgba();
                 var ctx = document.getElementById('myChart'+i).getContext('2d');
                 var chart = new Chart(ctx, {
                     type: 'line',
@@ -42,11 +45,11 @@ $(document).ready(function(){
                         datasets: [{
                             label: 'Requriment change',
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
+                                color,
                                 
                             ],
                             borderColor: [
-                                'rgba(255, 99, 132, 1)',
+                                color,
                                 
                             ],
                             borderWidth: 1,
@@ -56,13 +59,31 @@ $(document).ready(function(){
 
                     // Configuration options go here
                     options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Chart with Multiline Labels'
+                        },
                         scales: {
                             yAxes: [{
+                                display: true,
                                 ticks: {
                                     beginAtZero:true,
                                     // suggestedMin: 50,
                                     // suggestedMax: 100
-                                }
+                                },
+                                scaleLabel: { display: true, labelString: 'Day' },
+                                scaleBeginAtZero : true,
+                            }],
+                            yAxes:[{
+                                display: true,
+                                ticks: {
+                                    beginAtZero:true,
+                                    // suggestedMin: 50,
+                                    // suggestedMax: 100
+                                },
+                                scaleLabel: { display: true, labelString: 'No.Change' },
+                                scaleBeginAtZero : true,
                             }]
                         },
                             elements: {
@@ -79,3 +100,8 @@ $(document).ready(function(){
     
 
 });
+function random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+}
+

@@ -141,7 +141,7 @@
 .box-graph{
   background: #FFFFFF;
   width: 378px;
-  height: 350px;
+  height: 256px;
   display: inline-block;
   box-sizing: border-box;
   float: left;
@@ -150,12 +150,11 @@
 }
 .name_graph{
   text-align: center;
-  margin-top:20px;
 }
 .box-canvas{
   width: 100%;
   padding: 10px;
-  height: 280px;
+  height: 220px;
   box-sizing: border-box;
 }
 #myChart{

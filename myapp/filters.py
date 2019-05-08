@@ -24,7 +24,7 @@ class change_effort_recordSerializer(serializers.ModelSerializer):
 		fields = ('amount_change','timestamp','username','board')
 
 class change_effort_record_filterApiView(viewsets.ModelViewSet):
-    queryset = change_record.objects.all()
+    queryset = change_effort_record.objects.all()
     serializer_class = change_recordSerializer
     filter_backends = (DjangoFilterBackend, )
     filter_fields = '__all__'
