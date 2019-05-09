@@ -24,8 +24,9 @@ import json
 
 
 def dataToChart(request):
+	user = request.session['member_id']
 	data = change_record.objects.all()
-	return render(request,'project-planning.html',{'data': data})
+	return render(request,'project-planning.html',{'username':user,'data': data})
 		
 def home_to_register(request):
 	user = request.session['member_id']

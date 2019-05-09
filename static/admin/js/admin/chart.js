@@ -1,20 +1,29 @@
 $(document).ready(function(){
+    
+
     $.ajax({
         type: "GET",
         url: "http://127.0.0.1:8000/api/change_record/",
         success: function(data){
             var result = data;
             var result2 ;
-            var timestamp = []; 
+            var timestamp_real = []; 
             var amount_change = [];
-            var board = [];  
-            var user = [];  
+            var board = [];   
+            console.log(chk_user);
             // key user,value board ถ้ามีทั้งสองอย่าง ก็ให้ใส่ลงไปในอาเรย์
             for(let i=0; i<data.length; i++){
-                if(board.indexOf(data[i].board) == -1 && user.indexOf(data[i].username) == -1){
-                    board.push(data[i].board);
+                if(chk_user == data[i].username){
+                    if(board.indexOf(data[i].board) == -1){
+                        board.push(data[i].board);
+                    }
                 }
             }
+            // for(let i=0; i<data.length; i++){
+            //     if(board.indexOf(data[i].board) == -1){
+            //         board.push(data[i].board);
+            //     }
+            // }
             console.log(board);
             for(let i=0; i<board.length; i++){
                 result2 = result.filter(function(b){
@@ -22,9 +31,16 @@ $(document).ready(function(){
                         return b;
                     }
                 });
-                timestamp = result2.map(function(time){
+                timestamp_real = result2.map(function(time){
                     return time.timestamp;
                 });
+
+                var timestamp = [];
+                for(let i=1 ;i<=timestamp_real.length;i++){
+                    timestamp.push(i);
+                }
+
+                console.log(timestamp);
                 amount_change = result2.map(function(amount){
                     return amount.amount_change;
                 });

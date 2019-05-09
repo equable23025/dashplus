@@ -18,6 +18,10 @@
 </head>
 
 <body>
+    <script>
+        var chk_user = '{{username}}';
+        console.log(chk_user)
+    </script>
 
     <!-- =================menu_box==================== -->
     <section class="main_menu" hidden>
@@ -25,7 +29,7 @@
             <div class="menu_bg">
                     <div class="header_menu_title">
                             <div class="content_box">
-                                Boards 
+                                Boards
                                 <img src="../../static//admin//img/down.svg">
                             </div>
                     </div>
@@ -86,6 +90,11 @@
                     <img src="../../static/admin/img/menu.svg">
                 </div>
             </section>
+            <section class="user">
+                    <div class="content_box">
+                        <div class="chk-user">{{username}}</div>
+                    </div>
+            </section>
             <a href="/addboard">
             <section class="add_box">
                 <div class="content_box">
@@ -94,6 +103,8 @@
                 </div>
             </section>
             </a>
+            
+            
         </div>
     </section>
     <!-- ===========main-box============ -->
@@ -149,8 +160,8 @@
     </section>
 
 
-    <script src="../../static/admin/js/admin/all-project.js"></script>
-    <script src="../../static/admin/js/admin/chart.js?v=022"></script>
+    <script src="../../static/admin/js/admin/project-planning.js"></script>
+    <script src="../../static/admin/js/admin/chart.js?v=034"></script>
     <script src="../../static/admin/js/admin/main.js"></script>
 </body>
 

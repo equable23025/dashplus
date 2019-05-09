@@ -10,40 +10,42 @@ $(document).ready(function(){
   $(".all-project").css("display","none");
   $(".finish-project").css("display","none");
 
-    $(".my-project1").on("click",function(){
-      if(x==1){
-        $(".img-my-project1").attr("src","img/projectwhite.svg");
-        $(".my-project1").css("background-color", "#ADB7BB");
-        $(".my-project1").css("color", "#ffffff");
-        $(".all-project").css("display","block");
-        $(".img-top1").attr("src","img/top.svg");
-        x-=1;
-      }else{
-        $(".img-my-project1").attr("src","img/projectgreen.svg");
-        $(".my-project1").css("background-color", "#C8D6D2");
-        $(".my-project1").css("color", "#6C9395");
-        $(".all-project").css("display","none");
-        $(".img-top1").attr("src","img/up.svg");
-        x+=1;
-      }
-    });
+  $(".planning").on("click",function(){
+    $(".planning").css("background-color","#4E78B9");
+    $(".planning").css("color","#ffffff");
+    $(".focus").css("background-color","#ffffff");
+    $(".focus").css("color","#333333");
+  })
+  $(".focus").on("click",function(){
+    $(".focus").css("background-color","#4E78B9");
+    $(".focus").css("color","#ffffff");
+    $(".planning").css("background-color","#ffffff");
+    $(".planning").css("color","#333333");
+  })
+  $(".week").on("click",function(){
+    $(".week").css("background-color","#4E78B9");
+    $(".week").css("color","#ffffff");
+    $(".month").css("background-color","#ffffff");
+    $(".month").css("color","#333333");
+  })
+  $(".month").on("click",function(){
+    $(".month").css("background-color","#4E78B9");
+    $(".month").css("color","#ffffff");
+    $(".week").css("background-color","#ffffff");
+    $(".week").css("color","#333333");
+  })
 
-    $(".my-project2").on("click",function(){
-      if(y==1){
-        $(".img-my-project2").attr("src","img/task-completewhite.svg");
-        $(".my-project2").css("background-color", "#ADB7BB");
-        $(".my-project2").css("color", "#ffffff");
-        $(".finish-project").css("display","block");
-        $(".img-top2").attr("src","img/top.svg");
-        y-=1;
-      }else{
-        $(".img-my-project2").attr("src","img/task-completegreen.svg");
-        $(".my-project2").css("background-color", "#C8D6D2");
-        $(".my-project2").css("color", "#6C9395");
-        $(".finish-project").css("display","none");
-        $(".img-top2").attr("src","img/up.svg");
-        y+=1;
-       
-      }
+  $(".add-newproject-btn").on("click",function(){
+    $(".accept-btn").on("click",function(){
+      
+      $(".hs-box").append('<a href="">'+
+      '<section class="asset_page_group ">'+
+      '<img class="img-setting img-opacity" src="img/setting.svg">'+
+      '<div class="txt-bar">'+project_name+'</div></section>'+
+      '</a>');
     });
+  });
+  
+  
+
   });
