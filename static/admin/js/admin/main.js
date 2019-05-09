@@ -10,18 +10,8 @@ $(document).ready(function(){
   $(".all-project").css("display","none");
   $(".finish-project").css("display","none");
 
-  $(".planning").on("click",function(){
-    $(".planning").css("background-color","#4E78B9");
-    $(".planning").css("color","#ffffff");
-    $(".focus").css("background-color","#ffffff");
-    $(".focus").css("color","#333333");
-  })
-  $(".focus").on("click",function(){
-    $(".focus").css("background-color","#4E78B9");
-    $(".focus").css("color","#ffffff");
-    $(".planning").css("background-color","#ffffff");
-    $(".planning").css("color","#333333");
-  })
+  
+  
   $(".week").on("click",function(){
     $(".week").css("background-color","#4E78B9");
     $(".week").css("color","#ffffff");

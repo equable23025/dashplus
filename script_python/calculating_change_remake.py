@@ -20,7 +20,6 @@ postgreSQL_select_Query_user_board = "select \"username\" ,\"board\"  from myapp
 con_user_board_database.execute(postgreSQL_select_Query_user_board)
 ub = con_user_board_database.fetchall()
 for user_board in ub :
-
 	# connection database timeStamp
 	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	demoDatabases = conn.cursor()

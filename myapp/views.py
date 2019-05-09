@@ -9,7 +9,7 @@ from array import *
 from json.decoder import JSONDecodeError
 from datetime import date
 from datetime import datetime
-from myapp.models import change_record   , user_board
+from myapp.models import change_record   , user_board , change_effort_record
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from myapp.forms import register_form , register_token_form , user_board_form
@@ -27,7 +27,12 @@ def dataToChart(request):
 	user = request.session['member_id']
 	data = change_record.objects.all()
 	return render(request,'project-planning.html',{'username':user,'data': data})
-		
+
+def dataEffortToChart(request):
+	user = request.session['member_id']
+	data = change_effort_record.objects.all()
+	return render(request,'effort-change.html',{'username':user,'data': data})	
+
 def home_to_register(request):
 	user = request.session['member_id']
 	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
@@ -78,7 +83,7 @@ def register(request):
 		form = register_form()
 	return render(request,'regis.html',{'form':form})
 
-def addboard(request):
+def addscopeboard(request):
 	user = request.session['member_id']
 	if request.method == 'POST':
 		# form = UserCreationForm(request.POST)
@@ -91,7 +96,22 @@ def addboard(request):
 	# board = request.POST.get('board')
 	# board_object = user_board.objects.create(username=username,board=board)
 	# board_object.save()
-	return render(request,'addboard.html',{'username':user,'form':form})
+	return render(request,'addscopeboard.html',{'username':user,'form':form})
+
+def addeffortboard(request):
+	user = request.session['member_id']
+	if request.method == 'POST':
+		# form = UserCreationForm(request.POST)
+		form =user_board_form(request.POST)
+		if form.is_valid():
+			form.save()
+	else:
+		form = user_board_form()
+	# username = request.POST.get('usern')
+	# board = request.POST.get('board')
+	# board_object = user_board.objects.create(username=username,board=board)
+	# board_object.save()
+	return render(request,'addeffortboard.html',{'username':user,'form':form})
 
 from django.contrib.auth import authenticate, login as auth_login
 

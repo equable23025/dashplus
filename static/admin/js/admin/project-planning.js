@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    
-
   $.ajax({
       type: "GET",
       url: "http://127.0.0.1:8000/api/change_record/",
@@ -120,4 +118,3 @@ function random_rgba() {
   var o = Math.round, r = Math.random, s = 255;
   return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 }
-

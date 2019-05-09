@@ -70,7 +70,8 @@ for user in ub :
 	use_idtimeStamp = ''
 	for row in idtimeStamp :
 		use_idtimeStamp = row[0]
-		idLength = int(use_idtimeStamp) + 1
+
+	idLength = int(use_idtimeStamp) + 1
 			
 	for historycard in data_json :
 		try:

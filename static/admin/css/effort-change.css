@@ -1,0 +1,171 @@
+.navbar_box{
+  width: 100%;
+  height: 74px;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 16px 32px;
+}
+.menu_box img {
+padding: 10px;
+width: 20px;
+height: 20px;
+float: left;
+}
+.main_box{
+width: 100%;
+height:calc(100% - 74px);
+background-color: #F8F8FB;
+box-sizing: border-box;
+padding: 16px 32px;
+}
+.add_box{
+width: 134px;
+height: 100%;
+float: right;
+background-color: #4E78B9;
+display: inline-block;
+box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.add_box img{
+padding: 12px;
+width: 15px;
+height: 15px;
+float: left;
+}
+.add_txt{
+color: #FFFFFF;
+line-height: 42px;
+float: right;
+padding-right: 10px;
+}
+.option_box{
+width: 100%;
+height: 48px;
+display:inline-block;
+}
+.board_box{
+width: 234px;
+height: 100%;
+float: right;
+}
+.date_box{
+width: 245px;
+height: 100%;
+margin-left: 20px;
+float: right;
+
+}
+.date_btn{
+width: 164px;
+height: 100%;
+background-color: #FFFFFF;
+float: right;
+box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+padding: 4px;
+box-sizing: border-box;
+display: inline-block;
+}
+.board_btn{
+width: 164px;
+height: 100%;
+background-color: #FFFFFF;
+float: right;
+box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+padding: 4px;
+box-sizing: border-box;
+display: inline-block;
+}
+.date_txt{
+float: left;
+line-height: 48px;
+}
+.board_txt{
+float: left;
+line-height: 48px;
+}
+.focus{
+float: right;
+width: 76px;
+height: 100%;
+background-color: #ffffff;
+}
+.planning{
+float: left;
+width: 76px;
+height: 100%;
+color: #FFFFFF;
+background-color: #4E78B9;
+}
+.focus_txt{
+text-align: center;
+line-height: 42px;
+}
+.planning_txt{
+text-align: center;
+line-height: 42px;
+}
+.month{
+float: right;
+width: 76px;
+height: 100%;
+color: #FFFFFF;
+background-color: #4E78B9;
+}
+.week{
+float: left;
+width: 76px;
+height: 100%;
+background-color: #ffffff;
+}
+.month_txt{
+text-align: center;
+line-height: 42px;
+}
+.week_txt{
+text-align: center;
+line-height: 42px;
+}
+.percent_chart{
+width: 100%;
+height: 560px;
+margin-top: 20px;
+padding: 30px 30px;
+box-sizing: border-box;
+margin: auto;
+}
+.detail_box{
+height: 600px;
+}
+.box-graph{
+background: #FFFFFF;
+width: 378px;
+height: 256px;
+display: inline-block;
+box-sizing: border-box;
+float: left;
+margin: 18px;
+box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.name_graph{
+text-align: center;
+}
+.box-canvas{
+width: 100%;
+padding: 10px;
+height: 220px;
+box-sizing: border-box;
+}
+#myChart{
+width: 100%;
+height: 100%;
+}
+.user{
+width: 134px;
+height: 100%;
+float: right;
+display: inline-block;
+line-height: 44px;
+margin-left: 40px;
+}

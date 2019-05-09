@@ -20,7 +20,11 @@
 <body>
     <script>
         var chk_user = '{{username}}';
-        console.log(chk_user)
+        console.log(chk_user);
+        $(".focus").css("background-color","#4E78B9");
+        $(".focus").css("color","#ffffff");
+        $(".planning").css("background-color","#ffffff");
+        $(".planning").css("color","#333333");
     </script>
 
     <!-- =================menu_box==================== -->
@@ -95,7 +99,7 @@
                         <div class="chk-user">{{username}}</div>
                     </div>
             </section>
-            <a href="/addboard">
+            <a href="/addscopeboard">
             <section class="add_box">
                 <div class="content_box">
                     <img src="../../static/admin/img/add_white.svg">
@@ -130,8 +134,8 @@
                             <div class="board_txt">Board:</div>
                             <div class="board_btn">
                                 <div class="content_box">
-                                        <div class="focus"><div class="focus_txt">Focus</div></div>
-                                        <div class="planning"><div class="planning_txt">Planning</div></div>
+                                    <a href="/project-planning"><div class="focus"><div class="focus_txt">Scope</div></div></a>
+                                    <a href="/effort-change"><div class="planning"><div class="planning_txt">Effort</div></div></a>
                                 </div>
                             </div>
                         </div>
@@ -160,8 +164,7 @@
     </section>
 
 
-    <script src="../../static/admin/js/admin/project-planning.js"></script>
-    <script src="../../static/admin/js/admin/chart.js?v=034"></script>
+    <script src="../../static/admin/js/admin/project-planning.js?v=0037"></script>
     <script src="../../static/admin/js/admin/main.js"></script>
 </body>
 
