@@ -57,3 +57,31 @@ class change_effort_record(models.Model):
 	amount_change=models.IntegerField(default=0)
 	timestamp=models.IntegerField(default='0')
 
+class time_stamp_movement(models.Model):
+	datetime = models.DateTimeField(auto_now_add=True)
+
+class card_movement_record(models.Model):
+	username =models.CharField(max_length=100)
+	board =models.CharField(max_length=100)
+	id_card=models.CharField(max_length=100)
+	action_card=models.CharField(max_length=100)
+	listafter_movement_card =models.CharField(max_length=50)
+	listbefore_movement_card =models.CharField(max_length=50)
+	timestamp=models.ForeignKey(time_stamp_movement,on_delete=models.CASCADE)
+
+class change_movement_record(models.Model):
+	username=models.CharField(max_length=100)
+	board =models.CharField(max_length=100)
+	planning_doing =models.IntegerField(default='0')
+	planning_testing =models.IntegerField(default='0')
+	planning_done =models.IntegerField(default='0')
+	doing_planning =models.IntegerField(default='0')
+	doing_testing =models.IntegerField(default='0')
+	doing_done =models.IntegerField(default='0')
+	testing_planning =models.IntegerField(default='0')
+	testing_doing =models.IntegerField(default='0')
+	testing_done =models.IntegerField(default='0')
+	done_planning =models.IntegerField(default='0')
+	done_doing =models.IntegerField(default='0')
+	done_testing =models.IntegerField(default='0')
+	timestamp=models.IntegerField(default='0')
