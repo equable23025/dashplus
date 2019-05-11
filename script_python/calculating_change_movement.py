@@ -55,10 +55,10 @@ for user_board in ub :
 		planning_doing_all =0 
 		planning_testing_all=0
 		planning_done_all=0
+		doing_planning_all=0
+		doing_testing_all=0
+		doing_done_all=0
 		if len(use_idtimeStamp) != 1 :
-			# sum_of_card_planning_doing = 0  
-			# sum_of_card_planning_testing = 0  
-			# sum_of_card_done = 0  
 
 			# count data to change 
 			planning_doing = 0  
@@ -88,11 +88,10 @@ for user_board in ub :
 			done_doing_last = 0
 			done_testing = 0 
 			done_testing_last = 0
+
 			# seleact all card DISTINCT
 			demoDatabases3.execute("SELECT DISTINCT \"id_card\" FROM public.myapp_card_movement_record where username = '"+user_board[0]+"' and board = '"+user_board[1]+"' ")		
 			for row in demoDatabases3 :
-
-
 
 				postgreSQL_select_Query2 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"listbefore_movement_card\" ,\"listafter_movement_card\" from public.myapp_card_movement_record  where \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(use_idtimeStamp[i])+";"
 				table2.execute(postgreSQL_select_Query2)
@@ -198,8 +197,7 @@ for user_board in ub :
 					elif  str(lastHistory[3]) == 'done' and  str(lastHistory[4]) == 'testing' :
 						done_testing+=1
 
-
-			
+			# planning ############################
 			# planning[0]
 			if planning_doing_last == planning_doing :
 				planning_doing_all = planning_doing_all+0
@@ -207,7 +205,9 @@ for user_board in ub :
 				planning_doing_all = planning_doing_all+0
 			else :
 				planning_doing_all = planning_doing - planning_doing_last
-
+			if planning_doing_all < 0 :
+				planning_doing_all = 0
+			# print(planning_doing_all)
 			# planning[1]
 			if planning_testing_last == planning_testing :
 				planning_testing_all = planning_testing_all+0
@@ -215,7 +215,9 @@ for user_board in ub :
 				planning_testing_all = planning_testing_all+0
 			else :
 				planning_testing_all = planning_testing - planning_testing_last
-
+			if planning_testing_all < 0 :
+				planning_testing_all = 0
+			# print(planning_testing_all)
 			# planning[2]
 			if planning_done_last == planning_done :
 				planning_done_all = planning_done_all+0
@@ -223,15 +225,40 @@ for user_board in ub :
 				planning_done_all = planning_done_all+0
 			else :
 				planning_done_all = planning_done - planning_done_last
-
-
-			print(planning_done_all)
-
-
-			# print(use_idtimeStamp[i])
-			# print("planning_doing_all :"+str(planning_doing_all))
-			# print("planning_testing_all :"+str(planning_testing_all))
-			# print("planning_done_all :"+str(planning_done_all))
+			if planning_done_all < 0 :
+				planning_done_all = 0
+			# print(planning_done_all)
+			# doing ############################
+			# doing[0]
+			if doing_planning_last == doing_planning :
+				doing_planning_all = doing_planning_all+0
+			elif doing_planning_last > doing_planning and doing_planning ==0 :
+				doing_planning_all = doing_planning_all+0
+			else :
+				doing_planning_all = doing_planning - doing_planning_last
+			if doing_planning_all < 0 :
+				doing_planning_all = 0
+			# print(doing_planning_all)
+			# doing[1]
+			if doing_testing_last == doing_testing :
+				doing_testing_all = doing_testing_all+0
+			elif doing_testing_last > doing_testing and doing_testing ==0 :
+				doing_testing_all = doing_testing_all+0
+			else :
+				doing_testing_all = doing_testing - doing_testing_last
+			if doing_testing_all < 0 :
+				doing_testing_all = 0
+			# print(doing_testing_all)
+			# doing[2]
+			if doing_done_last == doing_done :
+				doing_done_all = doing_done_all+0
+			elif doing_done_last > doing_done and doing_done ==0 :
+				doing_done_all = doing_done_all+0
+			else :
+				doing_done_all = doing_done - doing_done_last
+			if doing_done_all < 0 :
+				doing_done_all = 0
+			# print(doing_done_all)
 
 				# print("planning"+str(use_idtimeStamp[i])+" :",planning_doing,planning_testing,planning_done)
 				# print("doing"+str(use_idtimeStamp[i])+" :",doing_planning,doing_testing,doing_done)
