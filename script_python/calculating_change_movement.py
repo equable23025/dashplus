@@ -52,9 +52,9 @@ for user_board in ub :
 
 	# print(use_idtimeStamp)
 	for i in range(fixloop):
-		planning_doingAll =0 
-		planning_testingAll=0
-		planning_doneAll=0
+		planning_doing_all =0 
+		planning_testing_all=0
+		planning_done_all=0
 		if len(use_idtimeStamp) != 1 :
 			# sum_of_card_planning_doing = 0  
 			# sum_of_card_planning_testing = 0  
@@ -139,7 +139,6 @@ for user_board in ub :
 					elif  str(lastertHistory[3]) == 'done' and  str(lastertHistory[4]) == 'testing' :
 						done_testing_last+=1
 
-				# print(planning_doing_last)
 					# elif str(lastertHistory[2]) == 'deleteCard' 
 					# 		planning_doing_last=0
 					# 		planning_testing_last=0
@@ -153,7 +152,7 @@ for user_board in ub :
 					# 		done_planning_last=0
 					# 		done_doing_last=0
 					# 		done_testing_last=0
-					
+
 				postgreSQL_select_Query1 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"listbefore_movement_card\" , \"listafter_movement_card\" from public.myapp_card_movement_record  where \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(use_idtimeStamp[i+1])+";"
 				table1.execute(postgreSQL_select_Query1)
 				id_cardCheck = table1.fetchall()
@@ -199,26 +198,40 @@ for user_board in ub :
 					elif  str(lastHistory[3]) == 'done' and  str(lastHistory[4]) == 'testing' :
 						done_testing+=1
 
-				# print(planning_doing)
+
 			
+			# planning[0]
 			if planning_doing_last == planning_doing :
-				planning_doingAll = planning_doingAll+0
+				planning_doing_all = planning_doing_all+0
 			elif planning_doing_last > planning_doing and planning_doing ==0 :
-				planning_doingAll = planning_doingAll+0
+				planning_doing_all = planning_doing_all+0
 			else :
-				planning_doingAll = planning_doing - planning_doing_last
-			print(planning_doingAll)
+				planning_doing_all = planning_doing - planning_doing_last
+
+			# planning[1]
+			if planning_testing_last == planning_testing :
+				planning_testing_all = planning_testing_all+0
+			elif planning_testing_last > planning_testing and planning_testing ==0 :
+				planning_testing_all = planning_testing_all+0
+			else :
+				planning_testing_all = planning_testing - planning_testing_last
+
+			# planning[2]
+			if planning_done_last == planning_done :
+				planning_done_all = planning_done_all+0
+			elif planning_done_last > planning_done and planning_done ==0 :
+				planning_done_all = planning_done_all+0
+			else :
+				planning_done_all = planning_done - planning_done_last
 
 
+			print(planning_done_all)
 
-			# planning_doingAll+= planning_doing
-			# planning_testingAll +=planning_testing
-			# planning_doneAll += planning_done
 
 			# print(use_idtimeStamp[i])
-			# print("planning_doingAll :"+str(planning_doingAll))
-			# print("planning_testingAll :"+str(planning_testingAll))
-			# print("planning_doneAll :"+str(planning_doneAll))
+			# print("planning_doing_all :"+str(planning_doing_all))
+			# print("planning_testing_all :"+str(planning_testing_all))
+			# print("planning_done_all :"+str(planning_done_all))
 
 				# print("planning"+str(use_idtimeStamp[i])+" :",planning_doing,planning_testing,planning_done)
 				# print("doing"+str(use_idtimeStamp[i])+" :",doing_planning,doing_testing,doing_done)
