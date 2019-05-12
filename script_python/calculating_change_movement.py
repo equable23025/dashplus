@@ -52,12 +52,22 @@ for user_board in ub :
 
 	# print(use_idtimeStamp)
 	for i in range(fixloop):
+
+		# all change per timestamp
 		planning_doing_all =0 
 		planning_testing_all=0
 		planning_done_all=0
 		doing_planning_all=0
 		doing_testing_all=0
 		doing_done_all=0
+		testing_planning_all=0
+		testing_doing_all=0
+		testing_done_all=0
+		done_planning_all=0
+		done_doing_all=0
+		done_testing_all=0
+		# all change per timestamp [end] #
+
 		if len(use_idtimeStamp) != 1 :
 
 			# count data to change 
@@ -197,6 +207,7 @@ for user_board in ub :
 					elif  str(lastHistory[3]) == 'done' and  str(lastHistory[4]) == 'testing' :
 						done_testing+=1
 
+						
 			# planning ############################
 			# planning[0]
 			if planning_doing_last == planning_doing :
@@ -259,20 +270,82 @@ for user_board in ub :
 			if doing_done_all < 0 :
 				doing_done_all = 0
 			# print(doing_done_all)
+			# testing[0]
+			if testing_planning_last == testing_planning :
+				testing_planning_all = testing_planning_all+0
+			elif testing_planning_last > testing_planning and testing_planning ==0 :
+				testing_planning_all = testing_planning_all+0
+			else :
+				testing_planning_all = testing_planning - testing_planning_last
+			if testing_planning_all < 0 :
+				testing_planning_all = 0
+			# print(testing_planning_all)
+			# testing ############################
+			# testing[1]
+			if testing_doing_last == testing_doing :
+				testing_doing_all = testing_doing_all+0
+			elif testing_doing_last > testing_doing and testing_doing ==0 :
+				testing_doing_all = testing_doing_all+0
+			else :
+				testing_doing_all = testing_doing - testing_doing_last
+			if testing_doing_all < 0 :
+				testing_doing_all = 0
+			# print(testing_doing_all)
+			# testing[2]
+			if testing_done_last == testing_done :
+				testing_done_all = testing_done_all+0
+			elif testing_done_last > testing_done and testing_done ==0 :
+				testing_done_all = testing_done_all+0
+			else :
+				testing_done_all = testing_done - testing_done_last
+			if testing_done_all < 0 :
+				testing_done_all = 0
+			# print(testing_done_all)
+			# done ############################
+			# done[0]
+			if done_planning_last == done_planning :
+				done_planning_all = done_planning_all+0
+			elif done_planning_last > done_planning and done_planning ==0 :
+				done_planning_all = done_planning_all+0
+			else :
+				done_planning_all = done_planning - done_planning_last
+			if done_planning_all < 0 :
+				done_planning_all = 0
+			# print(done_planning_all)
+			# done[1]
+			if done_doing_last == done_doing :
+				done_doing_all = done_doing_all+0
+			elif done_doing_last > done_doing and done_doing ==0 :
+				done_doing_all = done_doing_all+0
+			else :
+				done_doing_all = done_doing - done_doing_last
+			if done_doing_all < 0 :
+				done_doing_all = 0
+			# print(done_doing_all)
+			# done[2]
+			if done_testing_last == done_testing :
+				done_testing_all = done_testing_all+0
+			elif done_testing_last > done_testing and done_testing ==0 :
+				done_testing_all = done_testing_all+0
+			else :
+				done_testing_all = done_testing - done_testing_last
+			if done_testing_all < 0 :
+				done_testing_all = 0
+			# print(done_testing_all)
 
-				# print("planning"+str(use_idtimeStamp[i])+" :",planning_doing,planning_testing,planning_done)
-				# print("doing"+str(use_idtimeStamp[i])+" :",doing_planning,doing_testing,doing_done)
-				# print("testing"+str(use_idtimeStamp[i])+" :",testing_planning,testing_doing,testing_done)
-				# print("done"+str(use_idtimeStamp[i])+" :",done_planning,done_doing,done_testing)
+		# print("planning")
+		# print(planning_doing_all,planning_testing_all,planning_done_all)
+		# print("doing")
+		# print(doing_planning_all,doing_testing_all,doing_done_all)
+		# print("testing")
+		# print(testing_planning_all,testing_doing_all,testing_done_all)
+		# print("done")
+		# print(done_planning_all,done_doing_all,done_testing_all)
+		
 
 
-			# 	if planning_doing_last == planning_doing :
-			# 		sum_of_card_planning_doing = sum_of_card_planning_doing+0
-			# 	else :
-			# 		sum_of_card_planning_doing = planning_doing - planning_doing_last
-
-			# arrayJson.append(sum_of_card_planning_doing)	
-			# print(sum_of_card_planning_doing,user_board[0],user_board[1])
+		# arrayJson.append(done_testing_all)	
+		# print(sum_of_card_planning_doing,user_board[0],user_board[1])
 
 	# print(use_idtimeStamp,user_board[0],user_board[1],len(use_idtimeStamp))
 	# print(arrayJson,user_board[0],user_board[1],len(arrayJson))	
