@@ -7,9 +7,7 @@ from array import *
 from datetime import date
 from datetime import datetime
 
-# เพิ่มลบการ์ด
-# เพื่มลบเชคลิส
-# เดสคริปชั่น
+#ย้่ายสถานะของงาน
 
 
 # connection database user_board
@@ -46,9 +44,33 @@ for user_board in ub :
 
 	fixloop = len(use_idtimeStamp)-1
 	# print(fixloop) 
-	arrayJson = []
-	arrayJson.append(0)
 	arrayJsonTimeStamp = []
+
+	arrayjson_planning_doing_all = []
+	arrayjson_planning_testing_all=[]
+	arrayjson_planning_done_all=[]
+	arrayjson_doing_planning_all=[]
+	arrayjson_doing_testing_all=[]
+	arrayjson_doing_done_all=[]
+	arrayjson_testing_planning_all=[]
+	arrayjson_testing_doing_all=[]
+	arrayjson_testing_done_all=[]
+	arrayjson_done_planning_all=[]
+	arrayjson_done_doing_all=[]
+	arrayjson_done_testing_all=[]
+	# increase timestamp 1 = 0
+	arrayjson_planning_doing_all.append(0)
+	arrayjson_planning_testing_all.append(0)
+	arrayjson_planning_done_all.append(0)
+	arrayjson_doing_planning_all.append(0)
+	arrayjson_doing_testing_all.append(0)
+	arrayjson_doing_done_all.append(0)
+	arrayjson_testing_planning_all.append(0)
+	arrayjson_testing_doing_all.append(0)
+	arrayjson_testing_done_all.append(0)
+	arrayjson_done_planning_all.append(0)
+	arrayjson_done_doing_all.append(0)
+	arrayjson_done_testing_all.append(0)
 
 	# print(use_idtimeStamp)
 	for i in range(fixloop):
@@ -342,22 +364,36 @@ for user_board in ub :
 		# print("done")
 		# print(done_planning_all,done_doing_all,done_testing_all)
 		
+		arrayjson_planning_doing_all.append(planning_doing_all)
+		arrayjson_planning_testing_all.append(planning_testing_all)
+		arrayjson_planning_done_all.append(planning_done_all)
+
+		arrayjson_doing_planning_all.append(doing_planning_all)
+		arrayjson_doing_testing_all.append(doing_testing_all)
+		arrayjson_doing_done_all.append(doing_done_all)
+
+		arrayjson_testing_planning_all.append(testing_planning_all)
+		arrayjson_testing_doing_all.append(testing_doing_all)
+		arrayjson_testing_done_all.append(testing_done_all)
+
+		arrayjson_done_planning_all.append(done_planning_all)
+		arrayjson_done_doing_all.append(done_doing_all)
+		arrayjson_done_testing_all.append(done_testing_all)
 
 
-		# arrayJson.append(done_testing_all)	
-		# print(sum_of_card_planning_doing,user_board[0],user_board[1])
-
-	# print(use_idtimeStamp,user_board[0],user_board[1],len(use_idtimeStamp))
-	# print(arrayJson,user_board[0],user_board[1],len(arrayJson))	
 	# connect to insert database change_movement_record
 	connChange = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	tableChange = connChange.cursor()
-	# tableChange.execute("DELETE FROM myapp_change_movement_record where  \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"'")
+	tableChange.execute("DELETE FROM myapp_change_movement_record where  \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"'")
 	fix_insert = fixloop+1
 	# print(fix_insert)
-	# for i in range(fix_insert):
-		# print(arrayJson[i],use_idtimeStamp[i])
-		# tableChange.execute("INSERT INTO myapp_change_movement_record  (\"amount_change\", timestamp, \"username\" , \"board\")VALUES ('{}','{}', '{}','{}')".format(int(arrayJson[i]),int(use_idtimeStamp[i]),user_board[0],user_board[1]))
+	for i in range(fix_insert):
+		# print(arrayjson_planning_doing_all[i],arrayjson_planning_testing_all[i],arrayjson_planning_done_all[i])
+		# print(arrayjson_doing_planning_all[i],arrayjson_doing_testing_all[i],arrayjson_doing_done_all[i])
+		# print(arrayjson_testing_planning_all[i],arrayjson_testing_doing_all[i],arrayjson_testing_done_all[i])
+		# print(arrayjson_done_planning_all[i],arrayjson_done_doing_all[i],arrayjson_done_testing_all[i])
+		# print(use_idtimeStamp[i])
+		tableChange.execute("INSERT INTO myapp_change_movement_record  (\"username\", \"board\", timestamp , \"planning_doing\", \"planning_testing\", \"planning_done\", \"doing_planning\", \"doing_testing\", \"doing_done\", \"testing_planning\", \"testing_doing\", \"testing_done\", \"done_planning\", \"done_doing\", \"done_testing\")VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')".format(user_board[0],user_board[1],int(use_idtimeStamp[i]),int(arrayjson_planning_doing_all[i]),int(arrayjson_planning_testing_all[i]),int(arrayjson_planning_done_all[i]),int(arrayjson_doing_planning_all[i]),int(arrayjson_doing_testing_all[i]),int(arrayjson_doing_done_all[i]),int(arrayjson_testing_planning_all[i]),int(arrayjson_testing_doing_all[i]),int(arrayjson_testing_done_all[i]),int(arrayjson_done_planning_all[i]),int(arrayjson_done_doing_all[i]),int(arrayjson_done_testing_all[i])))
 	
 
 	conn.close()
