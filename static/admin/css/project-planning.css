@@ -157,15 +157,7 @@
   height: 220px;
   box-sizing: border-box;
 }
-#myChart{
+.chartjs-render-monitor{
   width: 100%;
   height: 100%;
-}
-.user{
-  width: 134px;
-  height: 100%;
-  float: right;
-  display: inline-block;
-  line-height: 44px;
-  margin-left: 40px;
 }

@@ -79,7 +79,7 @@ $(document).ready(function(){
                             text: 'Chart with Multiline Labels'
                         },
                         scales: {
-                            yAxes: [{
+                            xAxes: [{
                                 display: true,
                                 ticks: {
                                     beginAtZero:true,
@@ -115,6 +115,6 @@ $(document).ready(function(){
   
   });
   function random_rgba() {
-    var o = Math.round, r = Math.random, s = 255;
-    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
+    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
   }

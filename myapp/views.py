@@ -83,7 +83,7 @@ def register(request):
 		form = register_form()
 	return render(request,'regis.html',{'form':form})
 
-def addscopeboard(request):
+def addboard(request):
 	user = request.session['member_id']
 	if request.method == 'POST':
 		# form = UserCreationForm(request.POST)
@@ -96,22 +96,7 @@ def addscopeboard(request):
 	# board = request.POST.get('board')
 	# board_object = user_board.objects.create(username=username,board=board)
 	# board_object.save()
-	return render(request,'addscopeboard.html',{'username':user,'form':form})
-
-def addeffortboard(request):
-	user = request.session['member_id']
-	if request.method == 'POST':
-		# form = UserCreationForm(request.POST)
-		form =user_board_form(request.POST)
-		if form.is_valid():
-			form.save()
-	else:
-		form = user_board_form()
-	# username = request.POST.get('usern')
-	# board = request.POST.get('board')
-	# board_object = user_board.objects.create(username=username,board=board)
-	# board_object.save()
-	return render(request,'addeffortboard.html',{'username':user,'form':form})
+	return render(request,'addboard.html',{'username':user,'form':form})
 
 from django.contrib.auth import authenticate, login as auth_login
 

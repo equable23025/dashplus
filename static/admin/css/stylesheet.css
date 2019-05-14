@@ -131,6 +131,7 @@ text-overflow: ellipsis;  */
   padding: 20px;
   margin-left: 0px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  height: 50%;
 }
 .header_menu_title{
   width: 100%;
@@ -204,4 +205,27 @@ a{
 }
 a{
   color: #333333;
+}
+
+.user img {
+  width: 22px;
+  height: 22px;
+  padding: 10px;
+}
+.user{
+  width: 142px;
+  height: 100%;
+  float: right;
+  display: inline-block;
+  line-height: 44px;
+  margin-left: 40px;
+  background-color: #4E78B9;
+  color: #ffffff;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.chk-user{
+  float: right;
+  padding-right:8px;
+  box-sizing: border-box;
+  height: 100%;
 }
