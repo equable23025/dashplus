@@ -34,3 +34,6 @@ class card_movement_recordViewSet(viewsets.ModelViewSet):
 class change_movement_recordViewSet(viewsets.ModelViewSet):
     queryset = change_movement_record.objects.all()
     serializer_class = change_movement_recordSerializer
+
+
+    
