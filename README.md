@@ -74,3 +74,8 @@ git diff
 pip install django-filter
 pip install djangorestframework-filters
 ```
+
+#### cors block
+```
+pip install django-cors-headers
+```

@@ -74,6 +74,10 @@
 			document.getElementById("id_trello_token").innerHTML = ""+ res[1];
 			document.getElementById("id_trello_token").value = ""+ res[1];
 			document.getElementById("id_trello_token").readOnly = true;
+
+			$("#id_password").click(function () {
+		        $(this).attr('type', 'password');
+		    });
 		</script>
 
 </body>
