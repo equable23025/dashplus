@@ -27,11 +27,10 @@ $(document).ready(function(){
 
   $(".add-newproject-btn").on("click",function(){
     $(".accept-btn").on("click",function(){
-      
       $(".hs-box").append('<a href="">'+
       '<section class="asset_page_group ">'+
       '<img class="img-setting img-opacity" src="img/setting.svg">'+
-      '<div class="txt-bar">'+project_name+'</div></section>'+
+      '<div class="txt-bar">'+name_board+'</div></section>'+
       '</a>');
     });
   });

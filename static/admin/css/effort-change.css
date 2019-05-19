@@ -46,7 +46,7 @@ height: 48px;
 display:inline-block;
 }
 .board_box{
-width: 234px;
+width: 334px;
 height: 100%;
 float: right;
 }
@@ -68,7 +68,7 @@ box-sizing: border-box;
 display: inline-block;
 }
 .board_btn{
-width: 164px;
+width: 280px;
 height: 100%;
 background-color: #FFFFFF;
 float: right;
@@ -89,7 +89,6 @@ line-height: 48px;
 float: right;
 width: 76px;
 height: 100%;
-background-color: #ffffff;
 }
 .planning{
 float: left;
@@ -98,7 +97,16 @@ height: 100%;
 color: #FFFFFF;
 background-color: #4E78B9;
 }
+.movement{
+float: left;
+width: 112px;
+height: 100%;
+}
 .focus_txt{
+text-align: center;
+line-height: 42px;
+}
+.move_txt{
 text-align: center;
 line-height: 42px;
 }
@@ -157,8 +165,11 @@ padding: 10px;
 height: 220px;
 box-sizing: border-box;
 }
-#myChart{
+.chartjs-render-monitor{
 width: 100%;
 height: 100%;
 }
-
+.move-graph{
+width:585px;
+height: 330px;
+}

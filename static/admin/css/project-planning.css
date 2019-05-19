@@ -46,7 +46,7 @@
   display:inline-block;
 }
 .board_box{
-  width: 234px;
+  width: 334px;
   height: 100%;
   float: right;
 }
@@ -68,7 +68,7 @@
   display: inline-block;
 }
 .board_btn{
-  width: 164px;
+  width: 280px;
   height: 100%;
   background-color: #FFFFFF;
   float: right;
@@ -89,16 +89,22 @@
   float: right;
   width: 76px;
   height: 100%;
-  color: #FFFFFF;
-  background-color: #4E78B9;
 }
 .planning{
   float: left;
   width: 76px;
   height: 100%;
-  background-color: #ffffff;
+}
+.movement{
+  float: left;
+  width: 112px;
+  height: 100%;
 }
 .focus_txt{
+  text-align: center;
+  line-height: 42px;
+}
+.move_txt{
   text-align: center;
   line-height: 42px;
 }
@@ -140,7 +146,7 @@
 }
 .box-graph{
   background: #FFFFFF;
-  width: 378px;
+  width: 490px;
   height: 256px;
   display: inline-block;
   box-sizing: border-box;
@@ -160,4 +166,8 @@
 .chartjs-render-monitor{
   width: 100%;
   height: 100%;
+}
+.move-graph{
+  width:585px;
+  height: 330px;
 }
