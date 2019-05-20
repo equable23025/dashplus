@@ -7,7 +7,7 @@ $(document).ready(function(){
         $(".planning").css("background-color","#ffffff");
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8000/api/change_movement_record/",
+            url: "http://127.0.0.1:8000/api/change_movement_record/?username="+chk_user+"&board="+board,
             success: function(data){
                 $.ajax({
                     type: "GET",
@@ -20,27 +20,14 @@ $(document).ready(function(){
                         var amount_change = [];
                         var board = [];   
                         console.log(chk_user);
-                        // key user,value board ถ้ามีทั้งสองอย่าง ก็ให้ใส่ลงไปในอาเรย์
                         for(let i=0; i<data.length; i++){
-                            if(chk_user == data[i].username){
-                                if(board.indexOf(data[i].board) == -1){
-                                    board.push(data[i].board);
-                                }
-                            }
+                            board.push(data[i].board);
                         }
-                        // for(let i=0; i<data.length; i++){
-                        //     if(board.indexOf(data[i].board) == -1){
-                        //         board.push(data[i].board);
-                        //     }
-                        // }
+                        
                         console.log(board);
                         for(let i=0; i<board.length; i++){
-                            result2 = result.filter(function(b){
-                                if(board[i].indexOf(b.board) != -1){
-                                    return b;
-                                }
-                            });
-                            timestamp_real = result2.map(function(time){
+                            
+                            timestamp_real = result.map(function(time){
                                 return time.timestamp;
                             });
             
@@ -49,7 +36,7 @@ $(document).ready(function(){
                                 timestamp.push(i);
                             }
                             console.log(timestamp);
-                            amount_change = result2.map(function(amount){
+                            amount_change = result.map(function(amount){
                                 return amount.amount_change;
                             });
                             var time_date = [];
@@ -61,40 +48,40 @@ $(document).ready(function(){
                             }
                             console.log(time_date);
 
-                            planning_doing = result2.map(function(amount){
+                            planning_doing = result.map(function(amount){
                                 return amount.planning_doing;
                             });
-                            planning_testing = result2.map(function(amount){
+                            planning_testing = result.map(function(amount){
                                 return amount.planning_testing;
                             });
-                            planning_done = result2.map(function(amount){
+                            planning_done = result.map(function(amount){
                                 return amount.planning_done;
                             });
-                            doing_planning = result2.map(function(amount){
+                            doing_planning = result.map(function(amount){
                                 return amount.doing_planning;
                             });
-                            doing_testing = result2.map(function(amount){
+                            doing_testing = result.map(function(amount){
                                 return amount.doing_testing;
                             });
-                            doing_done = result2.map(function(amount){
+                            doing_done = result.map(function(amount){
                                 return amount.doing_done;
                             });
-                            testing_planning = result2.map(function(amount){
+                            testing_planning = result.map(function(amount){
                                 return amount.testing_planning;
                             });
-                            testing_doing = result2.map(function(amount){
+                            testing_doing = result.map(function(amount){
                                 return amount.testing_doing;
                             });
-                            testing_done = result2.map(function(amount){
+                            testing_done = result.map(function(amount){
                                 return amount.testing_done;
                             });
-                            done_planning = result2.map(function(amount){
+                            done_planning = result.map(function(amount){
                                 return amount.done_planning;
                             });
-                            done_doing = result2.map(function(amount){
+                            done_doing = result.map(function(amount){
                                 return amount.done_doing;
                             });
-                            done_testing = result2.map(function(amount){
+                            done_testing = result.map(function(amount){
                                 return amount.done_testing;
                             });
                             var max_axes = 5;
@@ -291,8 +278,6 @@ $(document).ready(function(){
                                 
                                     ]
                                 },
-            
-                                // Configuration options go here
                                 options: {
                                     responsive: true,
                                     legend : {
@@ -300,12 +285,12 @@ $(document).ready(function(){
                                             labels: {
                                                 boxWidth: 10,
                                                 boxHeight: 2,
-                                                fontSize:10,
+                                                fontSize:10
                                             }
                                     },
                                     title: {
                                         display: true,
-                                        text: 'Chart with Multiline Labels'
+                                        text: b[i]
                                     },
                                     scales: {
                                         xAxes: [{
@@ -315,7 +300,7 @@ $(document).ready(function(){
                                                 
                                             },
                                             scaleLabel: { display: true, labelString: 'Date' },
-                                            scaleBeginAtZero : true,
+                                            scaleBeginAtZero : true
                                         }],
                                         yAxes:[{
                                             display: true,
@@ -326,12 +311,12 @@ $(document).ready(function(){
                                                 stepSize: 1,
                                             },
                                             scaleLabel: { display: true, labelString: 'No.Change' },
-                                            scaleBeginAtZero : true,
+                                            scaleBeginAtZero : true
                                         }]
                                     },
                                         elements: {
                                             line: {
-                                                tension: 0, // disables bezier curves
+                                                tension: 0, 
                                             }
                                         }
                                     }

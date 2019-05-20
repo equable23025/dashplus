@@ -20,70 +20,73 @@
 <body>
     <script>
         var chk_user = '{{username}}';
-        var name_board = '{{item}}';
-        console.log(chk_user); 
+        var board = '{{item}}';
+        var name_board = '{{board_name}}';
+        var b =[];
+        console.log(chk_user);
     </script>
-
+    {%for item in board_name%}
+    <script type="text/javascript">
+        var a = '{{item}}';
+        b.push(a);
+    </script>
+    {%endfor%}
+    <div class="main_menu_bg" hidden></div>
     <!-- =================menu_box==================== -->
     <section class="main_menu" hidden>
-        <div class="content_box">
-            <div class="menu_bg">
-                    <div class="header_menu_title">
-                            <div class="content_box">
-                                Boards
-                                <img src="../../static//admin//img/down.svg">
-                            </div>
-                    </div>
-                    <div class="content_flow_box">
-                        <section class="menu_project">
-                            <div class="content_flow_box">
-                                <section class="menu_list">
-                                    <div class="content_box">
-                                        Board1
-                                    </div>
-                                </section>
-                                <section class="menu_list">
-                                    <div class="content_box">
-                                        Board2
-                                    </div>
-                                </section>
-                            </div>
-                        </section>
-                    </div>
-                    <!-- <div class="header_menu_title">
-                            <div class="content_box">
-                                Finished
-                                <img src="../../static//admin//img/down.svg">
-                            </div>
+            <div class="content_box">
+                <div class="menu_bg">
+                        <div class="header_menu_title">
+                                <div class="content_box">
+                                    Dash+
+                                    <img src="../../static//admin//img/down.svg">
+                                </div>
                         </div>
-                    <section class="menu_finished">
-                        <div class="content_flow_box">
-                        
+                        <section class="menu_project">
                             <section class="menu_list">
                                 <div class="content_box">
-                                    project1
+                                    Summary
                                 </div>
                             </section>
                             <section class="menu_list">
-                                <div class="content_box">
-                                    project1
-                                </div>
-                            </section><section class="menu_list">
+                                <a herf="/effort-change">
                                     <div class="content_box">
-                                        project1
+                                        Effort Change
                                     </div>
-                                </section>
+                                </a>
+                            </section>
+                           
                             <section class="menu_list">
-                                <div class="content_box">
-                                    project1
+                                <a herf="/scope-change">
+                                    <div class="content_box">
+                                        Scope Change
+                                    </div>
+                                </a>
+                            </section>
+                            <section class="menu_list">
+                                <a herf="/movement-change">
+                                    <div class="content_box">
+                                        Movement Change
+                                    </div>
+                                </a>
+                            </section>
+                            
+                        </section>
+                        <div class="board_menu">
+                            <div class="content_flow_box">
+                                <div class="header_menu_title">
+                                        <div class="content_box">
+                                            Boards
+                                            <img src="../../static//admin//img/down.svg">
+                                        </div>
                                 </div>
-                            </section>    
-                         </div>                    
-                    </section>
-            </div> -->
-            <div class="main_menu_bg" display=""></div>
-        </div>
-    </section>
+                                <section class="menu_project board_list">
+                                </section>
+                            </div>
+                        </div>
+                        
+            </div>
+        </section>
 
     <!-- ===========nav_bar============ -->
     <section class="navbar_box">
@@ -93,14 +96,14 @@
                     <img src="../../static/admin/img/menu.svg">
                 </div>
             </section>
-            <section class="user">
+            <section class="user user-btn btn">
                     <div class="content_box">
                         <img src="../../static/admin/img/userwhite.svg">
                         <div class="chk-user">{{username}}</div>
                     </div>
             </section>
-            <a href="/addeboard">
-            <section class="add_box">
+            <a href="/addboard">
+            <section class="add_box btn">
                 <div class="content_box">
                     <img src="../../static/admin/img/add_white.svg">
                     <div class="add_txt">Add Board</div>

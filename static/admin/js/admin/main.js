@@ -1,12 +1,24 @@
 var x = 1;
 var y =1;
 $(document).ready(function(){
+  
   $(".menu_box").on("click",function(){
     $(".main_menu").show();
+    $(".main_menu_bg").show();
   });
   $(".menu_bg").on("click",function(){
     $(".main_menu").hide();
+    $(".main_menu_bg").hide();
   });
+  for(let i=0;i<b.length;i++){
+    
+    $(".board_list").append(`<section class="menu_list">
+    <div class="content_box">
+        `+b[i]+`
+    </div>
+    </section>`);
+  }
+  
   $(".all-project").css("display","none");
   $(".finish-project").css("display","none");
 

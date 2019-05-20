@@ -4,7 +4,7 @@ $(document).ready(function(){
     
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/change_effort_record/",
+        url: "http://127.0.0.1:8000/api/change_effort_record/?username="+chk_user+"&board="+board,
         success: function(data){
             $.ajax({
                 type: "GET",
@@ -16,22 +16,17 @@ $(document).ready(function(){
                     var timestamp_real = []; 
                     var amount_change = [];
                     var board = [];   
-                    console.log(chk_user);
                     for(let i=0; i<data.length; i++){
-                        if(chk_user == data[i].username){
-                            if(board.indexOf(data[i].board) == -1){
-                                board.push(data[i].board);
-                            }
-                        }
+                       board.push(data[i].board);
                     }
-                     console.log(board);
+                    console.log(b)
                     for(let i=0; i<board.length; i++){
-                        result2 = result.filter(function(b){
-                            if(board[i].indexOf(b.board) != -1){
-                                return b;
-                            }
-                        });
-                        timestamp_real = result2.map(function(time){
+                        // result2 = result.filter(function(b){
+                        //     if(board[i].indexOf(b.board) != -1){
+                        //         return b;
+                        //     }
+                        // });
+                        timestamp_real = result.map(function(time){
                             return time.timestamp;
                         });
         
@@ -39,11 +34,6 @@ $(document).ready(function(){
                         for(let i=1 ;i<=timestamp_real.length;i++){
                             timestamp.push(i);
                         }
-        
-                        console.log(timestamp);
-                        amount_change = result2.map(function(amount){
-                            return amount.amount_change;
-                        });
                         var time_date = [];
                         for(let i = 0;i<result3.length;i++){
                             if(timestamp[i] == result3[i].id){
@@ -53,12 +43,12 @@ $(document).ready(function(){
                         }
                         console.log(time_date);
 
-                        amount_change = result2.map(function(amount){
+                        amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
                         var amount_real = [];
                         var max = -999;
-                        var max_axes
+                        var max_axes;
                         for(let i = 0; i<amount_change.length; i++){
                             if(amount_change[i]>max){
                                 max = amount_change[i];
@@ -102,7 +92,7 @@ $(document).ready(function(){
                                 responsive: true,
                                 title: {
                                     display: true,
-                                    text: 'Chart with Multiline Labels'
+                                    text: b[i]
                                 },
                                 scales: {
                                     xAxes: [{

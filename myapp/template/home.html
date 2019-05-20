@@ -1,12 +1,12 @@
 <p>{{username}}</p>
 <p>{{board}}</p> 
 
-
 {%for item in board%}
    <!--  {{item}} -->
     <script type="text/javascript">
     	var user = '{{username}}';
-    	var board = '{{item}}';
+        var board = '{{item}}';
+        var board_name = '{{board_name}}'
     	$(document).ready(function(){
     $.ajax({
         type: "GET",

@@ -24,9 +24,11 @@
 						<form method="POST" action="">
 								{% csrf_token %}
 								{{form.as_p}}
-								<div class="btn-box">
-									<a href="/project-planning"><button class="btn-login submit_reg" >Add Board</button></a>
-								</div>	
+								<a href="/scope-change">
+									<div class="btn-box">
+										<button class="btn-login submit_reg" >Add Board</button>
+									</div>	
+								</a>
 							</form>	
 					</div>
 				</div>
