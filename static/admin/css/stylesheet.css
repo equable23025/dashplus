@@ -239,6 +239,8 @@ a{
   padding-right:8px;
   box-sizing: border-box;
   height: 100%;
+  width: 100px;
+  text-align: center;
 }
 .option_box2{
   width: 100%;
