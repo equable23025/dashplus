@@ -67,12 +67,11 @@ for user_board in ub :
 				id_size_storypoint.append(custom_field['options'][i]['id'])
 				size_storypoint.append(custom_field['options'][i]['value']['text'])
 
-	print(id_size_storypoint)
-	print(size_storypoint)
+	# print(id_size_storypoint)
+	# print(size_storypoint)
 	# seleact all card DISTINCT
 	demoDatabases3.execute("SELECT DISTINCT \"id_card\" FROM public.myapp_card_movement_record where username = '"+user_board[0]+"' and board = '"+user_board[1]+"' and timestamp_id ='"+str(use_idtimeStamp[0])+"' ")		
 	for row in demoDatabases3 :
-		# print(row[0])
 
 		# check list [state]
 		list_card = ''
@@ -87,12 +86,25 @@ for user_board in ub :
 		finally:
 			pass
 
-		# keep_check_storypoint_id = []
-		storypoint = ''
 
+		# get_name card 
+		name_card = ''
+		try :
+			url_name = 'https://api.trello.com/1/card/'+str(row[0])+'?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token);
+			apiTrello_name = requests.get(url_name)
+			data_json_name = apiTrello_name.json()
+			name_card = str(data_json_name['name'])
+			# print(name_card)		
+		except Exception as e:
+			pass
+		finally:
+			pass
+
+		# check value storypoint_id 
+		storypoint = ''
 		if list_card != 'done' and list_card != 'N/A':
-			print(list_card)
-			# check value storypoint_id 
+			# print(list_card)
+			
 
 			# บางการ์ดมี custom บางการ์ดไม่มี
 			try :
@@ -110,16 +122,15 @@ for user_board in ub :
 						# keep_check_storypoint_id.append(data['idValue'])
 					if storypoint != '' :
 						storypoint = storypoint.upper()
-						print("Story point " + str(storypoint))
+						# print("Story point " + str(storypoint))
 						# connect to card_storypoint
 						connChange = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 						tableChange = connChange.cursor()
 
-						tableChange.execute("INSERT INTO myapp_card_storypoint  (\"username\", \"board\" , \"card_name\" , \"storypoint\" , timestamp)VALUES ('{}','{}', '{}','{}','{}')".format(user_board[0],user_board[1],str(row[0]),storypoint,str(use_idtimeStamp[0])))
+						tableChange.execute("INSERT INTO myapp_card_storypoint  (\"username\", \"board\" , \"card_name\" , \"storypoint\" , timestamp)VALUES ('{}','{}', '{}','{}','{}')".format(user_board[0],user_board[1],name_card,storypoint,str(use_idtimeStamp[0])))
 						connChange.commit()
 	
 				except Exception as e:
-					# storypoint_id = "N/A"
 					pass
 				finally:
 					pass

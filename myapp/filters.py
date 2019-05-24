@@ -1,6 +1,6 @@
 # from django.contrib.auth.models import User
 import django_filters
-from .models import change_record,card_record ,time_stamp ,card_effort_record ,change_effort_record,time_stamp_movement , card_movement_record, change_movement_record
+from .models import change_record,card_record ,time_stamp ,card_effort_record ,change_effort_record,time_stamp_movement , card_movement_record, change_movement_record , card_storypoint
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import serializers
 from rest_framework import viewsets
@@ -38,5 +38,16 @@ class change_movement_recordSerializer(serializers.ModelSerializer):
 class change_movement_record_filterApiView(viewsets.ModelViewSet):
     queryset = change_movement_record.objects.all()
     serializer_class = change_movement_recordSerializer
+    filter_backends = (DjangoFilterBackend, )
+    filter_fields = '__all__'
+
+class card_storypointSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = card_storypoint
+        fields = ('username','board','card_name','storypoint','timestamp')
+
+class card_storypoint_filterApiView(viewsets.ModelViewSet):
+    queryset = card_storypoint.objects.all()
+    serializer_class = card_storypointSerializer
     filter_backends = (DjangoFilterBackend, )
     filter_fields = '__all__'

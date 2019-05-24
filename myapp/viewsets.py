@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .serializers import change_recordSerializer , card_recordSerializer , time_stampSerializer ,card_effort_recordSerializer , change_effort_recordSerializer ,time_stamp_movementSerializer,card_movement_recordSerializer,change_movement_recordSerializer
-from .models import change_record,card_record ,time_stamp ,card_effort_record ,change_effort_record , time_stamp_movement , card_movement_record, change_movement_record
+from .serializers import change_recordSerializer , card_recordSerializer , time_stampSerializer ,card_effort_recordSerializer , change_effort_recordSerializer ,time_stamp_movementSerializer,card_movement_recordSerializer,change_movement_recordSerializer , card_storypointSerializer
+from .models import change_record,card_record ,time_stamp ,card_effort_record ,change_effort_record , time_stamp_movement , card_movement_record, change_movement_record , card_storypoint
 
 class change_recordViewSet(viewsets.ModelViewSet):
     queryset = change_record.objects.all()
@@ -36,4 +36,7 @@ class change_movement_recordViewSet(viewsets.ModelViewSet):
     serializer_class = change_movement_recordSerializer
 
 
-    
+class card_storypointViewSet(viewsets.ModelViewSet):
+    queryset = card_storypoint.objects.all()
+    serializer_class = card_storypointSerializer 
+
