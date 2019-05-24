@@ -85,3 +85,11 @@ class change_movement_record(models.Model):
 	done_doing =models.IntegerField(default='0')
 	done_testing =models.IntegerField(default='0')
 	timestamp=models.IntegerField(default='0')
+
+class card_storypoint(models.Model):
+	username =models.CharField(max_length=100)
+	board =models.CharField(max_length=100)
+	card_name =models.CharField(max_length=500)
+	storypoint =models.CharField(max_length=10)
+	timestamp=models.IntegerField(default='0')
+
