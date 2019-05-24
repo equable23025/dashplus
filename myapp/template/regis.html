@@ -29,6 +29,7 @@
 						<form method="POST">
 							{% csrf_token %}
 							{{form.as_p}}
+							<input type="password" id="check">
 							<div class="btn-box">
 								<button class="btn-login submit_reg" onclick="return  Validate()">Sign Up</button>
 							</div>	
@@ -77,7 +78,14 @@
 
 			$("#id_password").click(function () {
 		        $(this).attr('type', 'password');
-		    });
+			});
+			var pass = 	$("#id_password").val();
+			var chk = $("#check").val();
+			if(pass!=chk){
+				alert("Password Fail");
+			}else{
+				window.location.href("/summary");
+			}
 		</script>
 
 </body>

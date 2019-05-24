@@ -1,10 +1,19 @@
 $(document).ready(function(){
     $(".planning").css("color","#ffffff");
     $(".planning").css("background-color","#4E78B9");
-    
+    effort_graph();
+   
+  });
+
+  function random_rgba() {
+    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
+    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
+  }
+  
+  function effort_graph(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/change_effort_record/?username="+chk_user+"&board="+board,
+        url: "http://127.0.0.1:8000/api/change_effort_record/?username="+chk_user,
         success: function(data){
             $.ajax({
                 type: "GET",
@@ -17,7 +26,9 @@ $(document).ready(function(){
                     var amount_change = [];
                     var board = [];   
                     for(let i=0; i<data.length; i++){
-                       board.push(data[i].board);
+                        if(board.indexOf(data[i].board) == -1){
+                            board.push(data[i].board);
+                        }
                     }
                     console.log(b)
                     for(let i=0; i<board.length; i++){
@@ -128,10 +139,4 @@ $(document).ready(function(){
             }); 
          }
      });
-    
-  
-  });
-  function random_rgba() {
-    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
-    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
   }

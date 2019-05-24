@@ -5,9 +5,18 @@ $(document).ready(function(){
     $(".focus").css("background-color","#4E78B9");
     $(".planning").css("color","#333333");
     $(".planning").css("background-color","#ffffff");
+    
+    scope_change();
+  
+  });
+  function random_rgba() {
+    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
+    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
+  }
+  function scope_change(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/change_record/?username="+chk_user+"&board="+board,
+        url: "http://127.0.0.1:8000/api/change_record/?username="+chk_user,
         success: function(data){
             $.ajax({
                 type: "GET",
@@ -21,7 +30,9 @@ $(document).ready(function(){
                     var board = [];   
                     
                     for(let i=0; i<data.length; i++){
-                       board.push(data[i].board);
+                        if(board.indexOf(data[i].board) == -1){
+                            board.push(data[i].board);
+                        }
                     }
                   
                     for(let i=0; i<board.length; i++){
@@ -57,8 +68,6 @@ $(document).ready(function(){
                             if(amount_change[i]>max){
                                 max = amount_change[i];
                                 max_axes = max;
-                            }else if(amount_change[i] == 0){
-                                max_axes = 5;
                             }
                             amount_real.push(max);
                         }
@@ -132,10 +141,4 @@ $(document).ready(function(){
             
          }
      });//first
-    
-  
-  });
-  function random_rgba() {
-    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
-    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
   }
