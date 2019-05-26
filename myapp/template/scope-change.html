@@ -10,6 +10,7 @@
     <!-- ------------css--------------- -->
     <link rel="stylesheet" type="text/css" href="../../static/admin/css/stylesheet.css">
     <link rel="stylesheet" type="text/css" href="../../static/admin/css/project-planning.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
 
     <!-- ------------js--------------- -->
     <script src="../../static/admin/js/admin/jquery-3.1.1.min.js"></script>
@@ -20,66 +21,71 @@
 <body>
     <script>
         var chk_user = '{{username}}';
-        var name_board = '{{item}}';
+        var board = '{{item}}';
+        var name_board = '{{board_name}}';
+        var b =[];
         console.log(chk_user);
     </script>
-
+    {%for item in board_name%}
+    <script type="text/javascript">
+        var a = '{{item}}';
+        b.push(a);
+    </script>
+    {%endfor%}
+    <div class="main_menu_bg" hidden></div>
     <!-- =================menu_box==================== -->
     <section class="main_menu" hidden>
         <div class="content_box">
             <div class="menu_bg">
                     <div class="header_menu_title">
                             <div class="content_box">
-                                Boards
+                                Dash+
                                 <img src="../../static//admin//img/down.svg">
                             </div>
                     </div>
                     <section class="menu_project">
-                        <div class="content_flow_box">
-                            <section class="menu_list">
-                                <div class="content_box">
-                                    {{board_name}}
-                                </div>
-                            </section>
-                            <section class="menu_list">
-                                <div class="content_box">
-                                    Board2
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                    <!-- <div class="header_menu_title">
+                        <a href="/summary">
+                        <div class="menu_list">
                             <div class="content_box">
-                                Finished
-                                <img src="../../static//admin//img/down.svg">
+                                Summary
                             </div>
                         </div>
-                    <section class="menu_finished">
-                        <div class="content_flow_box">
-                        
-                            <section class="menu_list">
+                        </a>
+                        <a href="/effort-change">
+                        <div class="menu_list">
+                            <div class="content_box">
+                                Effort Change
+                            </div>
+                        </div>
+                        </a>
+                        <a href="/scope-change">
+                        <div class="menu_list">
+                            <div class="content_box">
+                                Scope Change
+                            </div>
+                        </div>
+                        </a>
+                        <a href="/movement-change">
+                        <div class="menu_list">
                                 <div class="content_box">
-                                    project1
+                                    Movement Change
                                 </div>
-                            </section>
-                            <section class="menu_list">
-                                <div class="content_box">
-                                    project1
-                                </div>
-                            </section><section class="menu_list">
-                                    <div class="content_box">
-                                        project1
-                                    </div>
-                                </section>
-                            <section class="menu_list">
-                                <div class="content_box">
-                                    project1
-                                </div>
-                            </section>    
-                         </div>                    
+                        </div>
+                        </a>
                     </section>
-            </div> -->
-            <div class="main_menu_bg" display=""></div>
+                    <div class="board_menu">
+                        <div class="content_flow_box">
+                            <div class="header_menu_title">
+                                    <div class="content_box">
+                                        Boards
+                                        <img src="../../static//admin//img/down.svg">
+                                    </div>
+                            </div>
+                            <section class="menu_project board_list">
+                            </section>
+                        </div>
+                    </div>
+                
         </div>
     </section>
 
@@ -115,6 +121,14 @@
             <!-- ===========option_box============ -->
             <section class="option_box">
                 <div class="content_box">
+                    <div class="custom-select">
+                            <div class="content_box">
+                                <div class="pre-btn"><img src="../../static/admin/img/back.svg"></div>
+                                <div class="next-btn"><img src="../../static/admin/img/next.svg"></div>
+                                <div class="txt-btn">20/05/2019</div>
+                                
+                            </div>        
+                    </div>
                     <section class="date_box">
                         <div class="content_box">
                             <div class="date_txt">View as:</div>
@@ -126,22 +140,27 @@
                             </div>
                         </div>
                     </section>
-
-                    <section class="board_box">
-                        <div class="content_box">
-                            <div class="board_txt">Board:</div>
-                            <div class="board_btn">
+                    
+                    <section class="header-page">Scope Changes</section>
+                </div>
+            </section>
+            <section class="option_box2">
+                <div class="content_box">
+                        <section class="board_box">
                                 <div class="content_box">
-                                    <a href="/scope-change"><div class="focus"><div class="focus_txt">Scope</div></div></a>
-                                    <a href="/movement-change"><div class="movement"><div class="move_txt">Movement</div></div></a>
-                                    <a href="/effort-change"><div class="planning"><div class="planning_txt">Effort</div></div></a>
-                                    <!-- <div class="focus"><div class="focus_txt">Scope</div></div>
-                                    <div class="movement"><div class="move_txt">Movement</div></div>
-                                    <div class="planning"><div class="planning_txt">Effort</div></div> -->
+                                    <div class="board_txt">Board:</div>
+                                    <div class="board_btn">
+                                        <div class="content_box">
+                                            <a href="/movement-change"><div class="movement"><div class="move_txt">Movement</div></div></a>
+                                            <a href="/scope-change"><div class="focus"><div class="focus_txt">Scope</div></div></a>
+                                            <a href="/effort-change"><div class="planning"><div class="planning_txt">Effort</div></div></a>
+                                            <!-- <div class="focus"><div class="focus_txt">Scope</div></div>
+                                            <div class="movement"><div class="move_txt">Movement</div></div>
+                                            <div class="planning"><div class="planning_txt">Effort</div></div> -->
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section> 
                 </div>
             </section>
             <!-- ===========detail_box============ -->

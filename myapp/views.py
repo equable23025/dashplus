@@ -206,7 +206,25 @@ def logout(request):
         del request.session['member_id']
     except KeyError:
         pass
-    return HttpResponse("ออกจากระบบแล้ว")
+    return HttpResponseRedirect("/login")
+
+def summary(request):
+	user = request.session['member_id']
+	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+	user_board_database = conn.cursor()
+	postgreSQL_select_Query = "select DISTINCT \"board\" from public.myapp_user_board where username = '"+user+"';"
+	user_board_database.execute(postgreSQL_select_Query)
+	check_board = user_board_database.fetchall()
+	# check user and board
+	board = []
+	for row in check_board :
+		board.append(row[0])
+	# json_board = json.dumps(board)
+	# json_board.strip().split('"')
+	# print(json_board)
+
+	conn.close()
+	return render(request,'summary.html',{'username':user,'board':board})
 
 # def addboard(request):
 # 		# username = request.POST.get('uname')

@@ -5,37 +5,43 @@ $(document).ready(function(){
     $(".focus").css("background-color","#4E78B9");
     $(".planning").css("color","#333333");
     $(".planning").css("background-color","#ffffff");
+    
+    scope_change();
+  
+  });
+  function random_rgba() {
+    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
+    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
+  }
+  function scope_change(){
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8000/api/change_record/",
+        url: "http://127.0.0.1:8000/api/change_record/?username="+chk_user,
         success: function(data){
             $.ajax({
                 type: "GET",
                 url: "http://127.0.0.1:8000/api/time_stamp/",
                 success: function(data2){
-
                     var result = data;
                     var result2 ;
                     var result3 = data2;
                     var timestamp_real = []; 
                     var amount_change = [];
                     var board = [];   
-                    console.log(chk_user);
+                    
                     for(let i=0; i<data.length; i++){
-                        if(chk_user == data[i].username){
-                            if(board.indexOf(data[i].board) == -1){
-                                board.push(data[i].board);
-                            }
+                        if(board.indexOf(data[i].board) == -1){
+                            board.push(data[i].board);
                         }
                     }
-                    console.log(board);
+                  
                     for(let i=0; i<board.length; i++){
-                        result2 = result.filter(function(b){
-                            if(board[i].indexOf(b.board) != -1){
-                                return b;
-                            }
-                        });
-                        timestamp_real = result2.map(function(time){
+                        // result2 = result.filter(function(b){
+                        //     if(board[i].indexOf(b.board) != -1){
+                        //         return b;
+                        //     }
+                        // });
+                        timestamp_real = result.map(function(time){
                             return time.timestamp;
                         });
         
@@ -52,7 +58,7 @@ $(document).ready(function(){
                         }
                         console.log(time_date);
 
-                        amount_change = result2.map(function(amount){
+                        amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
                         var amount_real = [];
@@ -62,8 +68,6 @@ $(document).ready(function(){
                             if(amount_change[i]>max){
                                 max = amount_change[i];
                                 max_axes = max;
-                            }else if(amount_change[i] == 0){
-                                max_axes = 5;
                             }
                             amount_real.push(max);
                         }
@@ -99,7 +103,7 @@ $(document).ready(function(){
                                     responsive: true,
                                     title: {
                                         display: true,
-                                        text: 'Chart with Multiline Labels'
+                                        text: b[i]
                                     },
                                     scales: {
                                         xAxes: [{
@@ -137,10 +141,4 @@ $(document).ready(function(){
             
          }
      });//first
-    
-  
-  });
-  function random_rgba() {
-    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
-    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
   }

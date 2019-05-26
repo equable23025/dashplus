@@ -46,7 +46,7 @@ height: 48px;
 display:inline-block;
 }
 .board_box{
-width: 334px;
+  width: 350px;
 height: 100%;
 float: right;
 }
@@ -114,27 +114,6 @@ line-height: 42px;
 text-align: center;
 line-height: 42px;
 }
-.month{
-float: right;
-width: 76px;
-height: 100%;
-color: #FFFFFF;
-background-color: #4E78B9;
-}
-.week{
-float: left;
-width: 76px;
-height: 100%;
-background-color: #ffffff;
-}
-.month_txt{
-text-align: center;
-line-height: 42px;
-}
-.week_txt{
-text-align: center;
-line-height: 42px;
-}
 .percent_chart{
 width: 100%;
 height: 560px;
@@ -148,8 +127,8 @@ height: 600px;
 }
 .box-graph{
 background: #FFFFFF;
-width: 378px;
-height: 256px;
+width: 585px;
+height: 304px;
 display: inline-block;
 box-sizing: border-box;
 float: left;
