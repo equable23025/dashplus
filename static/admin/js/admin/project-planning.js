@@ -1,3 +1,6 @@
+var this_board; 
+var week_or_month = "week";
+var this_date = new Date();
 $(document).ready(function(){
     $(".movement").css("color","#333333");
     $(".movement").css("background-color","#ffffff");
@@ -28,6 +31,7 @@ $(document).ready(function(){
                     var timestamp_real = []; 
                     var amount_change = [];
                     var board = [];   
+
                     
                     for(let i=0; i<data.length; i++){
                         if(board.indexOf(data[i].board) == -1){
@@ -56,11 +60,39 @@ $(document).ready(function(){
                                 time_date.push(date);
                             }
                         }
+                        
+                        var date = this_date;
+                        var recent_day = date.getDay();
+                        if(week_or_month == "week"){
+                          var start_date = addDays(date, -recent_day+1);
+                          var end_date = addDays(date, 7-recent_day);
+                        }
+                        else{
+                          var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                          var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                        }
+
+                        start_date.setHours(0,0,0,0)
+                        end_date.setHours(0,0,0,0)
+
+                        time_index = time_date.map(function(t, i){
+                          if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                            return 1;
+                          }
+                        }) 
+                        console.log(time_index) 
+                        
+                        time_date = time_date.filter(function(t, i){
+                          return !!time_index[i] 
+                        })  
+                        
                         console.log(time_date);
 
+                        
                         amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
+                        
                         var amount_real = [];
                         var max = -999;
                         var max_axes;
@@ -71,6 +103,11 @@ $(document).ready(function(){
                             }
                             amount_real.push(max);
                         }
+
+                        amount_real = amount_real.filter(function(t, i){
+                          return !!time_index[i] 
+                        })
+
                         console.log(amount_real);
                         $(".percent_chart").append(`<section class="box-graph">
                         <div class="content_box">
@@ -80,7 +117,7 @@ $(document).ready(function(){
                         </div>
                         </section>`);
                         var color = random_rgba();
-                        var ctx = document.getElementById('myChart'+i).getContext('2d');
+                        var ctx = document.getElementById('myChart'+0).getContext('2d');
                             var chart = new Chart(ctx, {
                                 type: 'line',
                                 data: {

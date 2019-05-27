@@ -301,38 +301,69 @@ $(document).ready(function(){
                       //     }
                       // });
                       timestamp_real = result.map(function(time){
-                          return time.timestamp;
-                      });
-      
-                      var timestamp = [];
-                      for(let i=1 ;i<=timestamp_real.length;i++){
-                          timestamp.push(i);
-                      }
-                      var time_date = [];
-                      for(let i = 0;i<result3.length;i++){
-                          if(timestamp[i] == result3[i].id){
-                              var date = result3[i].datetime.substr(0, 10);
-                              time_date.push(date);
-                          }
-                      }
-                      console.log(time_date);
+                        return time.timestamp;
+                    });
+    
+                    var timestamp = [];
+                    for(let i=1 ;i<=timestamp_real.length;i++){
+                        timestamp.push(i);
+                    }
+                    var time_date = [];
+                    for(let i = 0;i<result3.length;i++){
+                        if(timestamp[i] == result3[i].id){
+                            var date = result3[i].datetime.substr(0, 10);
+                            time_date.push(date);
+                        }
+                    }
+                    
+                    var date = this_date;
+                    var recent_day = date.getDay();
+                    if(week_or_month == "week"){
+                      var start_date = addDays(date, -recent_day+1);
+                      var end_date = addDays(date, 7-recent_day);
+                    }
+                    else{
+                      var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                      var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                    }
 
-                      amount_change = result.map(function(amount){
-                          return amount.amount_change;
-                      });
-                      var amount_real = [];
-                      var max = -999;
-                      var max_axes;
-                      for(let i = 0; i<amount_change.length; i++){
-                          if(amount_change[i]>max){
-                              max = amount_change[i];
-                              max_axes = max;
-                          }else if(amount_change[i] == 0){
-                              max_axes = 5;
-                          }
-                          amount_real.push(max);
+                    start_date.setHours(0,0,0,0)
+                    end_date.setHours(0,0,0,0)
+
+                    time_index = time_date.map(function(t, i){
+                      if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                        return 1;
                       }
-                      console.log(amount_real);
+                    }) 
+                    console.log(time_index) 
+                    
+                    time_date = time_date.filter(function(t, i){
+                      return !!time_index[i] 
+                    })  
+                    
+                    console.log(time_date);
+
+                    
+                    amount_change = result.map(function(amount){
+                        return amount.amount_change;
+                    });
+                    
+                    var amount_real = [];
+                    var max = -999;
+                    var max_axes;
+                    for(let i = 0; i<amount_change.length; i++){
+                        if(amount_change[i]>max){
+                            max = amount_change[i];
+                            max_axes = max;
+                        }
+                        amount_real.push(max);
+                    }
+
+                    amount_real = amount_real.filter(function(t, i){
+                      return !!time_index[i] 
+                    })
+
+                    console.log(amount_real);
                       
                       var color = random_rgba();
                       var ctx = document.getElementById('myChart'+1).getContext('2d');
@@ -420,65 +451,139 @@ $(document).ready(function(){
                   
                   console.log(board);
                   for(let i=0; i<board.length; i++){
+                    
                       
-                      timestamp_real = result.map(function(time){
-                          return time.timestamp;
-                      });
-      
-                      var timestamp = [];
-                      for(let i=1 ;i<=timestamp_real.length;i++){
-                          timestamp.push(i);
+                    timestamp_real = result.map(function(time){
+                        return time.timestamp;
+                    });
+    
+                    var timestamp = [];
+                    for(let i=1 ;i<=timestamp_real.length;i++){
+                        timestamp.push(i);
+                    }
+                    var time_date = [];
+                    for(let i = 0;i<result3.length;i++){
+                        if(timestamp[i] == result3[i].id){
+                            var date = result3[i].datetime.substr(0, 10);
+                            time_date.push(date);
+                        }
+                    }
+                    
+                    var date = this_date;
+                    var recent_day = date.getDay();
+                    if(week_or_month == "week"){
+                      var start_date = addDays(date, -recent_day+1);
+                      var end_date = addDays(date, 7-recent_day);
+                    }
+                    else{
+                      var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                      var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                    }
+
+                    start_date.setHours(0,0,0,0)
+                    end_date.setHours(0,0,0,0)
+
+                    time_index = time_date.map(function(t, i){
+                      if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                        return 1;
                       }
-                      console.log(timestamp);
-                      amount_change = result.map(function(amount){
-                          return amount.amount_change;
-                      });
-                      var time_date = [];
-                      for(let i = 0;i<result3.length;i++){
-                          if(timestamp[i] == result3[i].id){
-                              var date = result3[i].datetime.substr(0, 10);
-                              time_date.push(date);
-                          }
-                      }
-                      console.log(time_date);
+                    }) 
+                    console.log(time_index) 
+                    
+                    time_date = time_date.filter(function(t, i){
+                      return !!time_index[i] 
+                    })  
+                    
+                    console.log(time_date);
 
                       planning_doing = result.map(function(amount){
                           return amount.planning_doing;
                       });
+                      
+                      planning_doing = planning_doing.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       planning_testing = result.map(function(amount){
                           return amount.planning_testing;
                       });
+                      planning_testing = planning_testing.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       planning_done = result.map(function(amount){
                           return amount.planning_done;
                       });
+                      planning_done = planning_done.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       doing_planning = result.map(function(amount){
                           return amount.doing_planning;
                       });
+                      doing_planning = doing_planning.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       doing_testing = result.map(function(amount){
                           return amount.doing_testing;
                       });
+                      doing_testing = doing_testing.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       doing_done = result.map(function(amount){
                           return amount.doing_done;
                       });
+                      doing_done = doing_done.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       testing_planning = result.map(function(amount){
                           return amount.testing_planning;
                       });
+                      testing_planning = testing_planning.filter(function(t,i){
+                        return !!time_index[i] 
+                     });
+
                       testing_doing = result.map(function(amount){
                           return amount.testing_doing;
                       });
+                      testing_doing = testing_doing.filter(function(t,i){
+                        return !!time_index[i] 
+                      });
+
                       testing_done = result.map(function(amount){
                           return amount.testing_done;
                       });
+                      testing_done = testing_done.filter(function(t,i){
+                        return !!time_index[i] 
+                      });
+
                       done_planning = result.map(function(amount){
                           return amount.done_planning;
                       });
+                      done_planning = done_planning.filter(function(t,i){
+                        return !!time_index[i] 
+                      });
+
                       done_doing = result.map(function(amount){
                           return amount.done_doing;
                       });
+                      done_doing = done_doing.filter(function(t,i){
+                        return !!time_index[i] 
+                      });
+
                       done_testing = result.map(function(amount){
                           return amount.done_testing;
                       });
+                      done_testing = done_testing.filter(function(t,i){
+                        return !!time_index[i] 
+                      });
+
                       var max_axes = 5;
+
+
                       
                       var color = random_rgba();
                       var ctx = document.getElementById('myChart'+2).getContext('2d');

@@ -195,7 +195,7 @@ def login(request):
         	username = request.session['member_id']
         	# Set session as modified to force data updates/cookie to be saved.
         	request.session.modified = True
-        	return HttpResponseRedirect("/scope-change",{'user':username})
+        	return HttpResponseRedirect("/summary",{'user':username})
     else:
         messages.info(request, 'เข้าสู่ระบบล้มเหลว')
         return render(request,'login.html')

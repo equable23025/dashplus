@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="298" height="281" viewBox="0 0 298 281">
+  <defs>
+    <filter id="Create_Card_in_your_List" x="0" y="0" width="241" height="142" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_5" data-name="Group 5" transform="translate(-311 -254)">
+    <g transform="matrix(1, 0, 0, 1, 311, 254)" filter="url(#Create_Card_in_your_List)">
+      <text id="Create_Card_in_your_List-2" data-name="Create Card
+in your List" transform="translate(9 55)" fill="#030303" font-size="44" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600"><tspan x="0" y="0">Create Card</tspan><tspan x="0" y="54">in your List</tspan></text>
+    </g>
+    <text id="_Card_must_be_same_ours_template._By_Click_Power-up_Your_Workflow_Add_Custom_Fields_then_you_add_Dropdown_name_is_SIZE_and_STORYPOINT." data-name="     Card must be same ours template.
+By Click Power-up Your Workflow Add Custom Fields  then you add Dropdown name is SIZE and STORYPOINT." transform="translate(320 389)" fill="#030303" font-size="18" font-family="SukhumvitSet-Text, Sukhumvit Set"><tspan x="0" y="20" xml:space="preserve">     Card must be same ours template.</tspan><tspan x="0" y="49">By Click</tspan><tspan y="49" xml:space="preserve" font-family="SukhumvitSet-Light, Sukhumvit Set" font-weight="300"> P</tspan><tspan y="49">ower-up Your Workflow </tspan><tspan x="0" y="78" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600">Add</tspan><tspan y="78"> </tspan><tspan y="78" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600">Custom Fields</tspan><tspan y="78" xml:space="preserve">  then you add </tspan><tspan x="0" y="107">Dropdown name is </tspan><tspan y="107" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600">SIZE</tspan><tspan y="107" xml:space="preserve"> and </tspan><tspan x="0" y="136" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600">STORYPOINT.</tspan></text>
+  </g>
+</svg>

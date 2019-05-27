@@ -1,3 +1,6 @@
+var this_board; 
+var week_or_month = "week";
+var this_date = new Date();
 $(document).ready(function(){
     $(".planning").css("color","#ffffff");
     $(".planning").css("background-color","#4E78B9");
@@ -53,6 +56,32 @@ $(document).ready(function(){
                             }
                         }
                         console.log(time_date);
+                        var date = this_date;
+                    var recent_day = date.getDay();
+                    if(week_or_month == "week"){
+                      var start_date = addDays(date, -recent_day+1);
+                      var end_date = addDays(date, 7-recent_day);
+                    }
+                    else{
+                      var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                      var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                    }
+
+                    start_date.setHours(0,0,0,0)
+                    end_date.setHours(0,0,0,0)
+
+                    time_index = time_date.map(function(t, i){
+                      if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                        return 1;
+                      }
+                    }) 
+                    console.log(time_index) 
+                    
+                    time_date = time_date.filter(function(t, i){
+                      return !!time_index[i] 
+                    })  
+                    
+                    console.log(time_date);
 
                         amount_change = result.map(function(amount){
                             return amount.amount_change;
@@ -70,6 +99,9 @@ $(document).ready(function(){
                             amount_real.push(max);
                         }
                         console.log(amount_real);
+                        amount_real = amount_real.filter(function(t, i){
+                      return !!time_index[i] 
+                        })
                         $(".percent_chart").append(`<section class="box-graph">
                         <div class="content_box">
                             <div class="box-canvas">

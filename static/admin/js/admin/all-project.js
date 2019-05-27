@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
         $(".movement").css("color","#ffffff");
         $(".movement").css("background-color","#4E78B9");
@@ -14,6 +15,7 @@ function random_rgba() {
   return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 }
 function movement_graph(){
+    //movement
     $.ajax({
         type: "GET",
         url: "http://127.0.0.1:8000/api/change_movement_record/?username="+chk_user,
@@ -29,6 +31,7 @@ function movement_graph(){
                     var amount_change = [];
                     var board = [];   
                     console.log(chk_user);
+                    
                     for(let i=0; i<data.length; i++){
                         if(board.indexOf(data[i].board) == -1){
                             board.push(data[i].board);
@@ -37,74 +40,147 @@ function movement_graph(){
                     
                     console.log(board);
                     for(let i=0; i<board.length; i++){
+                      
                         
-                        timestamp_real = result.map(function(time){
-                            return time.timestamp;
-                        });
-        
-                        var timestamp = [];
-                        for(let i=1 ;i<=timestamp_real.length;i++){
-                            timestamp.push(i);
+                      timestamp_real = result.map(function(time){
+                          return time.timestamp;
+                      });
+      
+                      var timestamp = [];
+                      for(let i=1 ;i<=timestamp_real.length;i++){
+                          timestamp.push(i);
+                      }
+                      var time_date = [];
+                      for(let i = 0;i<result3.length;i++){
+                          if(timestamp[i] == result3[i].id){
+                              var date = result3[i].datetime.substr(0, 10);
+                              time_date.push(date);
+                          }
+                      }
+                      
+                      var date = this_date;
+                      var recent_day = date.getDay();
+                      if(week_or_month == "week"){
+                        var start_date = addDays(date, -recent_day+1);
+                        var end_date = addDays(date, 7-recent_day);
+                      }
+                      else{
+                        var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                        var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                      }
+  
+                      start_date.setHours(0,0,0,0)
+                      end_date.setHours(0,0,0,0)
+  
+                      time_index = time_date.map(function(t, i){
+                        if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                          return 1;
                         }
-                        console.log(timestamp);
-                        amount_change = result.map(function(amount){
-                            return amount.amount_change;
-                        });
-                        var time_date = [];
-                        for(let i = 0;i<result3.length;i++){
-                            if(timestamp[i] == result3[i].id){
-                                var date = result3[i].datetime.substr(0, 10);
-                                time_date.push(date);
-                            }
-                        }
-                        console.log(time_date);
-
+                      }) 
+                      console.log(time_index) 
+                      
+                      time_date = time_date.filter(function(t, i){
+                        return !!time_index[i] 
+                      })  
+                      
+                      console.log(time_date);
+  
                         planning_doing = result.map(function(amount){
                             return amount.planning_doing;
                         });
+                        planning_doing = planning_doing.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         planning_testing = result.map(function(amount){
                             return amount.planning_testing;
                         });
+                        planning_testing = planning_testing.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         planning_done = result.map(function(amount){
                             return amount.planning_done;
                         });
+                        planning_done = planning_done.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         doing_planning = result.map(function(amount){
                             return amount.doing_planning;
                         });
+                        doing_planning = doing_planning.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         doing_testing = result.map(function(amount){
                             return amount.doing_testing;
                         });
+                        doing_testing = doing_testing.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         doing_done = result.map(function(amount){
                             return amount.doing_done;
                         });
+                        doing_done = doing_done.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         testing_planning = result.map(function(amount){
                             return amount.testing_planning;
                         });
+                        testing_planning = testing_planning.filter(function(t,i){
+                          return !!time_index[i] 
+                       });
+  
                         testing_doing = result.map(function(amount){
                             return amount.testing_doing;
                         });
+                        testing_doing = testing_doing.filter(function(t,i){
+                          return !!time_index[i] 
+                        });
+  
                         testing_done = result.map(function(amount){
                             return amount.testing_done;
                         });
+                        testing_done = testing_done.filter(function(t,i){
+                          return !!time_index[i] 
+                        });
+  
                         done_planning = result.map(function(amount){
                             return amount.done_planning;
                         });
+                        done_planning = done_planning.filter(function(t,i){
+                          return !!time_index[i] 
+                        });
+  
                         done_doing = result.map(function(amount){
                             return amount.done_doing;
                         });
+                        done_doing = done_doing.filter(function(t,i){
+                          return !!time_index[i] 
+                        });
+  
                         done_testing = result.map(function(amount){
                             return amount.done_testing;
                         });
+                        done_testing = done_testing.filter(function(t,i){
+                          return !!time_index[i] 
+                        });
+                        
                         var max_axes = 5;
-                        $(".percent_chart").append(`<section class="box-graph move-graph">
+  
+                        $(".percent_chart").append(`<section class="box-graph">
                         <div class="content_box">
                             <div class="box-canvas">
                                 <canvas id="myChart`+i+`"></canvas>
                             </div>
                         </div>
                         </section>`);
+                        
                         var color = random_rgba();
-                        var ctx = document.getElementById('myChart'+i).getContext('2d');
+                        var ctx = document.getElementById('myChart'+2).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
@@ -335,6 +411,6 @@ function movement_graph(){
                     }
                 }
             });
-        }
-    });
+          }
+      });
 }

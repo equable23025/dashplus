@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="298" height="253" viewBox="0 0 298 253">
+  <defs>
+    <filter id="Create_List_in_your_Board" x="0" y="0" width="281" height="142" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_9" data-name="Group 9" transform="translate(-311 -254)">
+    <g transform="matrix(1, 0, 0, 1, 311, 254)" filter="url(#Create_List_in_your_Board)">
+      <text id="Create_List_in_your_Board-2" data-name="Create List
+in your Board" transform="translate(9 55)" fill="#030303" font-size="44" font-family="SukhumvitSet-SemiBold, Sukhumvit Set" font-weight="600"><tspan x="0" y="0">Create List</tspan><tspan x="0" y="54">in your Board</tspan></text>
+    </g>
+    <text id="_List_name_must_be_lowercase_and_must_be_same_ours_template._Name_of_lists_is_planning_doing_testing_and_done_by_ordered." data-name="     List name must be lowercase and must be same ours template. 
+     Name of lists is planning, doing, testing and done by ordered." transform="translate(320 389)" fill="#030303" font-size="18" font-family="SukhumvitSet-Text, Sukhumvit Set"><tspan x="0" y="20" xml:space="preserve">     List name must be lowercase and </tspan><tspan x="0" y="49">must be same ours template. </tspan><tspan x="0" y="78" xml:space="preserve">     Name of lists is </tspan><tspan y="78" font-family="SukhumvitSet-Bold, Sukhumvit Set" font-weight="700">planning</tspan><tspan y="78">, </tspan><tspan y="78" font-family="SukhumvitSet-Bold, Sukhumvit Set" font-weight="700">doing</tspan><tspan y="78">, </tspan><tspan x="0" y="107" font-family="SukhumvitSet-Bold, Sukhumvit Set" font-weight="700">testing</tspan><tspan y="107" xml:space="preserve"> and </tspan><tspan y="107" font-family="SukhumvitSet-Bold, Sukhumvit Set" font-weight="700">done</tspan><tspan y="107" xml:space="preserve"> by ordered.</tspan></text>
+  </g>
+</svg>
