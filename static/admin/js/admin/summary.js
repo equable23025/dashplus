@@ -174,7 +174,7 @@ function sum5_btn(){
           <div class="sum5_l"><img src="../../static/admin/img/s5.svg"></div>
           <div class="sum5_r">
             <img src="../../static/admin/img/sum5_txt.svg">
-            <a href="/addBoard">
+            <a href="/addboard">
               <div class="addboard_sum5">Add Board</div>
             </a>
           </div>

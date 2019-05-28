@@ -3,6 +3,7 @@ var y =1;
 var this_board; 
 var week_or_month = "week";
 var this_date = new Date();
+var is_in_board = false;
 $(document).ready(function(){
   week();
   $(".menu_box").on("click",function(){
@@ -26,6 +27,7 @@ $(document).ready(function(){
     $(".header-page").text(b[$(this).attr("data-index")]);
     this_board = $(this).attr("data-index");
     $(".percent_chart").empty();
+    is_in_board = true;
     all_board(this_board);
   })
 
@@ -44,7 +46,9 @@ $(document).ready(function(){
     if(week_or_month == "week"){
       const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
       $(".percent_chart").empty();
-      all_board(this_board);
+      if(is_in_board){
+        all_board(this_board);
+     }
       this_date = addDays(this_date, 7)
       var date = this_date;
       var recent_day = date.getDay();
@@ -55,7 +59,9 @@ $(document).ready(function(){
     else{
       const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
       $(".percent_chart").empty();
-      all_board(this_board);
+      if(is_in_board){
+        all_board(this_board);
+     }
       this_date.setMonth(this_date.getMonth()+1);
       var date = this_date;
       var recent_day = date.getDay();
@@ -69,7 +75,9 @@ $(document).ready(function(){
     if(week_or_month == "week"){
       const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
       $(".percent_chart").empty();
-      all_board(this_board);
+      if(is_in_board){
+        all_board(this_board);
+     }
       this_date = addDays(this_date, -7)
       var date = this_date;
       var recent_day = date.getDay();
@@ -80,7 +88,9 @@ $(document).ready(function(){
     else{
       const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
       $(".percent_chart").empty();
-      all_board(this_board);
+      if(is_in_board){
+        all_board(this_board);
+     }
       this_date.setMonth(this_date.getMonth()-1);
       var date = this_date;
       var recent_day = date.getDay();
@@ -94,6 +104,7 @@ $(document).ready(function(){
 
 
   function all_board(index){
+    $(".percent_chart").empty();
     $(".percent_chart").append(`<section class="box-graph">
     <div class="content_box">
         <div class="box-canvas">
@@ -835,7 +846,9 @@ $(document).ready(function(){
     $(".month").css("color","#333333");
     week_or_month = "week";
     $(".txt-btn").text(formatted_date);
-    all_board(this_board);
+    if(is_in_board){
+       all_board(this_board);
+    }
 
     console.log(start_date)
     console.log(end_date)
@@ -853,7 +866,9 @@ $(document).ready(function(){
     $(".week").css("color","#333333");
     week_or_month = "month";  
     $(".txt-btn").text(formatted_date);
-    all_board(this_board);
+    if(is_in_board){
+        all_board(this_board);
+    }
 
     console.log(start_date)
     console.log(end_date)
@@ -866,7 +881,6 @@ $(document).ready(function(){
   }
   
   function next_month(){
-    
     $(".txt-btn").text(formatted_date);
   }
   function prev_month(){

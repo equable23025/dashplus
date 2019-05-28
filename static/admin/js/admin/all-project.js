@@ -1,4 +1,10 @@
 
+var x = 1;
+var y =1;
+var this_board; 
+var week_or_month = "week";
+var this_date = new Date();
+var is_in_board = false;
 $(document).ready(function(){
         $(".movement").css("color","#ffffff");
         $(".movement").css("background-color","#4E78B9");
@@ -6,7 +12,76 @@ $(document).ready(function(){
         $(".focus").css("background-color","#ffffff");
         $(".planning").css("color","#333333");
         $(".planning").css("background-color","#ffffff");
-        movement_graph();
+        $(".menu_box").on("click",function(){
+            $(".main_menu").show();
+            $(".main_menu_bg").show();
+          });
+          $(".menu_bg").on("click",function(){
+            $(".main_menu").hide();
+            $(".main_menu_bg").hide();
+          });
+        
+          $(".next-btn").on("click",function(){
+            if(week_or_month == "week"){
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              $(".percent_chart").empty();
+              if(!is_in_board){         
+                  movement_graph();      
+                }
+              this_date = addDays(this_date, 7)
+              var date = this_date;
+              var recent_day = date.getDay();
+              var start_date = addDays(date, -recent_day+1);
+              let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+              $(".txt-btn").text(formatted_date);
+            }
+            else{
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              $(".percent_chart").empty();
+              if(!is_in_board){         
+                  movement_graph();      
+                }
+              this_date.setMonth(this_date.getMonth()+1);
+              var date = this_date;
+              var recent_day = date.getDay();
+              var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+              let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+              $(".txt-btn").text(formatted_date);
+            }
+            
+          })
+          $(".pre-btn").on("click",function(){
+            if(week_or_month == "week"){
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              $(".percent_chart").empty();
+              if(!is_in_board){         
+                  movement_graph();      
+                }
+              this_date = addDays(this_date, -7)
+              var date = this_date;
+              var recent_day = date.getDay();
+              var start_date = addDays(date, -recent_day+1);
+              let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+              $(".txt-btn").text(formatted_date);
+            }
+            else{
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              $(".percent_chart").empty();
+              if(!is_in_board){         
+                  movement_graph();      
+                }
+              this_date.setMonth(this_date.getMonth()-1);
+              var date = this_date;
+              var recent_day = date.getDay();
+              var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+              let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+              $(".txt-btn").text(formatted_date);
+            }
+          })
+        
+        if(!is_in_board){         
+            movement_graph();      
+        }
   
 
 });
@@ -180,7 +255,7 @@ function movement_graph(){
                         </section>`);
                         
                         var color = random_rgba();
-                        var ctx = document.getElementById('myChart'+2).getContext('2d');
+                        var ctx = document.getElementById('myChart'+i).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
                             data: {
@@ -414,3 +489,65 @@ function movement_graph(){
           }
       });
 }
+function week(){
+    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var date = this_date;
+    var recent_day = date.getDay();
+    var start_date = addDays(date, -recent_day+1);
+    var end_date = addDays(date, 7-recent_day);
+    let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+    $(".week").css("background-color","#4E78B9");
+    $(".week").css("color","#ffffff");
+    $(".month").css("background-color","#ffffff");
+    $(".month").css("color","#333333");
+    week_or_month = "week";
+    $(".txt-btn").text(formatted_date);
+    if(!is_in_board){         
+        movement_graph();      
+    }
+
+    console.log(start_date)
+    console.log(end_date)
+  }
+  
+  function month(){
+    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var date = this_date;
+    var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+    var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear()
+    $(".month").css("background-color","#4E78B9");
+    $(".month").css("color","#ffffff");
+    $(".week").css("background-color","#ffffff");
+    $(".week").css("color","#333333");
+    week_or_month = "month";  
+    $(".txt-btn").text(formatted_date);
+    if(!is_in_board){         
+        movement_graph();      
+    }
+
+    console.log(start_date)
+    console.log(end_date)
+  }
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+  
+  function next_month(){
+    $(".txt-btn").text(formatted_date);
+  }
+  function prev_month(){
+    $(".pre-btn")
+    $(".txt-btn").text(formatted_date);
+  }
+  function next_week(){
+    $(".next-btn")
+    $(".txt-btn").text(formatted_date);
+  }
+  function next_month(){
+    $(".pre-btn")
+    $(".txt-btn").text(formatted_date);
+  }

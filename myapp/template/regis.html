@@ -29,6 +29,7 @@
 						<form method="POST">
 							{% csrf_token %}
 							{{form.as_p}}
+							Confirm Password
 							<input type="password" id="check">
 							<div class="btn-box">
 								<button class="btn-login submit_reg" onclick="return  Validate()">Sign Up</button>

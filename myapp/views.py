@@ -210,21 +210,34 @@ def logout(request):
 
 def summary(request):
 	user = request.session['member_id']
+
+	con_register_id = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+	con_register_id_database = con_register_id.cursor()
+	# get token user == user
+	postgreSQL_select_Query_register= "select \"trello_token\"  from myapp_register_id  where \"username\" = '"+str(user)+"'"
+	con_register_id_database.execute(postgreSQL_select_Query_register)
+	rg = con_register_id_database.fetchall()
+	token = ''
+	for token_check in rg :
+		token = str(token_check[0])
+		print(token)
+	# name board
 	conn = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	user_board_database = conn.cursor()
-	postgreSQL_select_Query = "select DISTINCT \"board\" from public.myapp_user_board where username = '"+user+"';"
+	postgreSQL_select_Query = "select DISTINCT \"board\" from public.myapp_user_board where username = '"+str(user)+"';"
 	user_board_database.execute(postgreSQL_select_Query)
 	check_board = user_board_database.fetchall()
 	# check user and board
-	board = []
+	board_name = []
 	for row in check_board :
-		board.append(row[0])
-	# json_board = json.dumps(board)
-	# json_board.strip().split('"')
-	# print(json_board)
+		url =  'https://api.trello.com/1/board/'+str(row[0])+'?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token)
+		# print(url)
+		apiTrello = requests.get(url)
+		data_json = apiTrello.json()
+		board_name.append(data_json['name'])
 
-	conn.close()
-	return render(request,'summary.html',{'username':user,'board':board})
+	return render(request,'summary.html',{'username':user,'board_name' : board_name})	
+
 
 # def addboard(request):
 # 		# username = request.POST.get('uname')
