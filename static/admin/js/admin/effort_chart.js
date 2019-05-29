@@ -167,21 +167,9 @@ $(document).ready(function(){
                         amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
-                        var amount_real = [];
-                        var max = -999;
-                        var max_axes;
-                        for(let i = 0; i<amount_change.length; i++){
-                            if(amount_change[i]>max){
-                                max = amount_change[i];
-                                max_axes = max;
-                            }else if(amount_change[i] == 0){
-                                max_axes = 5;
-                            }
-                            amount_real.push(max);
-                        }
-                        console.log(amount_real);
+                       
 
-                        amount_real = amount_real.filter(function(t, i){
+                        amount_change = amount_change.filter(function(t, i){
                             return !!time_index[i] ;
                         })
                         $(".percent_chart").append(`<section class="box-graph">
@@ -269,7 +257,7 @@ $(document).ready(function(){
                                                 
                                             ],
                                             borderWidth: 1,
-                                            data: amount_real
+                                            data: amount_change
                                         }]
                                     },
                 
@@ -294,7 +282,6 @@ $(document).ready(function(){
                                                 ticks: {
                                                     beginAtZero:true,
                                                     min: 0,
-                                                    max: max_axes,
                                                     stepSize: 1,
                                                 },
                                                 scaleLabel: { display: true, labelString: 'No.Change' },
@@ -338,7 +325,7 @@ $(document).ready(function(){
                                         
                                     ],
                                     borderWidth: 1,
-                                    data: amount_real
+                                    data: amount_change
                                 }]
                             },
         
@@ -363,7 +350,6 @@ $(document).ready(function(){
                                         ticks: {
                                             beginAtZero:true,
                                             min: 0,
-                                            max: max_axes,
                                             stepSize: 1,
                                         },
                                         scaleLabel: { display: true, labelString: 'No.Change' },

@@ -248,7 +248,6 @@ function movement_graph(){
                           return !!time_index[i] 
                         });
                         
-                        var max_axes = 5;
   
                         $(".percent_chart").append(`<section class="box-graph">
                         <div class="content_box">
@@ -473,7 +472,6 @@ function movement_graph(){
                                         ticks: {
                                             beginAtZero:true,
                                             min: 0,
-                                            max: max_axes,
                                             stepSize: 1,
                                         },
                                         scaleLabel: { display: true, labelString: 'No.Change' },

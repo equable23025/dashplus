@@ -209,22 +209,13 @@ $(document).ready(function(){
                             return amount.amount_change;
                         });
                         
-                        var amount_real = [];
-                        var max = -999;
-                        var max_axes;
-                        for(let i = 0; i<amount_change.length; i++){
-                            if(amount_change[i]>max){
-                                max = amount_change[i];
-                                max_axes = max;
-                            }
-                            amount_real.push(max);
-                        }
+                        
 
-                        amount_real = amount_real.filter(function(t, i){
+                        amount_change = amount_change.filter(function(t, i){
                           return !!time_index[i] 
                         })
 
-                        console.log(amount_real);
+                        console.log(amount_change);
                    
                         var color = random_rgba();
                         var ctx = document.getElementById('myChart'+0).getContext('2d');
@@ -243,7 +234,7 @@ $(document).ready(function(){
                                             
                                         ],
                                         borderWidth: 1,
-                                        data: amount_real
+                                        data: amount_change
                                     }]
                                 },
                                 options: {
@@ -267,7 +258,6 @@ $(document).ready(function(){
                                             ticks: {
                                                 beginAtZero:true,
                                                 min: 0,
-                                                max: max_axes,
                                                 stepSize: 1
                                             },
                                             scaleLabel: { display: true, labelString: 'No.Change' },
@@ -370,22 +360,13 @@ $(document).ready(function(){
                         return amount.amount_change;
                     });
                     
-                    var amount_real = [];
-                    var max = -999;
-                    var max_axes;
-                    for(let i = 0; i<amount_change.length; i++){
-                        if(amount_change[i]>max){
-                            max = amount_change[i];
-                            max_axes = max;
-                        }
-                        amount_real.push(max);
-                    }
+                    
 
-                    amount_real = amount_real.filter(function(t, i){
+                    amount_change = amount_change.filter(function(t, i){
                       return !!time_index[i] 
                     })
 
-                    console.log(amount_real);
+                    console.log(amount_change);
                       
                       var color = random_rgba();
                       var ctx = document.getElementById('myChart'+1).getContext('2d');
@@ -404,7 +385,7 @@ $(document).ready(function(){
                                       
                                   ],
                                   borderWidth: 1,
-                                  data: amount_real
+                                  data: amount_change
                               }]
                           },
       
@@ -429,7 +410,6 @@ $(document).ready(function(){
                                       ticks: {
                                           beginAtZero:true,
                                           min: 0,
-                                          max: max_axes,
                                           stepSize: 1,
                                       },
                                       scaleLabel: { display: true, labelString: 'No.Change' },
@@ -613,7 +593,6 @@ $(document).ready(function(){
                         return !!time_index[i] 
                       });
 
-                      var max_axes = 5;
 
 
                       
@@ -832,7 +811,6 @@ $(document).ready(function(){
                                       ticks: {
                                           beginAtZero:true,
                                           min: 0,
-                                          max: max_axes,
                                           stepSize: 1,
                                       },
                                       scaleLabel: { display: true, labelString: 'No.Change' },
