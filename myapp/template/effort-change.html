@@ -23,12 +23,19 @@
         var board = '{{item}}';
         var name_board = '{{board_name}}';
         var b =[];
+        var relation =[];
         console.log(chk_user);
     </script>
     {%for item in board_name%}
     <script type="text/javascript">
         var a = '{{item}}';
         b.push(a);
+    </script>
+    {%endfor%}
+    {%for item in board_id%}
+    <script type="text/javascript">
+        var a = '{{item}}';
+        relation.push(a);
     </script>
     {%endfor%}
     <div class="main_menu_bg" hidden></div>
@@ -184,6 +191,21 @@
                                 <div class="name_graph">`+board[i].board+`</div>
                             </div>
                         </section> -->
+                        <div id="modal" class="modal" hidden>
+                            <div class="content_box">
+                                <div class="cancel-btn">X</div>
+                                <div class="big_chart">
+
+                                </div>
+                                <div class="detail_story">
+                                    <div class="content_box_flow ">
+                                        <div class="d-story">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         
                     </section>
                 </div>
@@ -192,7 +214,7 @@
         </div>
     </section>
 
-    <script src="../../static/admin/js/admin/effort_chart.js?v=0041"></script>
+    <script src="../../static/admin/js/admin/effort_chart.js?v=0043"></script>
     <!-- <script src="../../static/admin/js/admin/chart.js?v=034"></script> -->
     <script src="../../static/admin/js/admin/main.js?v=0001"></script>
 </body>

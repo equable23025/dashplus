@@ -24,12 +24,19 @@
         var board = '{{item}}';
         var name_board = '{{board_name}}';
         var b =[];
+        var relation =[];
         console.log(chk_user);
     </script>
     {%for item in board_name%}
     <script type="text/javascript">
         var a = '{{item}}';
         b.push(a);
+    </script>
+    {%endfor%}
+    {%for item in board_id%}
+    <script type="text/javascript">
+        var a = '{{item}}';
+        relation.push(a);
     </script>
     {%endfor%}
     <div class="main_menu_bg" hidden></div>
@@ -193,8 +200,8 @@
     </section>
 
 
-    <script src="../../static/admin/js/admin/project-planning.js?v=0039"></script>
-    <script src="../../static/admin/js/admin/main.js?v=0001"></script>
+    <script src="../../static/admin/js/admin/project-planning.js?v=0040"></script>
+    <script src="../../static/admin/js/admin/main.js?v=0002"></script>
 </body>
 
 </html>

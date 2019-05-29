@@ -45,14 +45,16 @@ def dataToChart(request):
 	check_board = user_board_database.fetchall()
 	# check user and board
 	board_name = []
+	board_id = []
 	for row in check_board :
 		url =  'https://api.trello.com/1/board/'+str(row[0])+'?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token)
 		# print(url)
 		apiTrello = requests.get(url)
 		data_json = apiTrello.json()
 		board_name.append(data_json['name'])
+		board_id.append(row[0])
 
-	return render(request,'scope-change.html',{'username':user,'data': data,'board_name' : board_name})
+	return render(request,'scope-change.html',{'username':user,'data': data,'board_name' : board_name,'board_id': board_id})
 
 def dataEffortToChart(request):
 	user = request.session['member_id']
@@ -76,14 +78,16 @@ def dataEffortToChart(request):
 	check_board = user_board_database.fetchall()
 	# check user and board
 	board_name = []
+	board_id = []
 	for row in check_board :
 		url =  'https://api.trello.com/1/board/'+str(row[0])+'?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token)
 		# print(url)
 		apiTrello = requests.get(url)
 		data_json = apiTrello.json()
 		board_name.append(data_json['name'])
+		board_id.append(row[0])
 
-	return render(request,'effort-change.html',{'username':user,'data': data ,'board_name' : board_name})	
+	return render(request,'effort-change.html',{'username':user,'data': data ,'board_name' : board_name,'board_id': board_id})	
 
 def dataMovementToChart(request):
 	user = request.session['member_id']
@@ -107,14 +111,16 @@ def dataMovementToChart(request):
 	check_board = user_board_database.fetchall()
 	# check user and board
 	board_name = []
+	board_id = []
 	for row in check_board :
 		url =  'https://api.trello.com/1/board/'+str(row[0])+'?key=6aa466b0416e7930b5889b667bbda4ee&token='+str(token)
 		# print(url)
 		apiTrello = requests.get(url)
 		data_json = apiTrello.json()
 		board_name.append(data_json['name'])
+		board_id.append(row[0])
 		
-	return render(request,'movement-change.html',{'username':user,'data': data,'board_name' : board_name})
+	return render(request,'movement-change.html',{'username':user,'data': data,'board_name' : board_name,'board_id': board_id})
 
 def home_to_register(request):
 	user = request.session['member_id']
@@ -173,6 +179,7 @@ def addboard(request):
 		form =user_board_form(request.POST)
 		if form.is_valid():
 			form.save()
+		return HttpResponseRedirect("/scope-change",{'user':user})
 	else:
 		form = user_board_form()
 	# username = request.POST.get('usern')
@@ -210,7 +217,6 @@ def logout(request):
 
 def summary(request):
 	user = request.session['member_id']
-
 	con_register_id = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	con_register_id_database = con_register_id.cursor()
 	# get token user == user

@@ -28,12 +28,12 @@ $(document).ready(function(){
               if(!is_in_board){         
                   movement_graph();      
                 }
-              this_date = addDays(this_date, 7)
-              var date = this_date;
-              var recent_day = date.getDay();
-              var start_date = addDays(date, -recent_day+1);
-              let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
-              $(".txt-btn").text(formatted_date);
+            //   this_date = addDays(this_date, 7)
+            //   var date = this_date;
+            //   var recent_day = date.getDay();
+            //   var start_date = addDays(date, -recent_day+1);
+            //   let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+            //   $(".txt-btn").text(formatted_date);
             }
             else{
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -41,12 +41,12 @@ $(document).ready(function(){
               if(!is_in_board){         
                   movement_graph();      
                 }
-              this_date.setMonth(this_date.getMonth()+1);
-              var date = this_date;
-              var recent_day = date.getDay();
-              var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-              let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
-              $(".txt-btn").text(formatted_date);
+            //   this_date.setMonth(this_date.getMonth()+1);
+            //   var date = this_date;
+            //   var recent_day = date.getDay();
+            //   var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+            //   let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+            //   $(".txt-btn").text(formatted_date);
             }
             
           })
@@ -57,12 +57,12 @@ $(document).ready(function(){
               if(!is_in_board){         
                   movement_graph();      
                 }
-              this_date = addDays(this_date, -7)
-              var date = this_date;
-              var recent_day = date.getDay();
-              var start_date = addDays(date, -recent_day+1);
-              let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
-              $(".txt-btn").text(formatted_date);
+            //   this_date = addDays(this_date, -7)
+            //   var date = this_date;
+            //   var recent_day = date.getDay();
+            //   var start_date = addDays(date, -recent_day+1);
+            //   let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+            //   $(".txt-btn").text(formatted_date);
             }
             else{
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -70,12 +70,12 @@ $(document).ready(function(){
               if(!is_in_board){         
                   movement_graph();      
                 }
-              this_date.setMonth(this_date.getMonth()-1);
-              var date = this_date;
-              var recent_day = date.getDay();
-              var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-              let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
-              $(".txt-btn").text(formatted_date);
+            //   this_date.setMonth(this_date.getMonth()-1);
+            //   var date = this_date;
+            //   var recent_day = date.getDay();
+            //   var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+            //   let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+            //   $(".txt-btn").text(formatted_date);
             }
           })
         
@@ -115,9 +115,13 @@ function movement_graph(){
                     
                     console.log(board);
                     for(let i=0; i<board.length; i++){
-                      
+                        result2 = result.filter(function(b){
+                            if(board[i].indexOf(b.board) != -1){
+                                return b;
+                            }
+                        });
                         
-                      timestamp_real = result.map(function(time){
+                      timestamp_real = result2.map(function(time){
                           return time.timestamp;
                       });
       
@@ -536,18 +540,18 @@ function week(){
     return result;
   }
   
-  function next_month(){
-    $(".txt-btn").text(formatted_date);
-  }
-  function prev_month(){
-    $(".pre-btn")
-    $(".txt-btn").text(formatted_date);
-  }
-  function next_week(){
-    $(".next-btn")
-    $(".txt-btn").text(formatted_date);
-  }
-  function next_month(){
-    $(".pre-btn")
-    $(".txt-btn").text(formatted_date);
-  }
+//   function next_month(){
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function prev_month(){
+//     $(".pre-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function next_week(){
+//     $(".next-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function next_month(){
+//     $(".pre-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }

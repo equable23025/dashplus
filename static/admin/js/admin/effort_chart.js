@@ -23,12 +23,12 @@ $(document).ready(function(){
         if(!is_in_board){         
             effort_graph();      
         }
-          this_date = addDays(this_date, 7)
-          var date = this_date;
-          var recent_day = date.getDay();
-          var start_date = addDays(date, -recent_day+1);
-          let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
-          $(".txt-btn").text(formatted_date);
+        //   this_date = addDays(this_date, 7)
+        //   var date = this_date;
+        //   var recent_day = date.getDay();
+        //   var start_date = addDays(date, -recent_day+1);
+        //   let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+        //   $(".txt-btn").text(formatted_date);
         }
         else{
           const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -36,12 +36,12 @@ $(document).ready(function(){
           if(!is_in_board){         
               effort_graph();      
           }
-          this_date.setMonth(this_date.getMonth()+1);
-          var date = this_date;
-          var recent_day = date.getDay();
-          var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-          let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
-          $(".txt-btn").text(formatted_date);
+        //   this_date.setMonth(this_date.getMonth()+1);
+        //   var date = this_date;
+        //   var recent_day = date.getDay();
+        //   var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+        //   let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+        //   $(".txt-btn").text(formatted_date);
         }
         
       })
@@ -52,12 +52,12 @@ $(document).ready(function(){
           if(!is_in_board){
               effort_graph();      
           }
-          this_date = addDays(this_date, -7)
-          var date = this_date;
-          var recent_day = date.getDay();
-          var start_date = addDays(date, -recent_day+1);
-          let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
-          $(".txt-btn").text(formatted_date);
+        //   this_date = addDays(this_date, -7)
+        //   var date = this_date;
+        //   var recent_day = date.getDay();
+        //   var start_date = addDays(date, -recent_day+1);
+        //   let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+        //   $(".txt-btn").text(formatted_date);
         }
         else{
           const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -65,12 +65,12 @@ $(document).ready(function(){
             if(!is_in_board){         
                 effort_graph();      
             }
-          this_date.setMonth(this_date.getMonth()-1);
-          var date = this_date;
-          var recent_day = date.getDay();
-          var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-          let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
-          $(".txt-btn").text(formatted_date);
+        //   this_date.setMonth(this_date.getMonth()-1);
+        //   var date = this_date;
+        //   var recent_day = date.getDay();
+        //   var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+        //   let formatted_date =  months[start_date.getMonth()] + " " + start_date.getFullYear();
+        //   $(".txt-btn").text(formatted_date);
         }
       })
     
@@ -94,41 +94,51 @@ $(document).ready(function(){
                 type: "GET",
                 url: "http://127.0.0.1:8000/api/time_stamp/",
                 success: function(data2){
+                    $.ajax({
+                        type: "GET",
+                        url: "http://127.0.0.1:8000/api/card_storypoint/?username="+chk_user,
+                        success: function(data3){
                     var result = data;
-                    var result2 ;
                     var result3 = data2;
                     var timestamp_real = []; 
                     var amount_change = [];
-                    var board = [];   
+                    var board = [];  
+                    var result4 = data3; 
+                    var card_name = [];  
+                    var storypoint = [];  
+                    var board_story=[];
+                    var time_story=[];
+                    console.log(relation);
+
                     for(let i=0; i<data.length; i++){
                         if(board.indexOf(data[i].board) == -1){
                             board.push(data[i].board);
                         }
                     }
                     console.log(b)
+
                     for(let i=0; i<board.length; i++){
-                        // result2 = result.filter(function(b){
-                        //     if(board[i].indexOf(b.board) != -1){
-                        //         return b;
-                        //     }
-                        // });
-                        timestamp_real = result.map(function(time){
-                            return time.timestamp;
-                        });
-        
-                        var timestamp = [];
-                        for(let i=1 ;i<=timestamp_real.length;i++){
-                            timestamp.push(i);
-                        }
-                        var time_date = [];
-                        for(let i = 0;i<result3.length;i++){
-                            if(timestamp[i] == result3[i].id){
-                                var date = result3[i].datetime.substr(0, 10);
-                                time_date.push(date);
+                        result2 = result.filter(function(b){
+                            if(board[i].indexOf(b.board) != -1){
+                                return b;
                             }
+                        });
+                    timestamp_real = result2.map(function(time){
+                        return time.timestamp;
+                    });
+                    var timestamp = [];
+                    for(let i=1 ;i<=timestamp_real.length;i++){
+                        timestamp.push(i);
+                    }
+                    var time_date = [];
+                    for(let i = 0;i<result3.length;i++){
+                        if(timestamp[i] == result3[i].id){
+                            var date = result3[i].datetime.substr(0, 10);
+                            time_date.push(date);
                         }
-                        console.log(time_date);
-                        var date = this_date;
+                    }
+                    console.log(time_date);
+                    var date = this_date;
                     var recent_day = date.getDay();
                     if(week_or_month == "week"){
                       var start_date = addDays(date, -recent_day+1);
@@ -154,7 +164,6 @@ $(document).ready(function(){
                     })  
                     
                     console.log(time_date);
-
                         amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
@@ -171,8 +180,9 @@ $(document).ready(function(){
                             amount_real.push(max);
                         }
                         console.log(amount_real);
+
                         amount_real = amount_real.filter(function(t, i){
-                            return !!time_index[i] 
+                            return !!time_index[i] ;
                         })
                         $(".percent_chart").append(`<section class="box-graph">
                         <div class="content_box">
@@ -181,6 +191,136 @@ $(document).ready(function(){
                             </div>
                         </div>
                         </section>`);
+
+                        //modal
+                        var storytime_date=[];
+                        for(let i = 0;i<data3.length;i++){
+                            if(board[i] == data3[i].board){
+                                card_name = result4.map(function(name){
+                                    return name.card_name;
+                                });
+                                storypoint = result4.map(function(name){
+                                    return name.storypoint;
+                                });
+                            }
+                            if(time_story.indexOf(data3[i].timestamp) == -1){
+                                time_story.push(data3[i].timestamp);
+                            }
+                        }
+                        for(let i = 0;i<result3.length;i++){
+                            if(time_story[i] == result3[i].id){
+                                var date = result3[i].datetime.substr(0, 10);
+                                storytime_date.push(date);
+                            }
+                        }
+                        console.log("story "+storypoint);
+                        console.log("cardname "+card_name);
+                        console.log("time "+time_story);
+                        console.log("storytime_date "+storytime_date);
+                        for(let i = 0;i<storytime_date.length;i++){
+                            $(".d-story").append(`<div class="date-story`+i+`"><span id="time-stamp">`+storytime_date[i]+`</span><br>
+                            </div>`)
+
+                            filter_card_name = result4.filter(function(name){
+                                return name.timestamp == time_story[i] 
+                            });
+
+                            filter_card_name = filter_card_name.map(function(name){
+                                return name.card_name
+                            });
+
+                            filter_storypoint = result4.filter(function(name){
+                                return name.timestamp == time_story[i] 
+                            });
+
+                            filter_storypoint = filter_storypoint.map(function(name){
+                                return name.storypoint
+                            });
+
+                            console.log("filter_card_name "+filter_card_name);
+                            
+                            for(let j =0 ;j<filter_card_name.length;j++){
+                                $(".date-story"+i).append(` <div class="card-name">Card name : <span id="c1">`+filter_card_name[j]+`</span> Size : <span id="s1">`+filter_storypoint[j]+`</span> , </div>`);
+                            }
+                                
+                        }
+                                                               
+                       $('#myChart'+i).on("click",function(){
+                            $("#modal").hide();
+                            $("#modal").fadeIn(1000);
+                            $(".main_menu_bg").show();
+                            $(".big_chart").append(`
+                                <div class="box-chart-modal">
+                                    <canvas id="myChartModal`+i+`"></canvas>
+                                </div>`);
+                                var b_ctx = document.getElementById('myChartModal'+i+'').getContext('2d');
+                                var chart = new Chart(b_ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: time_date,
+                                        datasets: [{
+                                            label: 'Effort change',
+                                            backgroundColor: [
+                                                'red',
+                                                
+                                            ],
+                                            borderColor: [
+                                                'red',
+                                                
+                                            ],
+                                            borderWidth: 1,
+                                            data: amount_real
+                                        }]
+                                    },
+                
+                                    
+                                    options: {
+                                        responsive: true,
+                                        title: {
+                                            display: true,
+                                            text: b[i]
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                ticks: {
+                                                    beginAtZero:true,
+                                                },
+                                                scaleLabel: { display: true, labelString: 'Day' },
+                                                scaleBeginAtZero : true,
+                                            }],
+                                            yAxes:[{
+                                                display: true,
+                                                ticks: {
+                                                    beginAtZero:true,
+                                                    min: 0,
+                                                    max: max_axes,
+                                                    stepSize: 1,
+                                                },
+                                                scaleLabel: { display: true, labelString: 'No.Change' },
+                                                scaleBeginAtZero : true,
+                                            }]
+                                        },
+                                            elements: {
+                                                line: {
+                                                    tension: 0, // disables bezier curves
+                                                }
+                                            }
+                                        }
+                                });
+                            
+                        });
+                        $(".cancel-btn").on('click',function(){
+                            $("#modal").show();
+                            $("#modal").fadeOut(300);
+                            // $("#modal").hide();
+                            // $(".main_menu_bg").show();
+                            // $(".main_menu_bg").fadeOut(1500);
+                            $(".main_menu_bg").hide();
+                            $('#myChartModal'+i).hide();
+                        })
+
+                        
                         var color = random_rgba();
                         var ctx = document.getElementById('myChart'+i).getContext('2d');
                         var chart = new Chart(ctx, {
@@ -239,10 +379,15 @@ $(document).ready(function(){
                         });
                     }
 
+
+
+
+                        }
+                    });//3
                 }
-            }); 
+            }); //2
          }
-     });
+     });//1
   }
   function week(){
     const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -290,18 +435,21 @@ $(document).ready(function(){
     return result;
   }
   
-  function next_month(){
-    $(".txt-btn").text(formatted_date);
-  }
-  function prev_month(){
-    $(".pre-btn")
-    $(".txt-btn").text(formatted_date);
-  }
-  function next_week(){
-    $(".next-btn")
-    $(".txt-btn").text(formatted_date);
-  }
-  function next_month(){
-    $(".pre-btn")
-    $(".txt-btn").text(formatted_date);
-  }
+//   function next_month(){
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function prev_month(){
+//     $(".pre-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function next_week(){
+//     $(".next-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }
+//   function next_month(){
+//     $(".pre-btn")
+//     $(".txt-btn").text(formatted_date);
+//   }
+
+  
+

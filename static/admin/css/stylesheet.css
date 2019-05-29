@@ -482,3 +482,12 @@ a{
   width: 123px;
   height: 84px;
 }
+.logout_sum{
+  margin-top: 234px;
+  border-top: 2px solid #96949496;
+}
+@media (min-height: 816px){
+  .main_menu_bg {
+    height: 120%;
+  }
+}

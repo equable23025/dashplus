@@ -144,7 +144,7 @@ $(document).ready(function(){
                     var amount_change = [];
                     var board = [];   
 
-                    board.push(data[index].board);
+                    board.push(relation[index]);
                     
                     // for(let i=0; i<data.length; i++){
                     //     if(board.indexOf(data[i].board) == -1){
@@ -153,12 +153,15 @@ $(document).ready(function(){
                     // }
                   
                     for(let i=0; i<board.length; i++){
-                        // result2 = result.filter(function(b){
-                        //     if(board[i].indexOf(b.board) != -1){
-                        //         return b;
-                        //     }
-                        // });
-                        timestamp_real = result.map(function(time){
+                        
+                        console.log(board[i])
+                        result2 = result.filter(function(b){
+                            if(board[i].indexOf(b.board) != -1){
+                                return b;
+                            }
+                        });
+                        console.log(result2)
+                        timestamp_real = result2.map(function(time){
                             return time.timestamp;
                         });
         
@@ -247,7 +250,7 @@ $(document).ready(function(){
                                     responsive: true,
                                     title: {
                                         display: true,
-                                        text: b[i]
+                                        text: b[index]
                                     },
                                     scales: {
                                         xAxes: [{
@@ -302,18 +305,26 @@ $(document).ready(function(){
                   var amount_change = [];
                   var board = [];   
                   
-                  board.push(data[index].board);
-                      
-                  console.log(b)
-                  for(let i=0; i<board.length; i++){
-                      // result2 = result.filter(function(b){
-                      //     if(board[i].indexOf(b.board) != -1){
-                      //         return b;
-                      //     }
-                      // });
-                      timestamp_real = result.map(function(time){
-                        return time.timestamp;
-                    });
+                  board.push(relation[index]);
+                    
+                    // for(let i=0; i<data.length; i++){
+                    //     if(board.indexOf(data[i].board) == -1){
+                    //         board.push(data[i].board);
+                    //     }
+                    // }
+                  
+                    for(let i=0; i<board.length; i++){
+                        
+                        console.log(board[i])
+                        result2 = result.filter(function(b){
+                            if(board[i].indexOf(b.board) != -1){
+                                return b;
+                            }
+                        });
+                        console.log(result2)
+                        timestamp_real = result2.map(function(time){
+                            return time.timestamp;
+                        });
     
                     var timestamp = [];
                     for(let i=1 ;i<=timestamp_real.length;i++){
@@ -402,7 +413,7 @@ $(document).ready(function(){
                               responsive: true,
                               title: {
                                   display: true,
-                                  text: b[i]
+                                  text: b[index]
                               },
                               scales: {
                                   xAxes: [{
@@ -457,16 +468,26 @@ $(document).ready(function(){
                   var board = [];   
                   console.log(chk_user);
                   
-                  board.push(data[index].board);
-                  
-                  
-                  console.log(board);
-                  for(let i=0; i<board.length; i++){
+                  board.push(relation[index]);
                     
-                      
-                    timestamp_real = result.map(function(time){
-                        return time.timestamp;
-                    });
+                    // for(let i=0; i<data.length; i++){
+                    //     if(board.indexOf(data[i].board) == -1){
+                    //         board.push(data[i].board);
+                    //     }
+                    // }
+                  
+                    for(let i=0; i<board.length; i++){
+                        
+                        console.log(board[i])
+                        result2 = result.filter(function(b){
+                            if(board[i].indexOf(b.board) != -1){
+                                return b;
+                            }
+                        });
+                        console.log(result2)
+                        timestamp_real = result2.map(function(time){
+                            return time.timestamp;
+                        });
     
                     var timestamp = [];
                     for(let i=1 ;i<=timestamp_real.length;i++){
@@ -794,7 +815,7 @@ $(document).ready(function(){
                               },
                               title: {
                                   display: true,
-                                  text: b[i]
+                                  text: b[index]
                               },
                               scales: {
                                   xAxes: [{
