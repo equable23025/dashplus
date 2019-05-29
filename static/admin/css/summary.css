@@ -1,0 +1,23 @@
+.main_menu_bg {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  z-index: 3;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0.8;
+  background-color: #333333;
+  height: 100%;
+}
+@media (min-height: 816px){
+  .main_menu_bg {
+    height: 150%;
+  }
+}
+/* 2880×1800 */
+@media(min-height: 1800px){
+  .main_menu_bg {
+    height: 220%;
+  }
+}

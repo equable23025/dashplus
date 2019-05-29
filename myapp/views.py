@@ -12,7 +12,7 @@ from datetime import datetime
 from myapp.models import change_record   , user_board , change_effort_record , change_movement_record
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from myapp.forms import register_form , register_token_form , user_board_form
+from myapp.forms import register_form , register_token_form , user_board_form , email_form
 # from django import HttpResponse
 from django.http import HttpResponse
 # import re
@@ -244,9 +244,39 @@ def summary(request):
 
 	return render(request,'summary.html',{'username':user,'board_name' : board_name})	
 
+from django.core.mail import BadHeaderError, send_mail
+from django.conf import settings
+from django.core.mail import EmailMessage
 
-# def addboard(request):
-# 		# username = request.POST.get('uname')
-# 		# request.session['member_id'] = username 
-# 		username = request.session['member_id']
-# 		return render(request,"addboard.html",{'user':username})
+def forgetpassword(request):
+	
+	if request.method == 'POST':
+		# form = UserCreationForm(request.POST)
+		form = email_form(request.POST)
+		email = request.POST.get("email")
+
+		con_register_id = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
+		con_register_id_database = con_register_id.cursor()
+		# get token user == user
+		postgreSQL_select_Query_register= "select \"password\"  from myapp_register_id  where \"email\" = '"+str(email)+"'"
+		con_register_id_database.execute(postgreSQL_select_Query_register)
+		rg = con_register_id_database.fetchall()
+		password = ''
+		for password_check in rg :
+			password = str(password_check[0])
+			print(password)
+
+		# print(user)
+		subject = 'Your password in Application DashPlus.....'
+		message = 'Your password in Application DashPlus.....\n' + "password : " + password
+		email_from = settings.EMAIL_HOST_USER
+		recipient_list = [email,'']
+		try:
+			send_mail( subject, message, email_from, recipient_list, fail_silently =False)
+			return redirect("/login")
+		except BadHeaderError:
+		# except Exception:
+			return HttpResponse('Invalid header found.')
+	else:
+		form = email_form()
+	return render(request,'forgetpassword.html',{'form':form})

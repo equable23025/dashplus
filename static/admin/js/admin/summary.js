@@ -19,6 +19,15 @@ $(document).ready(function(){
     $(".sum-box").empty(); 
     sum5_btn();
   });
+  $(".menu_box").on("click",function(){
+    $(".main_menu").show();
+    $(".main_menu_bg").show();
+  });
+  $(".menu_bg").on("click",function(){
+    $(".main_menu").hide();
+    $(".main_menu_bg").hide();
+  });
+
 });
 
 function sum1_btn(){

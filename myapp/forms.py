@@ -18,3 +18,6 @@ class user_board_form(forms.ModelForm):
 	class Meta:
 		model = user_board
 		fields = ['username','board']
+
+class email_form(forms.Form):
+ email =  forms.CharField(label='email',max_length=100)
