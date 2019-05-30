@@ -497,3 +497,21 @@ a{
     height: 220%;
   }
 }
+@media(max-width: 1440px){
+  .main_menu_bg {
+    height: 220%;
+  }
+}
+@media(max-width:1920){
+  .box-graph{
+    background: #FFFFFF;
+    width: 585px;
+    height: 304px;
+    display: inline-block;
+    box-sizing: border-box;
+    /* float: left; */
+    margin: 18px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin-left: 120px;
+  }
+}
