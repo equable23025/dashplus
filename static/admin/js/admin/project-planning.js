@@ -151,7 +151,7 @@ $(document).ready(function(){
                         console.log(time_date);
 
                         
-                        amount_change = result.map(function(amount){
+                        amount_change = result2.map(function(amount){
                             return amount.amount_change;
                         });
                         

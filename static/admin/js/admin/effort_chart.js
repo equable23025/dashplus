@@ -142,44 +142,38 @@ $(document).ready(function(){
                             var date = this_date;
                             var recent_day = date.getDay();
                             if(week_or_month == "week"){
-                            var start_date = addDays(date, -recent_day+1);
-                            var end_date = addDays(date, 7-recent_day);
+                              var start_date = addDays(date, -recent_day+1);
+                              var end_date = addDays(date, 7-recent_day);
                             }
                             else{
-                            var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-                            var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                              var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
+                              var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
                             }
-
+    
                             start_date.setHours(0,0,0,0)
                             end_date.setHours(0,0,0,0)
-
+    
                             time_index = time_date.map(function(t, i){
-                            if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
+                              if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                                 return 1;
-                            }
+                              }
                             }) 
                             console.log(time_index) 
                             
                             time_date = time_date.filter(function(t, i){
-                            return !!time_index[i] 
+                              return !!time_index[i] 
                             })  
                             
                             console.log(time_date);
-                                amount_change = result2.map(function(amount){
-                                    return amount.amount_change;
-                                });
-                       
-
+    
+                            
+                            amount_change = result2.map(function(amount){
+                                return amount.amount_change;
+                            });
                             amount_change = amount_change.filter(function(t, i){
                                 return !!time_index[i] ;
                             })
-                            $(".percent_chart").append(`<section class="box-graph">
-                            <div class="content_box">
-                                <div class="box-canvas">
-                                    <canvas id="myChart`+i+`"></canvas>
-                                </div>
-                            </div>
-                            </section>`);
+                            
 
                             //modal
                             var storytime_date=[];
@@ -206,116 +200,45 @@ $(document).ready(function(){
                             console.log("cardname "+card_name);
                             console.log("time "+time_story);
                             console.log("storytime_date "+storytime_date);
-                            for(let i = 0;i<storytime_date.length;i++){
-                                $(".d-story").append(`<div class="date-story`+i+`"><span id="time-stamp">`+storytime_date[i]+`</span><br>
-                                </div>`)
+                                for(let i = 0;i<storytime_date.length;i++){
+                                    $(".d-story").append(`<div class="date-story`+i+`"><span id="time-stamp">`+storytime_date[i]+`</span><br>
+                                    </div>`)
 
-                                filter_card_name = result4.filter(function(name){
-                                    return name.timestamp == time_story[i] 
-                                });
+                                    filter_card_name = result4.filter(function(name){
+                                        return name.timestamp == time_story[i] 
+                                    });
 
-                                filter_card_name = filter_card_name.map(function(name){
-                                    return name.card_name
-                                });
+                                    filter_card_name = filter_card_name.map(function(name){
+                                        return name.card_name
+                                    });
 
-                                filter_storypoint = result4.filter(function(name){
-                                    return name.timestamp == time_story[i] 
-                                });
+                                    filter_storypoint = result4.filter(function(name){
+                                        return name.timestamp == time_story[i] 
+                                    });
 
-                                filter_storypoint = filter_storypoint.map(function(name){
-                                    return name.storypoint
-                                });
+                                    filter_storypoint = filter_storypoint.map(function(name){
+                                        return name.storypoint
+                                    });
 
-                                console.log("filter_card_name "+filter_card_name);
-                                
-                                for(let j =0 ;j<filter_card_name.length;j++){
-                                    $(".date-story"+i).append(` <div class="card-name">Card name : <span id="c1">`+filter_card_name[j]+`</span> Size : <span id="s1">`+filter_storypoint[j]+`</span> , </div>`);
+                                    console.log("filter_card_name "+filter_card_name);
+                                    
+                                    for(let j =0 ;j<filter_card_name.length;j++){
+                                        $(".date-story"+i).append(` <div class="card-name">Card name : <span id="c1">`+filter_card_name[j]+`</span> Size : <span id="s1">`+filter_storypoint[j]+`</span> , </div>`);
+                                    }
+                                        
                                 }
-                                    
-                            }
-                             $(".big_chart").append(`
-                                <div class="box-chart-modal">
-                                <canvas id="myChartModal`+i+`"></canvas>
-                            </div>`);          
-                            $(".big_chart").append(`
-                                        <div class="box-chart-modal">
-                                            <canvas id="myChartModal`+i+`"></canvas>
-                                        </div>`);
-                                        var b_ctx = document.getElementById('myChartModal'+i+'').getContext('2d');
-                                        var chart = new Chart(b_ctx, {
-                                            type: 'line',
-                                            data: {
-                                                labels: time_date,
-                                                datasets: [{
-                                                    label: 'Effort change',
-                                                    backgroundColor: [
-                                                        'rgba(68, 153, 237,0.3)',
-                                                        
-                                                    ],
-                                                    borderColor: [
-                                                        'rgba(68, 153, 237,0.3)',
-                                                        
-                                                    ],
-                                                    borderWidth: 1,
-                                                    data: amount_change
-                                                }]
-                                            },
-                                            options: {
-                                                responsive: true,
-                                                title: {
-                                                    display: true,
-                                                    text: b[i]
-                                                },
-                                                scales: {
-                                                    xAxes: [{
-                                                        display: true,
-                                                        ticks: {
-                                                            beginAtZero:true,
-                                                        },
-                                                        scaleLabel: { display: true, labelString: 'Day' },
-                                                        scaleBeginAtZero : true,
-                                                    }],
-                                                    yAxes:[{
-                                                        display: true,
-                                                        ticks: {
-                                                            beginAtZero:true,
-                                                            min: 0,
-                                                            stepSize: 1,
-                                                        },
-                                                        scaleLabel: { display: true, labelString: 'No.Change' },
-                                                        scaleBeginAtZero : true,
-                                                    }]
-                                                },
-                                                    elements: {
-                                                        line: {
-                                                            tension: 0, // disables bezier curves
-                                                        }
-                                                    }
-                                                }
-                                        });    
-                                    $(".big_chart").hide();      
-                                    $('#myChartModal'+i).hide();
-                                 $('#myChart'+i).on("click",function(){
-                                    $("#modal").hide();
-                                    $("#modal").fadeIn(1000);
-                                    $(".main_menu_bg").show();
-                                    $(".big_chart").show();      
-                                    $('#myChartModal'+i).show();
-                                    
-                                });//modal chart
+                            //  $(".big_chart").append(`
+                            //     <div class="box-chart-modal">
+                            //     <canvas id="myChartModal`+i+`"></canvas>
+                            //     </div>`);          
 
-                                $(".cancel-btn").on('click',function(){
-                                    $("#modal").show();
-                                    $("#modal").fadeOut(300);
-                                    // $("#modal").hide();
-                                    // $(".main_menu_bg").show();
-                                    // $(".main_menu_bg").fadeOut(1500);
-                                    $(".main_menu_bg").hide();
-                                    $('#myChartModal'+i).hide();
-                                    $(".big_chart").hide();  
-                                });//cancel btn
-
-                        
+                                $(".percent_chart").append(`<section class="box-graph">
+                                <div class="content_box">
+                                    <div class="box-canvas">
+                                        <canvas id="myChart`+i+`"></canvas>
+                                    </div>
+                                </div>
+                                </section>`);
                                 var color = random_rgba();
                                 var ctx = document.getElementById('myChart'+i).getContext('2d');
                                 var chart = new Chart(ctx, {
@@ -370,6 +293,86 @@ $(document).ready(function(){
                                         }
                                 });//chart_all
 
+
+                                $(".big_chart").append(` <div class="box-chart-modal"><canvas id="myChartModal`+i+`"></canvas></div>`);
+                                    $(".big_chart").hide();      
+                                    $('#myChartModal'+i).hide();
+                                    
+                                $('#myChart'+i).on("click",function(){
+                                    $(".big_chart").show();  
+                                    $("#modal").hide();
+                                    $("#modal").fadeIn(1000);
+                                    $(".main_menu_bg").show();
+                                    $('#myChartModal'+i).show();
+                                    
+                                });//modal chart
+
+                                $(".cancel-btn").on('click',function(){
+                                    $("#modal").show();
+                                    $("#modal").fadeOut(300);
+                                    // $("#modal").hide();
+                                    // $(".main_menu_bg").show();
+                                    // $(".main_menu_bg").fadeOut(1500);
+                                    $(".main_menu_bg").hide();
+                                    $('#myChartModal'+i).hide();
+                                    $(".big_chart").hide();  
+                                });//cancel btn
+                                
+
+                                var b_ctx = document.getElementById('myChartModal'+i).getContext('2d');
+                                var chart = new Chart(b_ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: time_date,
+                                        datasets: [{
+                                            label: 'Effort change',
+                                            backgroundColor: [
+                                                'rgba(68, 153, 237,0.3)',
+                                                
+                                            ],
+                                            borderColor: [
+                                                'rgba(68, 153, 237,0.3)',
+                                                
+                                            ],
+                                            borderWidth: 1,
+                                            data: amount_change
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        title: {
+                                            display: true,
+                                            text: b[i]
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                ticks: {
+                                                    beginAtZero:true,
+                                                },
+                                                scaleLabel: { display: true, labelString: 'Day' },
+                                                scaleBeginAtZero : true,
+                                            }],
+                                            yAxes:[{
+                                                display: true,
+                                                ticks: {
+                                                    beginAtZero:true,
+                                                    min: 0,
+                                                    stepSize: 1,
+                                                },
+                                                scaleLabel: { display: true, labelString: 'No.Change' },
+                                                scaleBeginAtZero : true,
+                                            }]
+                                        },
+                                            elements: {
+                                                line: {
+                                                    tension: 0, // disables bezier curves
+                                                }
+                                            }
+                                        }
+                                });   //modal_chart 
+
+                                
                             }//loop
 
                         }
@@ -379,6 +382,8 @@ $(document).ready(function(){
          }
      });//1
   }
+
+
   function week(){
     const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     var date = this_date;
@@ -442,4 +447,5 @@ $(document).ready(function(){
 //   }
 
   
+
 

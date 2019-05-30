@@ -205,7 +205,7 @@ $(document).ready(function(){
                         console.log(time_date);
 
                         
-                        amount_change = result.map(function(amount){
+                        amount_change = result2.map(function(amount){
                             return amount.amount_change;
                         });
                         
@@ -356,7 +356,7 @@ $(document).ready(function(){
                     console.log(time_date);
 
                     
-                    amount_change = result.map(function(amount){
+                    amount_change = result2.map(function(amount){
                         return amount.amount_change;
                     });
                     
@@ -508,7 +508,7 @@ $(document).ready(function(){
                     
                     console.log(time_date);
 
-                      planning_doing = result.map(function(amount){
+                      planning_doing = result2.map(function(amount){
                           return amount.planning_doing;
                       });
                       
@@ -516,77 +516,77 @@ $(document).ready(function(){
                         return !!time_index[i] 
                      });
 
-                      planning_testing = result.map(function(amount){
+                      planning_testing = result2.map(function(amount){
                           return amount.planning_testing;
                       });
                       planning_testing = planning_testing.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      planning_done = result.map(function(amount){
+                      planning_done = result2.map(function(amount){
                           return amount.planning_done;
                       });
                       planning_done = planning_done.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      doing_planning = result.map(function(amount){
+                      doing_planning = result2.map(function(amount){
                           return amount.doing_planning;
                       });
                       doing_planning = doing_planning.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      doing_testing = result.map(function(amount){
+                      doing_testing = result2.map(function(amount){
                           return amount.doing_testing;
                       });
                       doing_testing = doing_testing.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      doing_done = result.map(function(amount){
+                      doing_done = result2.map(function(amount){
                           return amount.doing_done;
                       });
                       doing_done = doing_done.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      testing_planning = result.map(function(amount){
+                      testing_planning = result2.map(function(amount){
                           return amount.testing_planning;
                       });
                       testing_planning = testing_planning.filter(function(t,i){
                         return !!time_index[i] 
                      });
 
-                      testing_doing = result.map(function(amount){
+                      testing_doing = result2.map(function(amount){
                           return amount.testing_doing;
                       });
                       testing_doing = testing_doing.filter(function(t,i){
                         return !!time_index[i] 
                       });
 
-                      testing_done = result.map(function(amount){
+                      testing_done = result2.map(function(amount){
                           return amount.testing_done;
                       });
                       testing_done = testing_done.filter(function(t,i){
                         return !!time_index[i] 
                       });
 
-                      done_planning = result.map(function(amount){
+                      done_planning = result2.map(function(amount){
                           return amount.done_planning;
                       });
                       done_planning = done_planning.filter(function(t,i){
                         return !!time_index[i] 
                       });
 
-                      done_doing = result.map(function(amount){
+                      done_doing = result2.map(function(amount){
                           return amount.done_doing;
                       });
                       done_doing = done_doing.filter(function(t,i){
                         return !!time_index[i] 
                       });
 
-                      done_testing = result.map(function(amount){
+                      done_testing = result2.map(function(amount){
                           return amount.done_testing;
                       });
                       done_testing = done_testing.filter(function(t,i){
