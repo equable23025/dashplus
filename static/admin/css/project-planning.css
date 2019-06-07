@@ -50,15 +50,8 @@
   height: 100%;
   float: right;
 }
-.date_box{
-  width: 245px;
-  height: 100%;
-  margin-left: 20px;
-  float: right;
-  
-}
 .date_btn{
-  width: 164px;
+  width: 264px;
   height: 100%;
   background-color: #FFFFFF;
   float: right;
