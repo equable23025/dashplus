@@ -260,16 +260,22 @@ a{
   padding-left: 44px; 
   padding-top: 10px;
 }
+.date_box {
+  width: 345px;
+  height: 100%;
+  margin-left: 20px;
+  float: right;
+}
 .month{
   float: right;
-  width: 76px;
+  width: 128px;
   height: 100%;
   background-color: #ffffff;
   color: #333333;
   }
   .week{
   float: left;
-  width: 76px;
+  width: 124px;
   height: 100%;
   color: #FFFFFF;
   background-color: #4E78B9;
