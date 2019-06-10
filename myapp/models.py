@@ -93,3 +93,5 @@ class card_storypoint(models.Model):
 	storypoint =models.CharField(max_length=10)
 	timestamp=models.IntegerField(default='0')
 
+# class caca(models.Model):
+# 	username =models.CharField(max_length=100)

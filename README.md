@@ -79,3 +79,5 @@ pip install djangorestframework-filters
 ```
 pip install django-cors-headers
 ```
+<!-- heroku -->
+pip install whitenoise
