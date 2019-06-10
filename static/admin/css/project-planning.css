@@ -133,8 +133,9 @@
 .box-canvas{
   width: 100%;
   padding: 10px;
-  height: 220px;
+  height: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .chartjs-render-monitor{
   width: 100%;

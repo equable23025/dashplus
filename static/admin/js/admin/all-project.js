@@ -270,7 +270,8 @@ function movement_graph(){
                                         "rgba(133, 191, 191)",
                                         
                                     ],
-                                    borderWidth: 1,
+                                    
+                                      borderWidth: 3,
                                     data: planning_doing,
                                     legend : {
                                         display : true
@@ -282,142 +283,116 @@ function movement_graph(){
                                             "rgba(23, 130, 191)",
                                             
                                         ],
-                                        borderWidth: 1,
+                                       
+                                          borderWidth: 3,
                                         data: planning_testing,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Planning-done',
-                                        backgroundColor: [
-                                            "rgba(63, 127, 191, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(63, 127, 191, 0.3)",
+                                            "rgba(63, 127, 191)",
                                             
                                         ],
-                                        borderWidth: 1,
+                                          borderWidth: 3,
                                         data: planning_done,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Doing_planning',
-                                        backgroundColor: [
-                                            "rgba(63, 127, 191, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(63, 127, 191, 0.3)",
+                                            "#00E2FF",
                                             
                                         ],
-                                        borderWidth: 1,
+                                          borderWidth: 3,
                                         data: doing_planning,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Doing_testing',
-                                        backgroundColor: [
-                                            "rgba(63, 127, 191, 0.3)",
-                                            
-                                        ],
+                                       
                                         borderColor: [
-                                            "rgba(63, 127, 191, 0.3)",
+                                            "#A776D8",
                                             
                                         ],
-                                        borderWidth: 1,
+                                          borderWidth: 3,
                                         data: doing_testing,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Doing-done',
-                                        backgroundColor: [
-                                            "rgba(187, 187, 62, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(187, 187, 62, 0.3)",
+                                            "rgba(187, 187, 62)",
                                             
                                         ],
-                                        borderWidth: 1,
+                                          borderWidth: 3,
                                         data: doing_done,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Testing-planning',
-                                        backgroundColor: [
-                                            "rgba(183, 119, 10, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(183, 119, 10, 0.3)",
+                                            "rgba(183, 119, 10 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                          borderWidth: 3,
                                         data: testing_planning,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Testing-doing',
-                                        backgroundColor: [
-                                            "rgba(187, 62, 187, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(187, 62, 187, 0.3)",
+                                            "rgba(187, 62, 187 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                         borderWidth: 3,
                                         data: testing_doing,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Testing-done',
-                                        backgroundColor: [
-                                            "rgba(63, 191, 191, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(63, 191, 191, 0.3)",
+                                            "rgba(63, 191, 191 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                         borderWidth: 3,
                                         data: testing_done,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Done-planning',
-                                        backgroundColor: [
-                                            "rgba(191, 63, 63, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(191, 63, 63, 0.3)",
+                                            "rgba(191, 63, 63 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                         borderWidth: 3,
                                         data: done_planning,
                                         legend : {
                                             display : false
                                         }
                                     },{
                                         label: 'Done-doing',
-                                        backgroundColor: [
-                                            "rgba(63, 63, 191, 0.3)",
-                                            
-                                        ],
+                                       
                                         borderColor: [
-                                            "rgba(63, 63, 191, 0.3)",
+                                            "rgba(63, 63, 191 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                         borderWidth: 3,
                                         data: done_doing,
                                         legend : {
                                             display : false
@@ -425,15 +400,12 @@ function movement_graph(){
                                     },{
                                         
                                         label: 'Done-testing',
-                                        backgroundColor: [
-                                            "rgba(127, 191, 63, 0.3)",
-                                            
-                                        ],
+                                        
                                         borderColor: [
-                                            "rgba(127, 191, 63, 0.3)",
+                                            "rgba(127, 191, 63 )",
                                             
                                         ],
-                                        borderWidth: 1,
+                                         borderWidth: 3,
                                         data: done_testing,
                                         legend : {
                                             display : false
@@ -451,7 +423,32 @@ function movement_graph(){
                                             boxWidth: 10,
                                             boxHeight: 2,
                                             fontSize:10
-                                        }
+                                            
+                                        },
+                                        onHover: function(event, legendItem) {
+                                            document.getElementById('myChart'+i).style.cursor = 'pointer';
+                                          },
+                                          onClick: function(e, legendItem) {
+                                            var index = legendItem.datasetIndex;
+                                            var ci = this.chart;
+                                            var alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+                                  
+                                            ci.data.datasets.forEach(function(e, i) {
+                                              var meta = ci.getDatasetMeta(i);
+                                  
+                                              if (i !== index) {
+                                                if (!alreadyHidden) {
+                                                  meta.hidden = meta.hidden === null ? !meta.hidden : null;
+                                                } else if (meta.hidden === null) {
+                                                  meta.hidden = true;
+                                                }
+                                              } else if (i === index) {
+                                                meta.hidden = null;
+                                              }
+                                            });
+                                  
+                                            ci.update();
+                                          },
                                 },
                                 title: {
                                     display: true,

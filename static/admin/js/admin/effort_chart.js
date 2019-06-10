@@ -273,6 +273,38 @@ $(document).ready(function(){
                                     },
                                     options: {
                                         responsive: true,
+                                        legend : {
+                                            position:'top',
+                                            labels: {
+                                                boxWidth: 10,
+                                                boxHeight: 2,
+                                                fontSize:10
+                                            },
+                                            onHover: function(event, legendItem) {
+                                                document.getElementById('myChart'+i).style.cursor = 'pointer';
+                                              },
+                                              onClick: function(e, legendItem) {
+                                                var index = legendItem.datasetIndex;
+                                                var ci = this.chart;
+                                                var alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+                                      
+                                                ci.data.datasets.forEach(function(e, i) {
+                                                  var meta = ci.getDatasetMeta(i);
+                                      
+                                                  if (i !== index) {
+                                                    if (!alreadyHidden) {
+                                                      meta.hidden = meta.hidden === null ? !meta.hidden : null;
+                                                    } else if (meta.hidden === null) {
+                                                      meta.hidden = true;
+                                                    }
+                                                  } else if (i === index) {
+                                                    meta.hidden = null;
+                                                  }
+                                                });
+                                      
+                                                ci.update();
+                                          },
+                                        },
                                         title: {
                                             display: true,
                                             text: b[i]
@@ -354,6 +386,38 @@ $(document).ready(function(){
                                     },
                                     options: {
                                         responsive: true,
+                                        legend : {
+                                            position:'top',
+                                            labels: {
+                                                boxWidth: 10,
+                                                boxHeight: 2,
+                                                fontSize:10
+                                            },
+                                            onHover: function(event, legendItem) {
+                                                document.getElementById('myChart'+i).style.cursor = 'pointer';
+                                              },
+                                              onClick: function(e, legendItem) {
+                                                var index = legendItem.datasetIndex;
+                                                var ci = this.chart;
+                                                var alreadyHidden = (ci.getDatasetMeta(index).hidden === null) ? false : ci.getDatasetMeta(index).hidden;
+                                      
+                                                ci.data.datasets.forEach(function(e, i) {
+                                                  var meta = ci.getDatasetMeta(i);
+                                      
+                                                  if (i !== index) {
+                                                    if (!alreadyHidden) {
+                                                      meta.hidden = meta.hidden === null ? !meta.hidden : null;
+                                                    } else if (meta.hidden === null) {
+                                                      meta.hidden = true;
+                                                    }
+                                                  } else if (i === index) {
+                                                    meta.hidden = null;
+                                                  }
+                                                });
+                                      
+                                                ci.update();
+                                          },
+                                        },
                                         title: {
                                             display: true,
                                             text: b[i]

@@ -83,6 +83,7 @@ text-overflow: ellipsis;  */
   width: 20px;
   height: 20px;
   float: left;
+  cursor: pointer;
 }
 .main_box{
   width: 100%;
@@ -272,6 +273,7 @@ a{
   height: 100%;
   background-color: #ffffff;
   color: #333333;
+  cursor: pointer;
   }
   .week{
   float: left;
@@ -279,6 +281,7 @@ a{
   height: 100%;
   color: #FFFFFF;
   background-color: #4E78B9;
+  cursor: pointer;
   }
   .month_txt{
   text-align: center;
@@ -305,6 +308,7 @@ a{
   height: 100%;
   background-color: #4E78B9;
   float: left;
+  cursor: pointer;
 }
 .pre-btn img{
   width: 20px;
@@ -316,6 +320,7 @@ a{
   height: 100%;
   background-color: #4E78B9;
   float: right;
+  cursor: pointer;
 }
 .next-btn img{
   width: 20px;
