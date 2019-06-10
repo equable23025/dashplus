@@ -253,6 +253,22 @@ function movement_graph(){
                         <div class="content_box">
                             <div class="box-canvas">
                                 <canvas id="myChart`+i+`"></canvas>
+                               <input class="input-color" type="color" name="color-picker" value="#4E78B9">
+                                    <select class="custom-select" style="width:200px; height:50px; width: 140px; height: 40px; margin-top: 10px; border: none; border-radius: unset; font-size: 12px;">
+                                        <option>Select color</option>
+                                        <option value="Planning-doing">Planning-doing</option>
+                                        <option value="Planning-testing">Planning-testing</option>
+                                        <option value="Planning-done">Planning-done</option>
+                                        <option value="Doing_planning">Doing_planning</option>
+                                        <option value="Doing_testing">Doing_testing</option>
+                                        <option value="Doing-done">Doing-done</option>
+                                        <option value="Testing-planning">Testing-planning</option>
+                                        <option value="Testing-doing">Testing-doing</option>
+                                        <option value="Testing-done">Testing-done</option>
+                                        <option value="Done-planning">Done-planning</option>
+                                        <option value="Done-doing">Done-doing</option>
+                                        <option value="Done-testing">Done-testing</option>
+                                    </select>
                             </div>
                         </div>
                         </section>`);
@@ -494,8 +510,8 @@ function week(){
     var recent_day = date.getDay();
     var start_date = addDays(date, -recent_day+1);
     var end_date = addDays(date, 7-recent_day);
-    let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
-    $(".week").css("background-color","#4E78B9");
+    let formatted_date = start_date.getDate()+ "/" + months[start_date.getMonth()] + "/" + start_date.getFullYear()
+    +" - "+ end_date.getDate()+ "/" + months[end_date.getMonth()] + "/" + end_date.getFullYear()
     $(".week").css("color","#ffffff");
     $(".month").css("background-color","#ffffff");
     $(".month").css("color","#333333");

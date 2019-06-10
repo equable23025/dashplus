@@ -468,7 +468,8 @@ $(document).ready(function(){
     var recent_day = date.getDay();
     var start_date = addDays(date, -recent_day+1);
     var end_date = addDays(date, 7-recent_day);
-    let formatted_date = start_date.getDate()+ "-" + months[start_date.getMonth()] + "-" + start_date.getFullYear()
+    let formatted_date = start_date.getDate()+ "/" + months[start_date.getMonth()] + "/" + start_date.getFullYear()
+    +" - "+ end_date.getDate()+ "/" + months[end_date.getMonth()] + "/" + end_date.getFullYear()
     $(".week").css("background-color","#4E78B9");
     $(".week").css("color","#ffffff");
     $(".month").css("background-color","#ffffff");
