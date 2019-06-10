@@ -17,7 +17,7 @@ from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # from django_filters import rest_framework
-# 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -28,7 +28,7 @@ SECRET_KEY = '+7%e8r=0_r)+@vmq@004j@9b4%czd346-#+1$r^_&+(fh)#i#)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -95,24 +95,20 @@ WSGI_APPLICATION = 'project401.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'trello_test',
-#         'USER': 'postgres',
-#         'PASSWORD' : '1234',
-#         'HOST': 'localhost',
-#         'PORT': 5432,
-#     },
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'trello_test',
+        'USER': 'postgres',
+        'PASSWORD' : '1234',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
-# heroku
-
-# 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
