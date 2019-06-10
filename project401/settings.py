@@ -109,6 +109,10 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
+# heroku
+
+# 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
