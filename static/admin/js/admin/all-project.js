@@ -5,6 +5,20 @@ var this_board;
 var week_or_month = "week";
 var this_date = new Date();
 var is_in_board = false;
+var p;
+var P1 = "#ff0066";
+var P2 = "#cc33ff";
+var P3 =  "rgba(63, 127, 191)";
+var P4 = "#00E2FF";
+var P5 = "#A776D8";
+var P6 = "rgba(187, 187, 62)";
+var P7 = "rgba(183, 119, 10 )";
+var P8 = "rgba(187, 62, 187 )";
+var P9 = "rgba(63, 191, 191 )";
+var P10 =  "rgba(191, 63, 63 )"
+var P11 = "rgba(63, 63, 191 )";
+var P12 =  "rgba(127, 191, 63 )";
+
 $(document).ready(function(){
         $(".movement").css("color","#ffffff");
         $(".movement").css("background-color","#4E78B9");
@@ -149,17 +163,18 @@ function movement_graph(){
                       }
   
                       start_date.setHours(0,0,0,0)
-                      end_date.setHours(0,0,0,0)
-  
+                      end_date.setHours(23,59,59,999)
+                      var time_index=[];
                       time_index = time_date.map(function(t, i){
                         if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                           return 1;
                         }
                       }) 
+         
                       console.log(time_index) 
                       
                       time_date = time_date.filter(function(t, i){
-                        return !!time_index[i] 
+                        return !!time_index[i] ;
                       })  
                       
                       console.log(time_date);
@@ -168,111 +183,151 @@ function movement_graph(){
                             return amount.planning_doing;
                         });
                         planning_doing = planning_doing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         planning_testing = result2.map(function(amount){
                             return amount.planning_testing;
                         });
                         planning_testing = planning_testing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         planning_done = result2.map(function(amount){
                             return amount.planning_done;
                         });
                         planning_done = planning_done.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         doing_planning = result2.map(function(amount){
                             return amount.doing_planning;
                         });
                         doing_planning = doing_planning.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         doing_testing = result2.map(function(amount){
                             return amount.doing_testing;
                         });
                         doing_testing = doing_testing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         doing_done = result2.map(function(amount){
                             return amount.doing_done;
                         });
                         doing_done = doing_done.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         testing_planning = result2.map(function(amount){
                             return amount.testing_planning;
                         });
                         testing_planning = testing_planning.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                        });
   
                         testing_doing = result2.map(function(amount){
                             return amount.testing_doing;
                         });
                         testing_doing = testing_doing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                         });
   
                         testing_done = result2.map(function(amount){
                             return amount.testing_done;
                         });
                         testing_done = testing_done.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                         });
   
                         done_planning = result2.map(function(amount){
                             return amount.done_planning;
                         });
                         done_planning = done_planning.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                         });
   
                         done_doing = result2.map(function(amount){
                             return amount.done_doing;
                         });
                         done_doing = done_doing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                         });
   
                         done_testing = result2.map(function(amount){
                             return amount.done_testing;
                         });
                         done_testing = done_testing.filter(function(t,i){
-                          return !!time_index[i] 
+                          return !!time_index[i] ;
                         });
                         
   
-                        $(".percent_chart").append(`<section class="box-graph">
+                        $(".percent_chart").append(`<section class="box-graph box-graph-move">
                         <div class="content_box">
                             <div class="box-canvas">
                                 <canvas id="myChart`+i+`"></canvas>
                                <input class="input-color" type="color" name="color-picker" value="#4E78B9">
-                                    <select class="custom-select" style="width:200px; height:50px; width: 140px; height: 40px; margin-top: 10px; border: none; border-radius: unset; font-size: 12px;">
+                                    <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
+                                    right: 84px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
                                         <option>Select color</option>
-                                        <option value="Planning-doing">Planning-doing</option>
-                                        <option value="Planning-testing">Planning-testing</option>
-                                        <option value="Planning-done">Planning-done</option>
-                                        <option value="Doing_planning">Doing_planning</option>
-                                        <option value="Doing_testing">Doing_testing</option>
-                                        <option value="Doing-done">Doing-done</option>
-                                        <option value="Testing-planning">Testing-planning</option>
-                                        <option value="Testing-doing">Testing-doing</option>
-                                        <option value="Testing-done">Testing-done</option>
-                                        <option value="Done-planning">Done-planning</option>
-                                        <option value="Done-doing">Done-doing</option>
-                                        <option value="Done-testing">Done-testing</option>
+                                        <option value="P1">Planning-doing</option>
+                                        <option value="P2">Planning-testing</option>
+                                        <option value="P3">Planning-done</option>
+                                        <option value="P4">Doing_planning</option>
+                                        <option value="P5">Doing_testing</option>
+                                        <option value="P6">Doing-done</option>
+                                        <option value="P7">Testing-planning</option>
+                                        <option value="P8">Testing-doing</option>
+                                        <option value="P9">Testing-done</option>
+                                        <option value="P10">Done-planning</option>
+                                        <option value="P11">Done-doing</option>
+                                        <option value="P12">Done-testing</option>
                                     </select>
                             </div>
                         </div>
                         </section>`);
-                        
+                        $("select[name='seclect-list-move']").on("change",function(){
+                           p = $("select[name='seclect-list-move']").val();
+                        });
+                        $("input[name='color-picker']").on("change",function(){
+                            if( "P1" == p ){
+                                P1 = $("input[name='color-picker']").val();
+                            }else if("P2" == p){
+                                P2 = $("input[name='color-picker']").val();
+                            }
+                            else if("P3" == p){
+                                P3 = $("input[name='color-picker']").val();
+                            }
+                            else if("P4" == p){
+                                P4 = $("input[name='color-picker']").val();
+                            }
+                            else if("P5" == p){
+                                P5 = $("input[name='color-picker']").val();
+                            }
+                            else if("P6" == p){
+                                P6 = $("input[name='color-picker']").val();
+                            }
+                            else if("P7"==p ){
+                                P7 = $("input[name='color-picker']").val();
+                            }
+                            else if("P8" == p){
+                                P8 = $("input[name='color-picker']").val();
+                            }
+                            else if("P9" == p){
+                                P9 = $("input[name='color-picker']").val();
+                            }
+                            else if("P10" == p ){
+                                P10 = $("input[name='color-picker']").val();
+                            }
+                            else if("P11" == p){
+                                P11 = $("input[name='color-picker']").val();
+                            }
+                            else if("P12" == p){
+                                P12 = $("input[name='color-picker']").val();
+                            }
+                        });
                         var color = random_rgba();
                         var ctx = document.getElementById('myChart'+i).getContext('2d');
                         var chart = new Chart(ctx, {
@@ -283,7 +338,7 @@ function movement_graph(){
                                 datasets: [{
                                     label: 'Planning-doing',
                                     borderColor: [
-                                        "rgba(133, 191, 191)",
+                                        P1,
                                         
                                     ],
                                     
@@ -293,10 +348,10 @@ function movement_graph(){
                                         display : true
                                     }
                                     },{
-                                        borderDash: [2, 1],
+                                        borderWidth: 3,
                                         label: 'Planning-testing',
                                         borderColor: [
-                                            "rgba(23, 130, 191)",
+                                            P2,
                                             
                                         ],
                                        
@@ -309,7 +364,7 @@ function movement_graph(){
                                         label: 'Planning-done',
                                         
                                         borderColor: [
-                                            "rgba(63, 127, 191)",
+                                           P3,
                                             
                                         ],
                                           borderWidth: 3,
@@ -321,7 +376,7 @@ function movement_graph(){
                                         label: 'Doing_planning',
                                         
                                         borderColor: [
-                                            "#00E2FF",
+                                            P4,
                                             
                                         ],
                                           borderWidth: 3,
@@ -333,7 +388,7 @@ function movement_graph(){
                                         label: 'Doing_testing',
                                        
                                         borderColor: [
-                                            "#A776D8",
+                                            P5,
                                             
                                         ],
                                           borderWidth: 3,
@@ -345,7 +400,7 @@ function movement_graph(){
                                         label: 'Doing-done',
                                         
                                         borderColor: [
-                                            "rgba(187, 187, 62)",
+                                            P6,
                                             
                                         ],
                                           borderWidth: 3,
@@ -357,7 +412,7 @@ function movement_graph(){
                                         label: 'Testing-planning',
                                         
                                         borderColor: [
-                                            "rgba(183, 119, 10 )",
+                                            P7,
                                             
                                         ],
                                           borderWidth: 3,
@@ -369,7 +424,7 @@ function movement_graph(){
                                         label: 'Testing-doing',
                                         
                                         borderColor: [
-                                            "rgba(187, 62, 187 )",
+                                            P8,
                                             
                                         ],
                                          borderWidth: 3,
@@ -381,7 +436,7 @@ function movement_graph(){
                                         label: 'Testing-done',
                                         
                                         borderColor: [
-                                            "rgba(63, 191, 191 )",
+                                            P9,
                                             
                                         ],
                                          borderWidth: 3,
@@ -393,7 +448,7 @@ function movement_graph(){
                                         label: 'Done-planning',
                                         
                                         borderColor: [
-                                            "rgba(191, 63, 63 )",
+                                           P10,
                                             
                                         ],
                                          borderWidth: 3,
@@ -405,7 +460,7 @@ function movement_graph(){
                                         label: 'Done-doing',
                                        
                                         borderColor: [
-                                            "rgba(63, 63, 191 )",
+                                            P11,
                                             
                                         ],
                                          borderWidth: 3,
@@ -418,7 +473,7 @@ function movement_graph(){
                                         label: 'Done-testing',
                                         
                                         borderColor: [
-                                            "rgba(127, 191, 63 )",
+                                           P12,
                                             
                                         ],
                                          borderWidth: 3,

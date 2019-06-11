@@ -135,8 +135,8 @@ $(document).ready(function(){
                         }
 
                         start_date.setHours(0,0,0,0)
-                        end_date.setHours(0,0,0,0)
-
+                        end_date.setHours(23,59,59,999)
+                        var time_index=[];
                         time_index = time_date.map(function(t, i){
                           if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                             return 1;

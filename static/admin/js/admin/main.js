@@ -4,6 +4,19 @@ var this_board;
 var week_or_month = "week";
 var this_date = new Date();
 var is_in_board = false;
+var p;
+var P1 = "#ff0066";
+var P2 = "#cc33ff";
+var P3 =  "rgba(63, 127, 191)";
+var P4 = "#00E2FF";
+var P5 = "#A776D8";
+var P6 = "rgba(187, 187, 62)";
+var P7 = "rgba(183, 119, 10 )";
+var P8 = "rgba(187, 62, 187 )";
+var P9 = "rgba(63, 191, 191 )";
+var P10 =  "rgba(191, 63, 63 )"
+var P11 = "rgba(63, 63, 191 )";
+var P12 =  "rgba(127, 191, 63 )";
 $(document).ready(function(){
   week();
   $(".menu_box").on("click",function(){
@@ -53,8 +66,9 @@ $(document).ready(function(){
       var date = this_date;
       var recent_day = date.getDay();
       var start_date = addDays(date, -recent_day+1);
+      var end_date = addDays(date, 7-recent_day);
       let formatted_date = start_date.getDate()+ "/" + months[start_date.getMonth()] + "/" + start_date.getFullYear()
-    +" - "+ end_date.getDate()+ "/" + months[end_date.getMonth()] + "/" + end_date.getFullYear()
+      +" - "+ end_date.getDate()+ "/" + months[end_date.getMonth()] + "/" + end_date.getFullYear()
       $(".txt-btn").text(formatted_date);
     }
     else{
@@ -83,6 +97,7 @@ $(document).ready(function(){
       var date = this_date;
       var recent_day = date.getDay();
       var start_date = addDays(date, -recent_day+1);
+      var end_date = addDays(date, 7-recent_day);
       let formatted_date = start_date.getDate()+ "/" + months[start_date.getMonth()] + "/" + start_date.getFullYear()
     +" - "+ end_date.getDate()+ "/" + months[end_date.getMonth()] + "/" + end_date.getFullYear()
       $(".txt-btn").text(formatted_date);
@@ -122,14 +137,77 @@ $(document).ready(function(){
         </div>
     </div>
     </section>`);
-
-    $(".percent_chart").append(`<section class="box-graph">
+    $(".percent_chart").append(`<section class="box-graph box-graph-move">
     <div class="content_box">
         <div class="box-canvas">
             <canvas id="myChart`+2+`"></canvas>
+           <input class="input-color" type="color" name="color-picker" value="#4E78B9">
+           <select class="custom-select" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
+           right: 70px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
+                    <option>Select color</option>
+                    <option value="P1">Planning-doing</option>
+                    <option value="P2">Planning-testing</option>
+                    <option value="P3">Planning-done</option>
+                    <option value="P4">Doing_planning</option>
+                    <option value="P5">Doing_testing</option>
+                    <option value="P6">Doing-done</option>
+                    <option value="P7">Testing-planning</option>
+                    <option value="P8">Testing-doing</option>
+                    <option value="P9">Testing-done</option>
+                    <option value="P10">Done-planning</option>
+                    <option value="P11">Done-doing</option>
+                    <option value="P12">Done-testing</option>
+                </select>
         </div>
     </div>
     </section>`);
+    // $('select[name=select-list]').on("change",function(){
+    //   var a = $('select[name=select-list]').var();
+    //   $('input[name=color-picker]').on("change",function(){
+    //     a = $('input[name=color-picker]').var();
+    //   })
+    // })
+    $("select[name='seclect-list-move']").on("change",function(){
+      p = $("select[name='seclect-list-move']").val();
+   });
+   $("input[name='color-picker']").on("change",function(){
+       if( "P1" == p ){
+           P1 = $("input[name='color-picker']").val();
+       }else if("P2" == p){
+           P2 = $("input[name='color-picker']").val();
+       }
+       else if("P3" == p){
+           P3 = $("input[name='color-picker']").val();
+       }
+       else if("P4" == p){
+           P4 = $("input[name='color-picker']").val();
+       }
+       else if("P5" == p){
+           P5 = $("input[name='color-picker']").val();
+       }
+       else if("P6" == p){
+           P6 = $("input[name='color-picker']").val();
+       }
+       else if("P7"==p ){
+           P7 = $("input[name='color-picker']").val();
+       }
+       else if("P8" == p){
+           P8 = $("input[name='color-picker']").val();
+       }
+       else if("P9" == p){
+           P9 = $("input[name='color-picker']").val();
+       }
+       else if("P10" == p ){
+           P10 = $("input[name='color-picker']").val();
+       }
+       else if("P11" == p){
+           P11 = $("input[name='color-picker']").val();
+       }
+       else if("P12" == p){
+           P12 = $("input[name='color-picker']").val();
+       }
+   });
+    
     //scope
     $.ajax({
         type: "GET",
@@ -191,8 +269,8 @@ $(document).ready(function(){
                         }
 
                         start_date.setHours(0,0,0,0)
-                        end_date.setHours(0,0,0,0)
-
+                        end_date.setHours(23,59,59,999)
+                        var time_index=[];
                         time_index = time_date.map(function(t, i){
                           if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                             return 1;
@@ -374,8 +452,8 @@ $(document).ready(function(){
                     }
 
                     start_date.setHours(0,0,0,0)
-                    end_date.setHours(0,0,0,0)
-
+                    end_date.setHours(23,59,59,999)
+                    var time_index=[];
                     time_index = time_date.map(function(t, i){
                       if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                         return 1;
@@ -559,8 +637,8 @@ $(document).ready(function(){
                     }
 
                     start_date.setHours(0,0,0,0)
-                    end_date.setHours(0,0,0,0)
-
+                    end_date.setHours(23,59,59,999)
+                    var time_index=[];
                     time_index = time_date.map(function(t, i){
                       if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                         return 1;
@@ -672,7 +750,7 @@ $(document).ready(function(){
                             datasets: [{
                                 label: 'Planning-doing',
                                 borderColor: [
-                                    "rgba(133, 191, 191)",
+                                    P1,
                                     
                                 ],
                                 
@@ -682,10 +760,10 @@ $(document).ready(function(){
                                     display : true
                                 }
                                 },{
-                                    borderDash: [2, 1],
+                                    borderWidth: 3,
                                     label: 'Planning-testing',
                                     borderColor: [
-                                        "rgba(23, 130, 191)",
+                                       P2,
                                         
                                     ],
                                    
@@ -698,7 +776,7 @@ $(document).ready(function(){
                                     label: 'Planning-done',
                                     
                                     borderColor: [
-                                        "rgba(63, 127, 191)",
+                                        P3,
                                         
                                     ],
                                       borderWidth: 3,
@@ -710,7 +788,7 @@ $(document).ready(function(){
                                     label: 'Doing_planning',
                                     
                                     borderColor: [
-                                        "#00E2FF",
+                                        P4,
                                         
                                     ],
                                       borderWidth: 3,
@@ -722,7 +800,7 @@ $(document).ready(function(){
                                     label: 'Doing_testing',
                                    
                                     borderColor: [
-                                        "#A776D8",
+                                        P5,
                                         
                                     ],
                                       borderWidth: 3,
@@ -734,7 +812,7 @@ $(document).ready(function(){
                                     label: 'Doing-done',
                                     
                                     borderColor: [
-                                        "rgba(187, 187, 62)",
+                                        P6,
                                         
                                     ],
                                       borderWidth: 3,
@@ -746,7 +824,7 @@ $(document).ready(function(){
                                     label: 'Testing-planning',
                                     
                                     borderColor: [
-                                        "rgba(183, 119, 10 )",
+                                        P7,
                                         
                                     ],
                                       borderWidth: 3,
@@ -758,7 +836,7 @@ $(document).ready(function(){
                                     label: 'Testing-doing',
                                     
                                     borderColor: [
-                                        "rgba(187, 62, 187 )",
+                                        P8,
                                         
                                     ],
                                      borderWidth: 3,
@@ -770,7 +848,7 @@ $(document).ready(function(){
                                     label: 'Testing-done',
                                     
                                     borderColor: [
-                                        "rgba(63, 191, 191 )",
+                                        P9,
                                         
                                     ],
                                      borderWidth: 3,
@@ -782,7 +860,7 @@ $(document).ready(function(){
                                     label: 'Done-planning',
                                     
                                     borderColor: [
-                                        "rgba(191, 63, 63 )",
+                                        P10,
                                         
                                     ],
                                      borderWidth: 3,
@@ -794,7 +872,7 @@ $(document).ready(function(){
                                     label: 'Done-doing',
                                    
                                     borderColor: [
-                                        "rgba(63, 63, 191 )",
+                                        P11,
                                         
                                     ],
                                      borderWidth: 3,
@@ -807,7 +885,7 @@ $(document).ready(function(){
                                     label: 'Done-testing',
                                     
                                     borderColor: [
-                                        "rgba(127, 191, 63 )",
+                                        P12,
                                         
                                     ],
                                      borderWidth: 3,

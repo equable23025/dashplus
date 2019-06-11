@@ -156,15 +156,15 @@ $(document).ready(function(){
                       var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
                     }
 
-                    start_date.setHours(0,0,0,0)
-                    end_date.setHours(0,0,0,0)
-
+                    start_date.setHours(0,0,0,0);
+                    end_date.setHours(23,59,59,999)
+                    var time_index=[];
                     time_index = time_date.map(function(t, i){
                       if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                         return 1;
                       }
                     }) 
-                    console.log(time_index) 
+                    console.log(time_index) ;
                     
                     time_date = time_date.filter(function(t, i){
                       return !!time_index[i] 
@@ -210,10 +210,12 @@ $(document).ready(function(){
                                 storytime_date.push(date);
                             }
                         }
+                        console.log(time_date);
                         console.log("story "+storypoint);
                         console.log("cardname "+card_name);
                         console.log("time "+time_story);
                         console.log("storytime_date "+storytime_date);
+                        console.log(amount_change);
                         
                         for(let i = 0;i<storytime_date.length;i++){
                             
@@ -394,7 +396,7 @@ $(document).ready(function(){
                                                 fontSize:10
                                             },
                                             onHover: function(event, legendItem) {
-                                                document.getElementById('myChart'+i).style.cursor = 'pointer';
+                                                document.getElementById('#myChart'+i).style.cursor = 'pointer';
                                               },
                                               onClick: function(e, legendItem) {
                                                 var index = legendItem.datasetIndex;

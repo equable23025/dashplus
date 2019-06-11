@@ -293,7 +293,7 @@ a{
   }
 .custom-select {
   position: relative;
-  width: 244px;
+  width: 328px;
   height: 100%;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -331,7 +331,7 @@ a{
   margin-left: 8px;
   margin-right: 8px;
   background-color: #ffffff;
-  width: 156px;
+  width: 240px;
   float: right;
   height: 100%;
   display: inline-block;
@@ -493,9 +493,93 @@ a{
   width: 123px;
   height: 84px;
 }
+.input-color {
+  width: 48px;
+  height: 34px;
+  float: right;
+  margin-top: -32px;
+  border: none;
+  z-index: 10;
+  position: absolute;
+  right: 0px;
+  margin-right: 16px;
+}
+#custom_color{
+  float: right;
+  width: 120px;
+  height: 56px;
+  line-height: 56px;
+  font-size: 16px;
+  color: #333333;
+  background-color: #FFFFFF;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16); 
+}
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  margin-right: 16px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: white;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #333333 ;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: #333333 ;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #333333;
+  padding: 8px 16px;
+  border: none;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #333333;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .logout_sum{
   margin-top: 234px;
   border-top: 2px solid #96949496;
+}
+.box-graph-move{
+  height: 356px;;
 }
 @media (max-height: 816px){
   .main_menu_bg {
