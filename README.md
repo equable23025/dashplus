@@ -2,6 +2,9 @@
 
 ## Setup
 
+### All import 
+``` import all requirements.txt ```
+
 ### Database setup
 It requires database named `trello_test` with this settings:
 ```
@@ -79,12 +82,12 @@ pip install djangorestframework-filters
 
 #### How to get token trello 
 
-[I'm an inline-style link] (https://developers.trello.com/page/authorization?)
+(https://developers.trello.com/page/authorization?)
 
 
 #### How to django login
 
-[I'm an inline-style link] (https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/?fbclid=IwAR07__04UdJrnxaCH5TbzMrhJMeDkEWgz_oeoh10ZiOdaQUNelPRK5ZTTf8)
+(https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/?fbclid=IwAR07__04UdJrnxaCH5TbzMrhJMeDkEWgz_oeoh10ZiOdaQUNelPRK5ZTTf8)
 
 
 #### Unbolck cors api (unblock protocol broswer block)
@@ -94,3 +97,32 @@ pip install django-cors-headers
 ```
 
 <!-- cron job  -->
+
+## Folder
+```
+	# template folder
+	-	keep all file html
+
+	# static css
+	=	keep all file css
+
+	# static js
+	-	keep all file js
+
+	#	my app 
+	=	keep all file project
+		1.model.py -> create database model
+		2.viewsets.py , serializers -> make rest api send to urls.py
+		3.urls.py -> get api url 
+		4.views.py -> show content any template
+		5.url -> fix name / url to use html project
+		6.setting.py -> import , config about django project
+		7.filters -> increase filter function rest api
+		8.forms -> keep post data from user and send to database by views.py
+
+```
+
+## About script files
+```
+
+```
