@@ -147,8 +147,10 @@ fetch_trello_data.py
 fetch_trello_effort.py
 - keep action in board trello to change effort
 
+
 fetch_trello_movement.py
 - keep movement in board trello 
+
 
 fetch_trello_storypoint.py 
 - keep number of change story point and keep number card to finish 
@@ -158,12 +160,26 @@ fetch_trello_storypoint.py
 ###### 3 file to calculate and send to rest-api
 ``` 
 calculating_change_record.py
-- 
-
+- calculate action for each card 
+	-createCard
+	-addChecklistToCard
+	-removeChecklistFromCard
+	-deleteCard
+	-updateCard (Change Description)
+```
+```
 calculating_change_movement.py
-- 
-
+	-all movement in board trello
+```
+**fixed state / status working** 
+```	-planning , doing , testing , done ```
+```
 calculating_change_effort.py
-- 
+- calculate action for each card 
+	-addMemberToCard
+	-removeMemberFromCard
+	-updateCustomFieldItem
 
 ```
+
+
