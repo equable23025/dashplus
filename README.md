@@ -9,8 +9,9 @@
 **Database -> postgreSQL**
  ```can set table data and can keep datajson to easy.```
 
- **Editor -> sublime , vs studio code.**
- **API -> trello API  + chart.JS **
+**Editor -> sublime , vs studio code.**
+` `
+* API -> trello API  + chart.JS *
 ```
 -trello api -> get data  (https://developers.trello.com/reference#)
 
