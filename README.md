@@ -100,23 +100,23 @@ pip install django-cors-headers
 
 ## Folder
 
-### template folder
+#### template folder
 ```
-	-	keep all file html
+-	keep all file html
 ```
-### static css
+#### static css
 ```
-	-	keep all file css
+-	keep all file css
 ```
-### static js
+#### static js
 ```
-	-	keep all file js
+-	keep all file js
 ```
-###	my app 
+#### my app 
 ```
-	-	keep all file project
+-	keep all file project
 
-	#################################################
+#################################################
 
 	1.model.py -> create database model
 	2.viewsets.py , serializers -> make rest api send to urls.py
@@ -127,21 +127,26 @@ pip install django-cors-headers
 	7.filters -> increase filter function rest api
 	8.forms -> keep post data from user and send to database by views.py
 
-	#################################################
+#################################################
 ```
 
 
-## About script files
-``` fetch_trello_data.py ```
+### About script files
+#### get trello api -> get json data 
+##### 	url = 'https://api.trello.com/1/board/(idboard-trello)/actions?key=(keyapp or key user)&token=(token user)'
+##### 	apiTrello = requests.get(url)
+##### 	data_json = apiTrello.json()
+###### 5 file to get or fetch data 
+```  
+fetch_trello_data.py 
+fetch_trello_effort.py
+fetch_trello_movement.py
+fetch_trello_storypoint.py 
+ ```
 
-``` fetch_trello_effort.py ```
 
-``` fetch_trello_movement.py ```
-
-``` fetch_trello_storypoint.py ```
-
-``` calculating_change_record.py ```
-
-``` calculating_change_movement.py ```
-
-``` calculating_change_effort.py ```
+``` 
+calculating_change_record.py
+calculating_change_movement.py
+calculating_change_effort.py
+```

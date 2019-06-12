@@ -170,19 +170,6 @@ for user_board in ub :
 					elif  str(lastertHistory[3]) == 'done' and  str(lastertHistory[4]) == 'testing' :
 						done_testing_last+=1
 
-					# elif str(lastertHistory[2]) == 'deleteCard' 
-					# 		planning_doing_last=0
-					# 		planning_testing_last=0
-					# 		planning_done_last=0
-					# 		doing_planning_last=0
-					# 		doing_testing_last=0
-					# 		doing_done_last=0
-					# 		testing_planning_last=0
-					# 		testing_doing_last=0
-					# 		testing_done_last=0
-					# 		done_planning_last=0
-					# 		done_doing_last=0
-					# 		done_testing_last=0
 
 				postgreSQL_select_Query1 = "select \"id_card\", \"action_card\" ,\"timestamp_id\" ,\"listbefore_movement_card\" , \"listafter_movement_card\" from public.myapp_card_movement_record  where \"username\" = '"+user_board[0]+"' and \"board\" = '"+user_board[1]+"' and \"id_card\" = "+ "'"+row[0]+ "' and \"timestamp_id\" ="+str(use_idtimeStamp[i+1])+";"
 				table1.execute(postgreSQL_select_Query1)
