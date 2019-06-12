@@ -6,20 +6,16 @@
 ``` import all requirements.txt ```
 
 ### Instrall program
- ```
- Database -> postgreSQL
- -benefit 
- 	- can set table data and can keep datajson to easy.
+**Database -> postgreSQL**
+ ```can set table data and can keep datajson to easy.```
 
-Editor -> sublime , vs studio code.
-
-API -> trello API  + chart.JS 
--trello api -> get data 
-	-can keep multiple user + multiple data
+ **Editor -> sublime , vs studio code.**
+ **API -> trello API  + chart.JS **
+```
+-trello api -> get data  (https://developers.trello.com/reference#)
 
 -chart.JS  -> show graph
-
- ```
+```
 
 ### Database setup
 It requires database named `trello_test` with this settings:
