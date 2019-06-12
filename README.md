@@ -172,7 +172,7 @@ calculating_change_movement.py
 	-all movement in board trello
 ```
 **fixed state / status working** 
-![#f03c15](https://placehold.it/15/f03c15/000000?text=+)```	-planning , doing , testing , done ```
+![#f03c15] ` planning , doing , testing , done `
 ```
 calculating_change_effort.py
 - calculate action for each card 
