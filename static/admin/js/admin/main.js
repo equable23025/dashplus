@@ -142,7 +142,7 @@ $(document).ready(function(){
         <div class="box-canvas">
             <canvas id="myChart`+2+`"></canvas>
            <input class="input-color" type="color" name="color-picker" value="#4E78B9">
-           <select class="custom-select" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
+           <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
            right: 70px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
                     <option>Select color</option>
                     <option value="P1">Planning-doing</option>
@@ -167,47 +167,9 @@ $(document).ready(function(){
     //     a = $('input[name=color-picker]').var();
     //   })
     // })
-    $("select[name='seclect-list-move']").on("change",function(){
-      p = $("select[name='seclect-list-move']").val();
+    $(".seclect-list-move").on("change",function(){
+      p = $(".seclect-list-move").val();
    });
-   $("input[name='color-picker']").on("change",function(){
-       if( "P1" == p ){
-           P1 = $("input[name='color-picker']").val();
-       }else if("P2" == p){
-           P2 = $("input[name='color-picker']").val();
-       }
-       else if("P3" == p){
-           P3 = $("input[name='color-picker']").val();
-       }
-       else if("P4" == p){
-           P4 = $("input[name='color-picker']").val();
-       }
-       else if("P5" == p){
-           P5 = $("input[name='color-picker']").val();
-       }
-       else if("P6" == p){
-           P6 = $("input[name='color-picker']").val();
-       }
-       else if("P7"==p ){
-           P7 = $("input[name='color-picker']").val();
-       }
-       else if("P8" == p){
-           P8 = $("input[name='color-picker']").val();
-       }
-       else if("P9" == p){
-           P9 = $("input[name='color-picker']").val();
-       }
-       else if("P10" == p ){
-           P10 = $("input[name='color-picker']").val();
-       }
-       else if("P11" == p){
-           P11 = $("input[name='color-picker']").val();
-       }
-       else if("P12" == p){
-           P12 = $("input[name='color-picker']").val();
-       }
-   });
-    
     //scope
     $.ajax({
         type: "GET",
@@ -965,6 +927,18 @@ $(document).ready(function(){
                                   }
                               }
                       });
+                      $("input[name='color-picker']").on("change",function(){
+                        var index = -1;
+                        if(!!p){
+                            index = p.substring(1, p.length) - 1
+                        }
+                        
+                        if(index >= 0){
+                            chart.data.datasets[index].borderColor = [$(this).val()];
+                            chart.update(); 
+                        }
+                                    
+                    });
                   }
               }
           });
