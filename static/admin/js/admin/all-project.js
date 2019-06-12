@@ -2,6 +2,7 @@
 var x = 1;
 var y =1;
 var this_board; 
+var chart_list = []
 var week_or_month = "week";
 var this_date = new Date();
 var is_in_board = false;
@@ -111,7 +112,7 @@ function movement_graph(){
         success: function(data){
             $.ajax({
                 type: "GET",
-                url: "http://127.0.0.1:8000/api/time_stamp/",
+                url: "http://127.0.0.1:8000/api/time_stamp_movement/",
                 success: function(data2){
                     var result = data;
                     var result2 ;
@@ -120,7 +121,7 @@ function movement_graph(){
                     var amount_change = [];
                     var board = [];   
                     console.log(chk_user);
-                    
+                    console.log(result3);
                     for(let i=0; i<data.length; i++){
                         if(board.indexOf(data[i].board) == -1){
                             board.push(data[i].board);
@@ -268,7 +269,7 @@ function movement_graph(){
                         <div class="content_box">
                             <div class="box-canvas">
                                 <canvas id="myChart`+i+`"></canvas>
-                               <input class="input-color" type="color" name="color-picker" value="#4E78B9">
+                               <input class="input-color" type="color" name="color-picker`+i+`" value="#4E78B9">
                                     <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
                                     right: 84px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
                                         <option>Select color</option>
@@ -289,7 +290,7 @@ function movement_graph(){
                         </div>
                         </section>`);
                         $(".seclect-list-move").on("change",function(){
-                           p = $(".seclect-list-move").val();
+                           p = $(this).val();
                         });
                         
                         var color = random_rgba();
@@ -518,18 +519,41 @@ function movement_graph(){
                                 }
                         });
 
-                        $("input[name='color-picker']").on("change",function(){
-                            var index = -1;
-                            if(!!p){
-                                index = p.substring(1, p.length) - 1
-                            }
+                        chart_list.push(chart);
+                        // $("input[name='color-picker"+i+"']").on("change",function(){
+                        //     var index = -1;
+                        //     if(!!p){
+                        //         index = p.substring(1, p.length) - 1
+                        //     }
                             
-                            if(index >= 0){
-                                chart.data.datasets[index].borderColor = [$(this).val()];
-                                chart.update(); 
-                            }
+                        //     if(index >= 0){
+                        //         chart.data.datasets[index].borderColor = [$(this).val()];
+                        //         chart.update(); 
+                        //     }
                                         
-                        });
+                        // });
+                    }
+
+                    for(var i = 0 ; i < chart_list.length ; i++){
+                        
+
+                        (function () {
+                            var chart = chart_list[i];
+
+                            $("input[name='color-picker"+i+"']").on("change",function(){
+                                var index = -1;
+                                if(!!p){
+                                    index = p.substring(1, p.length) - 1
+                                }
+                                
+                                if(index >= 0){
+                                    chart.data.datasets[index].borderColor = [$(this).val()];
+                                    chart.update(); 
+                                }
+                                            
+                            });
+    
+                        }());
                     }
                 }
             });

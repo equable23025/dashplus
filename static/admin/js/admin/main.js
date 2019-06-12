@@ -544,7 +544,7 @@ $(document).ready(function(){
       success: function(data){
           $.ajax({
               type: "GET",
-              url: "http://127.0.0.1:8000/api/time_stamp/",
+              url: "http://127.0.0.1:8000/api/time_stamp_movement/",
               success: function(data2){
                   var result = data;
                   var result2 ;
