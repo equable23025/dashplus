@@ -102,15 +102,15 @@ pip install django-cors-headers
 
 #### template folder
 ```
--	keep all file html
+-keep all file html
 ```
 #### static css
 ```
--	keep all file css
+-keep all file css
 ```
 #### static js
 ```
--	keep all file js
+-keep all file js
 ```
 #### my app 
 ```
@@ -131,22 +131,39 @@ pip install django-cors-headers
 ```
 
 
-### About script files
+## About script files
 #### get trello api -> get json data 
-##### 	url = 'https://api.trello.com/1/board/(idboard-trello)/actions?key=(keyapp or key user)&token=(token user)'
-##### 	apiTrello = requests.get(url)
-##### 	data_json = apiTrello.json()
+``` 
+url = 'https://api.trello.com/1/board/(idboard-trello)/actions?key=(keyapp or key user)&token=(token user)'
+apiTrello = requests.get(url)
+data_json = apiTrello.json()
+``` 
 ###### 5 file to get or fetch data 
 ```  
 fetch_trello_data.py 
+- keep action in board trello to change requirement  
+
+
 fetch_trello_effort.py
+- keep action in board trello to change effort
+
 fetch_trello_movement.py
+- keep movement in board trello 
+
 fetch_trello_storypoint.py 
+- keep number of change story point and keep number card to finish 
+
  ```
 
-
+###### 3 file to calculate and send to rest-api
 ``` 
 calculating_change_record.py
+- 
+
 calculating_change_movement.py
+- 
+
 calculating_change_effort.py
+- 
+
 ```
