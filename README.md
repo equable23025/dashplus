@@ -32,7 +32,7 @@ python3 manage.py runserver
 cd env
 source bin/activate
 
-#for window
+# for window
 
 pip install virtualenv
 virtualenv py34
@@ -69,7 +69,8 @@ git branch -D branch_name
 git diff
 ```
 #### filter rest_Framwork
-
+	- increase function rest_Framwork
+		- (ex. /api?id=1)
 ```
 pip install django-filter
 pip install djangorestframework-filters
@@ -79,5 +80,3 @@ pip install djangorestframework-filters
 ```
 pip install django-cors-headers
 ```
-<!-- heroku -->
-pip install whitenoise
