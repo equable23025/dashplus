@@ -86,8 +86,8 @@ pip install djangorestframework-filters
 [I'm an inline-style link] (https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/?fbclid=IwAR07__04UdJrnxaCH5TbzMrhJMeDkEWgz_oeoh10ZiOdaQUNelPRK5ZTTf8)
 ```
 
-#### cors block api
-	- unblock protocol broswer block
+#### Unbolck cors api (unblock protocol broswer block)
+
 ```
 pip install django-cors-headers
 ```
