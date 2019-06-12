@@ -68,6 +68,7 @@ git branch -D branch_name
 ```
 git diff
 ```
+
 #### filter rest_Framwork
 	- increase function rest_Framwork  (example to use. localhost:8000/api?id=1)
 ```
@@ -77,14 +78,14 @@ pip install djangorestframework-filters
 
 
 #### How to get token trello 
-```
+
 [I'm an inline-style link] (https://developers.trello.com/page/authorization?)
-```
+
 
 #### How to django login
-```
+
 [I'm an inline-style link] (https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/?fbclid=IwAR07__04UdJrnxaCH5TbzMrhJMeDkEWgz_oeoh10ZiOdaQUNelPRK5ZTTf8)
-```
+
 
 #### Unbolck cors api (unblock protocol broswer block)
 
