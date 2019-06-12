@@ -104,25 +104,41 @@ pip install django-cors-headers
 	-	keep all file html
 
 	# static css
-	=	keep all file css
+	-	keep all file css
 
 	# static js
 	-	keep all file js
 
 	#	my app 
-	=	keep all file project
-		1.model.py -> create database model
-		2.viewsets.py , serializers -> make rest api send to urls.py
-		3.urls.py -> get api url 
-		4.views.py -> show content any template
-		5.url -> fix name / url to use html project
-		6.setting.py -> import , config about django project
-		7.filters -> increase filter function rest api
-		8.forms -> keep post data from user and send to database by views.py
+	-	keep all file project
+	
+	#################################################
+
+	1.model.py -> create database model
+	2.viewsets.py , serializers -> make rest api send to urls.py
+	3.urls.py -> get api url 
+	4.views.py -> show content any template
+	5.url -> fix name / url to use html project
+	6.setting.py -> import , config about django project
+	7.filters -> increase filter function rest api
+	8.forms -> keep post data from user and send to database by views.py
+
+	#################################################
+
 
 ```
 
 ## About script files
-```
+``` fetch_trello_data.py ```
 
-```
+``` fetch_trello_effort.py ```
+
+``` fetch_trello_movement.py ```
+
+``` fetch_trello_storypoint.py ```
+
+``` calculating_change_record.py ```
+
+``` calculating_change_movement.py ```
+
+``` calculating_change_effort.py ```
