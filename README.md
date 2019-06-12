@@ -5,8 +5,25 @@
 ### All import 
 ``` import all requirements.txt ```
 
+### Instrall program
+ ```
+ Database -> postgreSQL
+ -benefit 
+ 	- can set table data and can keep datajson to easy.
+
+Editor -> sublime , vs studio code.
+
+API -> trello API  + chart.JS 
+-trello api -> get data 
+	-can keep multiple user + multiple data
+
+-chart.JS  -> show graph
+
+ ```
+
 ### Database setup
 It requires database named `trello_test` with this settings:
+
 ```
 'NAME': 'trello_test',
 'USER': 'postgres',
@@ -72,7 +89,7 @@ git branch -D branch_name
 git diff
 ```
 
-#### filter rest_Framwork
+### Filter rest_Framwork
 	- increase function rest_Framwork  (example to use. localhost:8000/api?id=1)
 ```
 pip install django-filter
@@ -80,17 +97,17 @@ pip install djangorestframework-filters
 ```
 
 
-#### How to get token trello 
+### How to get token trello 
 
 (https://developers.trello.com/page/authorization?)
 
 
-#### How to django login
+### How to django login
 
 (https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/?fbclid=IwAR07__04UdJrnxaCH5TbzMrhJMeDkEWgz_oeoh10ZiOdaQUNelPRK5ZTTf8)
 
 
-#### Unbolck cors api (unblock protocol broswer block)
+### Unblock cors api (unblock protocol broswer block)
 
 ```
 pip install django-cors-headers
@@ -98,7 +115,7 @@ pip install django-cors-headers
 
 <!-- cron job  -->
 
-## Folder
+## Introduce Folder
 
 #### template folder
 ```
@@ -172,7 +189,7 @@ calculating_change_movement.py
 	-all movement in board trello
 ```
 **fixed state / status working** 
-`planning , doing , testing , done ` :smile:
+`planning , doing , testing , done ` 
 ```
 calculating_change_effort.py
 - calculate action for each card 
@@ -182,5 +199,4 @@ calculating_change_effort.py
 
 ```
 
-
-<span style="color:blue">some *ขั้นตอนการใช้งาน* text</span>
+## USER MANUAL :smile:
