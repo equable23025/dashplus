@@ -99,19 +99,23 @@ pip install django-cors-headers
 <!-- cron job  -->
 
 ## Folder
+
+### template folder
 ```
-	# template folder
 	-	keep all file html
-
-	# static css
+```
+### static css
+```
 	-	keep all file css
-
-	# static js
+```
+### static js
+```
 	-	keep all file js
-
-	#	my app 
+```
+###	my app 
+```
 	-	keep all file project
-	
+
 	#################################################
 
 	1.model.py -> create database model
@@ -124,9 +128,8 @@ pip install django-cors-headers
 	8.forms -> keep post data from user and send to database by views.py
 
 	#################################################
-
-
 ```
+
 
 ## About script files
 ``` fetch_trello_data.py ```
