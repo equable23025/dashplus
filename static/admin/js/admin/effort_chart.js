@@ -262,14 +262,14 @@ $(document).ready(function(){
                                         datasets: [{
                                             label: 'Effort change',
                                             backgroundColor: [
-                                                color,
+                                               ' rgba(203, 66, 244,0.25)',
                                                 
                                             ],
                                             borderColor: [
-                                                color,
+                                                'rgb(203, 66, 244)',
                                                 
                                             ],
-                                            borderWidth: 1,
+                                            borderWidth: 3,
                                             data: amount_change
                                         }]
                                     },

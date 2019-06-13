@@ -141,8 +141,8 @@ $(document).ready(function(){
     <div class="content_box">
         <div class="box-canvas">
             <canvas id="myChart`+2+`"></canvas>
-           <input class="input-color" type="color" name="color-picker" value="#4E78B9">
-           <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
+           <input class="input-color" type="color" name="color-picker" value="#4E78B9" style="z-index: 2;margin-top: 5px;">
+           <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: 2px; border: none; border-radius: unset; font-size: 12px;position: absolute;margin-right:12px;
            right: 70px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
                     <option>Select color</option>
                     <option value="P1">Planning-doing</option>
@@ -268,11 +268,11 @@ $(document).ready(function(){
                                     datasets: [{
                                         label: 'Scope change',
                                         backgroundColor: [
-                                            color,
+                                          'rgba(65, 110, 244,0.25)',
                                             
                                         ],
                                         borderColor: [
-                                            color,
+                                          'rgb(65, 110, 244)',
                                             
                                         ],
                                         borderWidth: 1,
@@ -451,11 +451,11 @@ $(document).ready(function(){
                               datasets: [{
                                   label: 'Effort change',
                                   backgroundColor: [
-                                      color,
+                                    'rgba(203, 66, 244,0.25)',
                                       
                                   ],
                                   borderColor: [
-                                      color,
+                                    'rgb(203, 66, 244)',
                                       
                                   ],
                                   borderWidth: 1,
@@ -544,7 +544,7 @@ $(document).ready(function(){
       success: function(data){
           $.ajax({
               type: "GET",
-              url: "http://127.0.0.1:8000/api/time_stamp_movement/",
+               url: "http://127.0.0.1:8000/api/time_stamp_movement/",
               success: function(data2){
                   var result = data;
                   var result2 ;
@@ -923,6 +923,7 @@ $(document).ready(function(){
                                   elements: {
                                       line: {
                                           tension: 0, 
+                                          fill:false,
                                       }
                                   }
                               }

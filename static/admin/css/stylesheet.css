@@ -130,7 +130,7 @@ text-overflow: ellipsis;  */
 .menu_bg{
   width: 298px;
   background-color: #ffffff;
-  z-index: 4;
+  z-index: 6;
   position: fixed;
   opacity: 1;
   padding: 20px;

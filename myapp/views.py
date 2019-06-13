@@ -202,9 +202,9 @@ def login(request):
         	username = request.session['member_id']
         	# Set session as modified to force data updates/cookie to be saved.
         	request.session.modified = True
-        	return HttpResponseRedirect("/summary",{'user':username})
+        	return HttpResponseRedirect("/introduction",{'user':username})
     else:
-        messages.info(request, 'เข้าสู่ระบบล้มเหลว')
+        messages.warning(request, 'เข้าสู่ระบบล้มเหลว')
         return render(request,'login.html')
 
 
@@ -215,7 +215,7 @@ def logout(request):
         pass
     return HttpResponseRedirect("/login")
 
-def summary(request):
+def introduction(request):
 	user = request.session['member_id']
 	con_register_id = connect("dbname='trello_test' user='postgres' host='localhost' password='1234'")
 	con_register_id_database = con_register_id.cursor()
@@ -242,7 +242,7 @@ def summary(request):
 		data_json = apiTrello.json()
 		board_name.append(data_json['name'])
 
-	return render(request,'summary.html',{'username':user,'board_name' : board_name})	
+	return render(request,'introduction.html',{'username':user,'board_name' : board_name})	
 
 from django.core.mail import BadHeaderError, send_mail
 from django.conf import settings

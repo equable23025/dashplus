@@ -22,6 +22,6 @@ path('regis/',user_views.register, name='register'),
 url('^forgetpassword/', views.forgetpassword, name = 'forgetpassword'),
 url('addboard/',views.addboard, name='addboard'),
 url('^logout/', views.logout, name = 'logout'),
-url('summary/',views.summary, name='summary'),
+url('introduction/',views.introduction, name='introduction'),
 
 ]

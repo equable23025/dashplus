@@ -74,10 +74,7 @@ $(document).ready(function(){
     if(!is_in_board){         scope_change();      }
   
   });
-  function random_rgba() {
-    var o = Math.floor(Math.random() * 255), r = Math.floor(Math.random() * 255), s = Math.floor(Math.random() * 255);
-    return 'rgba(' + o + ',' + r + ',' + s + ',' + 0.4 + ')';
-  }
+ 
   function scope_change(){
     $.ajax({
         type: "GET",
@@ -178,7 +175,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                         </section>`);
-                        var color = random_rgba();
+                    
                         var ctx = document.getElementById('myChart'+i).getContext('2d');
                             var chart = new Chart(ctx, {
                                 type: 'line',
@@ -187,14 +184,14 @@ $(document).ready(function(){
                                     datasets: [{
                                         label: 'Scope change',
                                         backgroundColor: [
-                                            color,
+                                          'rgba(65, 110, 244,0.25)',
                                             
                                         ],
                                         borderColor: [
-                                            color,
+                                          'rgb(65, 110, 244)',
                                             
                                         ],
-                                        borderWidth: 1,
+                                        borderWidth: 3,
                                         data: amount_change
                                     }]
                                 },

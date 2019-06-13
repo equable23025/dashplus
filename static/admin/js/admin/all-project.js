@@ -269,8 +269,8 @@ function movement_graph(){
                         <div class="content_box">
                             <div class="box-canvas">
                                 <canvas id="myChart`+i+`"></canvas>
-                               <input class="input-color" type="color" name="color-picker`+i+`" value="#4E78B9">
-                                    <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: -36px; border: none; border-radius: unset; font-size: 12px;position: absolute;
+                               <input class="input-color" type="color" name="color-picker`+i+`" value="#4E78B9" style="z-index: 2;">
+                                    <select class="seclect-list-move" style="width: 118px; height: 40px; margin-top: 2px; border: none; border-radius: unset; font-size: 12px;position: absolute;
                                     right: 84px; background-color: #FFFFFF;  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);">
                                         <option>Select color</option>
                                         <option value="P1">Planning-doing</option>
@@ -293,7 +293,7 @@ function movement_graph(){
                            p = $(this).val();
                         });
                         
-                        var color = random_rgba();
+          
                         var ctx = document.getElementById('myChart'+i).getContext('2d');
                         var chart = new Chart(ctx, {
                             type: 'line',
@@ -514,6 +514,7 @@ function movement_graph(){
                                     elements: {
                                         line: {
                                             tension: 0, 
+                                            fill:false,
                                         }
                                     }
                                 }
