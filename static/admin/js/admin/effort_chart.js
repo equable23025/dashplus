@@ -140,20 +140,20 @@ $(document).ready(function(){
                     var time_date = [];
                     for(let i = 0;i<result3.length;i++){
                         if(timestamp[i] == result3[i].id){
-                            var date = result3[i].datetime.substr(0, 10);
+                            let date = result3[i].datetime.substr(0, 10);
                             time_date.push(date);
                         }
                     }
                     console.log(time_date);
-                    var date = this_date;
-                    var recent_day = date.getDay();
+                    var t_date = this_date;
+                    var recent_day = t_date.getDay();
                     if(week_or_month == "week"){
-                      var start_date = addDays(date, -recent_day+1);
-                      var end_date = addDays(date, 7-recent_day);
+                      var start_date = addDays(t_date, -recent_day+1);
+                      var end_date = addDays(t_date, 7-recent_day);
                     }
                     else{
-                      var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-                      var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                      var start_date = new Date(t_date.getFullYear(), t_date.getMonth(), 1);
+                      var end_date = new Date(t_date.getFullYear(), t_date.getMonth() + 1, 0);
                     }
 
                     start_date.setHours(0,0,0,0);
@@ -164,13 +164,13 @@ $(document).ready(function(){
                         return 1;
                       }
                     }) 
-                    console.log(time_index) ;
+                    // console.log(time_index) ;
                     
                     time_date = time_date.filter(function(t, i){
                       return !!time_index[i] 
                     })  
                     
-                    console.log(time_date);
+                    // console.log(time_date);
                         amount_change = result.map(function(amount){
                             return amount.amount_change;
                         });
@@ -206,15 +206,19 @@ $(document).ready(function(){
                         }
                         for(let i = 0;i<result3.length;i++){
                             if(time_story[i] == result3[i].id){
-                                var date = result3[i].datetime.substr(0, 10);
+                                let date = result3[i].datetime.substr(0, 10);
                                 storytime_date.push(date);
                             }
                         }
+                        console.log("time_date");
                         console.log(time_date);
+                        console.log("time_index");
+                        console.log(time_index);
                         console.log("story "+storypoint);
                         console.log("cardname "+card_name);
                         console.log("time "+time_story);
                         console.log("storytime_date "+storytime_date);
+                        console.log("amount_change_after");
                         console.log(amount_change);
                         
                         for(let i = 0;i<storytime_date.length;i++){

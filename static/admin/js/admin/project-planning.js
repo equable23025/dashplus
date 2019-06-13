@@ -112,41 +112,46 @@ $(document).ready(function(){
                         for(let i=1 ;i<=timestamp_real.length;i++){
                             timestamp.push(i);
                         }
+                        console.log("timestamp");
+                        console.log(timestamp);
                         var time_date = [];
                         for(let i = 0;i<result3.length;i++){
                             if(timestamp[i] == result3[i].id){
-                                var date = result3[i].datetime.substr(0, 10);
+                                let date = result3[i].datetime.substr(0, 10);
                                 time_date.push(date);
                             }
                         }
-                        
-                        var date = this_date;
-                        var recent_day = date.getDay();
+                        console.log("date")
+                        console.log(time_date)
+
+                        var t_date = this_date;
+                        var recent_day = t_date.getDay();
                         if(week_or_month == "week"){
-                          var start_date = addDays(date, -recent_day+1);
-                          var end_date = addDays(date, 7-recent_day);
+                          var start_date = addDays(t_date, -recent_day+1);
+                          var end_date = addDays(t_date, 7-recent_day);
                         }
                         else{
-                          var start_date = new Date(date.getFullYear(), date.getMonth(), 1);
-                          var end_date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+                          var start_date = new Date(t_date.getFullYear(), t_date.getMonth(), 1);
+                          var end_date = new Date(t_date.getFullYear(), t_date.getMonth() + 1, 0);
                         }
 
                         start_date.setHours(0,0,0,0)
                         end_date.setHours(23,59,59,999)
+
                         var time_index=[];
                         time_index = time_date.map(function(t, i){
                           if(new Date(t) >= new Date(start_date) && new Date(t) <= new Date(end_date)){
                             return 1;
                           }
                         }) 
-                        console.log(time_index) 
                         
                         time_date = time_date.filter(function(t, i){
                           return !!time_index[i] 
                         })  
-                        
+                        console.log("timedate");
                         console.log(time_date);
-
+                        console.log("index");
+                        console.log(time_index); 
                         
                         amount_change = result2.map(function(amount){
                             return amount.amount_change;
